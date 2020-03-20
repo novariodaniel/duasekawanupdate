@@ -67,3 +67,24 @@
         </div>
         <!-- /.container -->
     </nav>
+
+    <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script>    
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            function load_unseen_notification(view=''){
+                $.ajax({
+                    url: "<?php echo base_url()?>admin/Stock_minimum/retrieve_data", 
+                    method:"POST",
+                    data:{view:view},
+                    dataType:"json",
+                    success:function(data){
+                        $('#dropdown-notif').html(data.notification);
+                            if(data.unseen_notification > 0){
+                                $('.count').html(data.unseen_notification);
+                            }
+                    }
+                });
+            }
+        })
+    </script>

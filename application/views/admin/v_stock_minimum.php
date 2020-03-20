@@ -105,11 +105,7 @@
                     dataType: 'json',
                     async:false,
                     url: "<?php echo base_url()?>admin/Stock_minimum/retrieve_data", 
-                    success:function(data){                        
-                        // var data = $.parseJSON(data);                                              
-                        // alert(data.message);
-                        // location.reload();
-                        console.log(data);
+                    success:function(data){                          
                         var html = '';
                         var i;
                         var no = 1;
