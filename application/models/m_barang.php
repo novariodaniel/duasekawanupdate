@@ -6,9 +6,9 @@ class M_barang extends CI_Model{
 		return $hsl;
 	}
 
-	function update_barang($kobar,$nabar,$kat,$satuan,$harpok,$harjul,$harjul_grosir,$stok,$min_stok){
+	function update_barang($kobar,$nabar,$kat,$satuan,$harpok,$harjul,$stok,$min_stok){
 		$user_id=$this->session->userdata('idadmin');
-		$hsl=$this->db->query("UPDATE tbl_barang SET barang_nama='$nabar',barang_satuan='$satuan',barang_harpok='$harpok',barang_harjul='$harjul',barang_harjul_grosir='$harjul_grosir',barang_stok='$stok',barang_min_stok='$min_stok',barang_tgl_last_update=NOW(),barang_kategori_id='$kat',barang_user_id='$user_id' WHERE barang_id='$kobar'");
+		$hsl=$this->db->query("UPDATE tbl_barang SET barang_nama='$nabar',barang_satuan='$satuan',barang_harpok='$harpok',barang_harjul='$harjul',barang_stok='$stok',barang_min_stok='$min_stok',barang_tgl_last_update=NOW(),barang_kategori_id='$kat',barang_user_id='$user_id' WHERE barang_id='$kobar'");
 		return $hsl;
 	}
 
@@ -60,6 +60,11 @@ class M_barang extends CI_Model{
 
 	function stok_minimum(){
 		$query = $this->db->query("SELECT * FROM tbl_barang where barang_stok < barang_min_stok");
+		return $query->result();
+	}
+
+	function notif_stok_min(){
+		$query = $this->db->query("SELECT * FROM tbl_barang where barang_stok < barang_min_stok limit 5");
 		return $query->result();
 	}
 

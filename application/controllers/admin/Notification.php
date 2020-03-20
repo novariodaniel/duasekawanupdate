@@ -9,17 +9,31 @@ class Notification extends CI_Controller{
         };
 		$this->load->model('M_barang');
     }
-
-    function index(){
-		if($this->session->userdata('akses')=='1'){			
-			$this->load->view('admin/v_stock_minimum');
-		}else{
-			echo "Halaman tidak ditemukan";
-		}
-	}
     
-	function retrieve_data(){
-        $data = $this->M_barang->stok_minimum();
+	function show_notif(){
+        $data = $this->M_barang->notif_stok_min();
+        $count = count($data);
+        $output = '';
+        if ($count > 0){
+            foreach($data as $row){
+                $output .= '
+                    <li>
+                        <a href="#">
+                            <strong>'.$row->barang_id.'</strong><br/>
+                            <small><em>'.$row->barang_nama.'</em></small>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                ';
+            }
+        }else{
+            $output .= '<li><a href="#" class="text-bold text-italic">No Notification Found</a></li>';
+        }
+        
+        $data = array(
+            'notification'   => $output,
+            'unseen_notification' => $count
+           );
         echo json_encode($data);
     }
 }

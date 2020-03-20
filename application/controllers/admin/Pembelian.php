@@ -7,7 +7,7 @@ class Pembelian extends CI_Controller{
 			$url = 'Administrator';
             redirect($url);
         };
-		$this->load->model('M_kategori');
+		// $this->load->model('M_kategori');
 		$this->load->model('M_barang');
 		$this->load->model('M_suplier');
 		$this->load->model('M_pembelian');
@@ -48,10 +48,14 @@ class Pembelian extends CI_Controller{
 	}
 
 	function add_to_cart(){
+		// print_r($this->cart);die();		
 		if($this->session->userdata('akses')=='1'){			
 			$nofak=$this->input->post('nofak');
 			$tgl=$this->input->post('tgl');
 			$suplier=$this->input->post('suplier');
+			$harpok = $this->input->post('harpok');
+			$harjul = $this->input->post('harjul');
+			$jumlah = $this->input->post('jumlah');
 			$this->session->set_userdata('nofak',$nofak);
 			$this->session->set_userdata('tglfak',$tgl);
 			$this->session->set_userdata('suplier',$suplier);
@@ -62,13 +66,21 @@ class Pembelian extends CI_Controller{
 				'id'       => $i['barang_id'],
 				'name'     => $i['barang_nama'],
 				'satuan'   => $i['barang_satuan'],
-				'price'    => $this->input->post('harpok'),
-				'harga'    => $this->input->post('harjul'),
-				'qty'      => $this->input->post('jumlah')
+				'price'    => $harpok,
+				'harga'    => $harjul,
+				'qty'      => $jumlah
 				);
 				// print_r($data);die();
 			// print_r($this->cart->contents());die();
-			if(!empty($this->cart->total_items())){				
+			if (($harpok == 0) || ($harjul == 0) || ($jumlah == 0)){				
+				echo '<script language="javascript" type="text/javascript"> 
+				alert("Tidak boleh mengandung value 0");   
+				window.location = "'.base_url().'admin/Pembelian";             
+				</script>';				
+				die();
+				
+			}
+			if(!empty($this->cart->total_items())){						
 				$count = 0;				
 				foreach($this->cart->contents()as $items){					
 					$id = $items['id'];										
@@ -86,11 +98,14 @@ class Pembelian extends CI_Controller{
 					}
 				}
 				if($count==0){
+					echo "1";
 					$this->cart->insert($data);
 				}
-			}else{
+			}else{				
 				$this->cart->insert($data);
+				// echo "init2";die();				
 			}		
+			// print_r($this->cart);
 			redirect('admin/Pembelian');
 		}else{
 			echo "Halaman tidak ditemukan";
@@ -116,7 +131,7 @@ class Pembelian extends CI_Controller{
 			$tglfak=$this->session->userdata('tglfak');
 			$suplier=$this->session->userdata('suplier');
 			if(!empty($nofak) && !empty($tglfak) && !empty($suplier)){
-				$beli_kode=$this->M_pembelian->get_kobel();
+				$beli_kode=$this->M_pembelian->get_kobel($tglfak);
 				$order_proses=$this->M_pembelian->simpan_pembelian($nofak,$tglfak,$suplier,$beli_kode);
 				if($order_proses){
 					$this->cart->destroy();
