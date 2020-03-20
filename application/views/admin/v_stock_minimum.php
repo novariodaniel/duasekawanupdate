@@ -57,7 +57,7 @@
                         <th>Stok Minimum</th>                        
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="show_data">
                 
                 </tbody>
             </table>
@@ -95,53 +95,39 @@
         // });
 
         $(document).ready(function() {
-            $(document).on('click', ".btnHapus",function(){                   
-                var karyawan_id = $(this).val();
-                
-                $.ajax({
-                    type: "POST",
-                    data: {karyawan_id:karyawan_id},
-                    url : "<?php echo base_url()?>admin/Karyawan/nonaktifkan",
-                    success:function(data){  
-                        var data = $.parseJSON(data);                      
-                        console.log(data);
-                        alert(data.message);
-                        location.reload();
-                    }
-                });
-            });
+            // alert("s");
+            tampil_stock_minimum();
+            $('#mydata').dataTable();
 
-            
-
-            $("#simpan").click(function(){                      
-                karyawan_nama         = $("#add_nama").val();
-                karyawan_tmpLahir     = $("#add_tmpLahir").val();
-                karyawan_tglLahir     = $("#add_tglLahir").val();
-                karyawan_jenisKelamin = $("#add_jenisKelamin").val();
-                karyawan_domisili     = $("#add_domisili").val();
-                karyawan_status       = $("#add_status").val();
-                karyawan_isActive     = $("#add_isActive").val();
-                
+            function tampil_stock_minimum(){
                 $.ajax({
-                    type: "POST",
-                    data: {karyawan_nama: karyawan_nama,
-                            karyawan_tmpLahir: karyawan_tmpLahir,
-                            karyawan_tglLahir: karyawan_tglLahir,
-                            karyawan_jenisKelamin: karyawan_jenisKelamin,
-                            karyawan_domisili: karyawan_domisili,
-                            karyawan_status: karyawan_status,
-                            karyawan_isActive: karyawan_isActive},
-                    url: "<?php echo base_url()?>admin/Karyawan/tambah_karyawan", 
+                    type: 'ajax',
+                    dataType: 'json',
+                    async:false,
+                    url: "<?php echo base_url()?>admin/Stock_minimum/retrieve_data", 
                     success:function(data){                        
-                        var data = $.parseJSON(data);                                              
-                        alert(data.message);
-                        location.reload();
-                        
+                        // var data = $.parseJSON(data);                                              
+                        // alert(data.message);
+                        // location.reload();
+                        console.log(data);
+                        var html = '';
+                        var i;
+                        var no = 1;
+                        for(i=0; i<data.length; i++){
+                            html += '<tr>'+
+                                    '<td>'+no+'</td>'+
+                                    '<td>'+data[i].barang_id+'</td>'+                        
+                                    '<td>'+data[i].barang_nama+'</td>'+
+                                    '<td>'+data[i].barang_satuan+'</td>'+
+                                    '<td>'+data[i].barang_stok+'</td>'+
+                                    '<td>'+data[i].barang_min_stok+'</td>'+
+                                    '</tr>';
+                            no++;
+                        }
+                        $('#show_data').html(html);                        
                     }
                 });
-            })
-            
-            $('#mydata').DataTable();
+            }
         });
     </script>
     

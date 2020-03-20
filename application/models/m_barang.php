@@ -58,4 +58,9 @@ class M_barang extends CI_Model{
         return "BR".$kd;
 	}
 
+	function stok_minimum(){
+		$query = $this->db->query("SELECT * FROM tbl_barang where barang_stok < barang_min_stok");
+		return $query->result();
+	}
+
 }
