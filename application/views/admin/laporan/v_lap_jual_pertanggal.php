@@ -14,7 +14,7 @@
 
 <table border="0" align="center" style="width:800px; border:none;margin-top:5px;margin-bottom:0px;">
 <tr>
-    <td colspan="2" style="width:800px;paddin-left:20px;"><center><h4>LAPORAN PENJUALAN BARANG</h4></center><br/></td>
+    <td colspan="2" style="width:800px;padding-left:20px;"><center><h4>LAPORAN PENJUALAN BARANG</h4></center><br/></td>
 </tr>
                        
 </table>
@@ -26,11 +26,12 @@
 </table>
 <?php 
     $b=$jml->row_array();
+    $tgl = $data->row_array();    
 ?>
 <table border="1" align="center" style="width:900px;margin-bottom:20px;">
 <thead>
 <tr>
-<th colspan="11" style="text-align:left;">Tanggal : <?php echo $b['jual_tanggal'];?></th>
+<th colspan="11" style="text-align:left;">Tanggal : <?php echo $tgl['jual_tanggal'];?></th>
 </tr>
     <tr>
         <th style="width:50px;">No</th>
@@ -77,10 +78,17 @@ $no=0;
 <?php }?>
 </tbody>
 <tfoot>
-
     <tr>
         <td colspan="9" style="text-align:center;"><b>Total</b></td>
-        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['total']);?></b></td>
+        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['jual_total']);?></b></td>
+    </tr>
+    <tr>
+        <td colspan="9" style="text-align:center;"><b>Cashback</b></td>
+        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['total_cashback']);?></b></td>
+    </tr>    
+    <tr>
+        <td colspan="9" style="text-align:center;"><b>Grand Total</b></td>
+        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['grand_total']);?></b></td>
     </tr>
 </tfoot>
 </table>
@@ -90,7 +98,7 @@ $no=0;
 </table>
 <table align="center" style="width:800px; border:none;margin-top:5px;margin-bottom:20px;">
     <tr>
-        <td align="right">Padang, <?php echo date('d-M-Y')?></td>
+        <td align="right">Serang, <?php echo date('d-M-Y')?></td>
     </tr>
     <tr>
         <td align="right"></td>

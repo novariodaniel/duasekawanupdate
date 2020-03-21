@@ -26,11 +26,12 @@
 </table>
 <?php 
     $b=$jml->row_array();
+    $bln = $data->row_array();  
 ?>
 <table border="1" align="center" style="width:900px;margin-bottom:20px;">
 <thead>
 <tr>
-<th colspan="11" style="text-align:left;">Bulan : <?php echo $b['bulan'];?></th>
+<th colspan="11" style="text-align:left;">Bulan : <?php echo $bln['bulan'];?></th>
 </tr>
     <tr>
         <th style="width:50px;">No</th>
@@ -77,10 +78,17 @@ $no=0;
 <?php }?>
 </tbody>
 <tfoot>
-
     <tr>
         <td colspan="9" style="text-align:center;"><b>Total</b></td>
-        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['total']);?></b></td>
+        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['jual_total']);?></b></td>
+    </tr>
+    <tr>
+        <td colspan="9" style="text-align:center;"><b>Cashback</b></td>
+        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['total_cashback']);?></b></td>
+    </tr>
+    <tr>
+        <td colspan="9" style="text-align:center;"><b>Grand Total</b></td>
+        <td style="text-align:right;"><b><?php echo 'Rp '.number_format($b['grand_total']);?></b></td>
     </tr>
 </tfoot>
 </table>

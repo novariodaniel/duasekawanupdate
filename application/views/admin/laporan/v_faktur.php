@@ -18,25 +18,39 @@
 </table>
 <?php 
     $b=$data->row_array();
+    $a=$sum_qty->row_array();
+    // print_r($a);print_r($b);die();
 ?>
 <table border="0" align="center" style="width:700px;border:none;">
         <tr>
             <th style="text-align:left;">No Faktur</th>
             <th style="text-align:left;">: <?php echo $b['jual_nofak'];?></th>
-            <th style="text-align:left;">Total</th>
+            <th style="text-align:left;">Total Item (<?php echo $a['sumQty']?>)</th>
             <th style="text-align:left;">: <?php echo 'Rp '.number_format($b['jual_total']).',-';?></th>
         </tr>
         <tr>
             <th style="text-align:left;">Tanggal</th>
             <th style="text-align:left;">: <?php echo $b['jual_tanggal'];?></th>
-            <th style="text-align:left;">Tunai</th>
-            <th style="text-align:left;">: <?php echo 'Rp '.number_format($b['jual_jml_uang']).',-';?></th>
+            <th style="text-align:left;">Cashback</th>
+            <th style="text-align:left;">: <?php echo 'Rp '.number_format($b['jual_cashback']).',-';?></th>    
         </tr>
         <tr>
             <th style="text-align:left;">Keterangan</th>
             <th style="text-align:left;">: <?php echo $b['jual_keterangan'];?></th>
+            <th style="text-align:left;">Total Belanja</th>
+            <th style="text-align:left;">: <?php echo 'Rp '.number_format($b['jual_belanja']).',-';?></th>            
+        </tr>
+        <tr>
+            <th style="text-align:left;"></th>
+            <th style="text-align:left;"></th>            
+            <th style="text-align:left;">Bayar Tunai</th>
+            <th style="text-align:left;">: <?php echo 'Rp '.number_format($b['jual_jml_uang']).',-';?></th>            
+        </tr>
+        <tr>
+            <th style="text-align:left;"></th>
+            <th style="text-align:left;"></th>            
             <th style="text-align:left;">Kembalian</th>
-            <th style="text-align:left;">: <?php echo 'Rp '.number_format($b['jual_kembalian']).',-';?></th>
+            <th style="text-align:left;">: <?php echo 'Rp '.number_format($b['jual_kembalian']+$b['jual_cashback']).',-';?></th>
         </tr>
 </table>
 
@@ -64,7 +78,7 @@ $no=0;
         
         $harjul=$i['d_jual_barang_harjul'];
         $qty=$i['d_jual_qty'];
-        $diskon=$i['d_jual_diskon'];
+        $diskon=$i['d_jual_disc_val'];
         $total=$i['d_jual_total'];
 ?>
     <tr>
@@ -92,7 +106,7 @@ $no=0;
 </table>
 <table align="center" style="width:700px; border:none;margin-top:5px;margin-bottom:20px;">
     <tr>
-        <td align="right">Padang, <?php echo date('d-M-Y')?></td>
+        <td align="right">Serang, <?php echo date('d-M-Y')?></td>
     </tr>
     <tr>
         <td align="right"></td>

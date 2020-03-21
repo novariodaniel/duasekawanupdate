@@ -55,12 +55,20 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">1</td>
+                        <td style="vertical-align:middle;">Laporan Pembelian</td>
+                        <td style="text-align:center;">
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
+                        </td>
+                    </tr>
                 
                     <tr>
                         <td style="text-align:center;vertical-align:middle">1</td>
                         <td style="vertical-align:middle;">Laporan Data Barang</td>
                         <td style="text-align:center;">
-                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/laporan/lap_data_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
                         </td>
                     </tr>
 
@@ -76,7 +84,7 @@
                         <td style="text-align:center;vertical-align:middle">3</td>
                         <td style="vertical-align:middle;">Laporan Penjualan</td>
                         <td style="text-align:center;">
-                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/laporan/lap_data_penjualan'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_penjualan'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
                         </td>
                     </tr>
 
@@ -125,7 +133,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Pilih Tanggal</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/laporan/lap_penjualan_pertanggal'?>" target="_blank">
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_penjualan_pertanggal'?>" target="_blank">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -160,7 +168,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Pilih Bulan</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/laporan/lap_penjualan_perbulan'?>" target="_blank">
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_penjualan_perbulan'?>" target="_blank">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -196,7 +204,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Pilih Tahun</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/laporan/lap_penjualan_pertahun'?>" target="_blank">
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_penjualan_pertahun'?>" target="_blank">
                 <div class="modal-body">
 
                     <div class="form-group">

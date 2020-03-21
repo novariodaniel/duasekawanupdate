@@ -12,12 +12,12 @@
 </tr>-->
 </table>
 <?php 
-    $b=$jml->row_array();
+    $b=$data->row_array();
 ?>
 
 <table border="0" align="center" style="width:800px; border:none;margin-top:5px;margin-bottom:0px;">
 <tr>
-    <td colspan="2" style="width:800px;paddin-left:20px;"><center><h4>LAPORAN PENJUALAN TAHUN <?php echo $b['tahun'];?></h4></center><br/></td>
+    <td colspan="2" style="width:800px;padding-left:20px;"><center><h4>LAPORAN PENJUALAN TAHUN <?php echo $b['tahun'];?></h4></center><br/></td>
 </tr>
                        
 </table>
@@ -35,11 +35,14 @@
     $group='-';
     foreach($data->result_array()as $d){
     $nomor++;
-    $urut++;
+    $urut++;    
+
     if($group=='-' || $group!=$d['bulan']){
         $bulan=$d['bulan'];
-        $query=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%M %Y') AS bulan,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,SUM(d_jual_total) AS total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE DATE_FORMAT(jual_tanggal,'%M %Y')='$bulan'");
+        
+        $query=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%M %Y') AS bulan,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total as total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE DATE_FORMAT(jual_tanggal,'%M %Y')='$bulan'");
         $t=$query->row_array();
+        print_r($t);
         $tots=$t['total'];
         if($group!='-')
         echo "</table><br>";
@@ -63,10 +66,11 @@ $nomor=1;
     $group=$d['bulan'];
         if($urut==500){
         $nomor=0;
-            echo "<div class='pagebreak'> </div>";
+            echo "<div class='pagebreak'> </div>";            
             //echo "<center><h2>KALENDER EVENTS PER TAHUN</h2></center>";
             }
         ?>
+        
         <tr>
                 <td style="text-align:center;vertical-align:top;text-align:center;"><?php echo $nomor; ?></td>
                 <td style="vertical-align:top;padding-left:5px;"><?php echo $d['jual_nofak']; ?></td>

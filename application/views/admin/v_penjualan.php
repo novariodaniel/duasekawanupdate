@@ -108,7 +108,7 @@
                     <td></td>
                     <th>Cashback</th>
                     <th style="text-align:right;"><input type="text" id="cashback" name="cashback" class="cashback form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
-                    <input type="hidden" id="cashback" name="cashback" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
+                    <input type="hidden" id="cashback2" name="cashback2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
                 <tr>
                     <td></td>
@@ -233,6 +233,7 @@
                 var jumuang=$('#jml_uang').val();
                 var cashback=$('#cashback').val();
                 var cb=cashback.replace(/[^\d]/g,"");
+                $('#cashback2').val(cb);
                 var hsl=jumuang.replace(/[^\d]/g,"");
                 $('#jml_uang2').val(hsl);
                 var tes = hsl - (total - cb);                
@@ -254,6 +255,7 @@
                 var total=$('#total').val();
                 var hsl=jumuang.replace(/[^\d]/g,"");
                 var cb=cashback.replace(/[^\d]/g,"");
+                $('#cashback2').val(cb);
                 var tes = hsl - (total - cb);
                 if (tes > 0){
                     $('#kembalian').val(tes).priceFormat({

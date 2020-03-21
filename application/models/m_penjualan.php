@@ -31,9 +31,9 @@ class M_penjualan extends CI_Model{
 		return $hsl;
 	}
 
-	function simpan_penjualan($nofak,$total,$jml_uang,$kembalian,$cashback){
+	function simpan_penjualan($nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback){
 		$idadmin=$this->session->userdata('idadmin');
-		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback')");
+		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja')");
 		foreach ($this->cart->contents() as $item) {
 			$data=array(
 				'd_jual_nofak' 			=>	$nofak,
@@ -43,8 +43,9 @@ class M_penjualan extends CI_Model{
 				'd_jual_barang_harpok'	=>	$item['harpok'],
 				'd_jual_barang_harjul'	=>	$item['amount'],
 				'd_jual_qty'			=>	$item['qty'],
-				'd_jual_diskon'			=>	$item['disc'],
+				'd_jual_diskon'			=>	$item['disc'],				
 				'd_jual_total'			=>	$item['subtotal'],
+				'd_jual_disc_val'   	=>  $item['discVal'],
 				'd_status_return'       =>  0				
 			);
 			$this->db->insert('tbl_detail_jual',$data);
@@ -91,8 +92,14 @@ class M_penjualan extends CI_Model{
 	function cetak_faktur(){
 		$nofak=$this->session->userdata('nofak');
 		// echo $nofak;
-		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d/%m/%Y %H:%i:%s') AS jual_tanggal,jual_total,jual_jml_uang,jual_kembalian,jual_keterangan,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE jual_nofak='$nofak'");
+		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d/%m/%Y %H:%i:%s') AS jual_tanggal,jual_cashback,jual_belanja,jual_total,jual_jml_uang,jual_kembalian,jual_keterangan,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total,d_jual_disc_val FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE jual_nofak='$nofak'");
 		// print_r( $hsl);
+		return $hsl;
+	}
+
+	function sum_qty(){
+		$nofak=$this->session->userdata('nofak');
+		$hsl = $this->db->query("SELECT sum(d_jual_qty) as sumQty from tbl_detail_jual where d_jual_nofak ='$nofak'");		
 		return $hsl;
 	}
 	

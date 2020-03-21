@@ -35,6 +35,10 @@ class Penjualan extends CI_Controller{
 	if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'){
 		$kobar=$this->input->post('kode_brg');
 		$produk=$this->M_barang->get_barang_dynamic($kobar);
+		$harjul=$this->input->post('harjul');
+		$qty = $this->input->post('qty');
+		$diskonVal = $this->input->post('diskon')*(str_replace(",", "", $harjul)*$qty)/100;
+		// echo $diskonVal;die();
 		$i=$produk->row_array();
 		$data = array(
                'id'       => $i['barang_id'],
@@ -42,7 +46,8 @@ class Penjualan extends CI_Controller{
                'satuan'   => $i['barang_satuan'],
                'harpok'   => $i['barang_harpok'],	
 			   'price'    => str_replace(",", "", $this->input->post('harjul'))-(($this->input->post('diskon')*str_replace(",", "", $this->input->post('harjul')))/100),
-               'disc'     => $this->input->post('diskon'),
+			   'disc'     => $this->input->post('diskon'),
+			   'discVal'     => $diskonVal,
                'qty'      => $this->input->post('qty'),
                'amount'	  => str_replace(",", "", $this->input->post('harjul'))
 			);		
@@ -95,7 +100,8 @@ class Penjualan extends CI_Controller{
 	function simpan_penjualan(){
 	if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'){
 		$total=$this->input->post('total');
-		$cashback = $this->input->post('cashback');
+		$cashback = $this->input->post('cashback2');		
+		$jual_belanja = $total - $cashback;
 		$jml_uang=str_replace(",", "", $this->input->post('jml_uang'));
 		$kembalian=$jml_uang-$total;
 		if(!empty($total) && !empty($jml_uang)){
@@ -105,7 +111,7 @@ class Penjualan extends CI_Controller{
 			}else{
 				$nofak=$this->M_penjualan->get_nofak();
 				$this->session->set_userdata('nofak',$nofak);
-				$order_proses=$this->M_penjualan->simpan_penjualan($nofak,$total,$jml_uang,$kembalian,$cashback);
+				$order_proses=$this->M_penjualan->simpan_penjualan($nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback);
 				if($order_proses){
 					$this->cart->destroy();
 					
@@ -129,6 +135,8 @@ class Penjualan extends CI_Controller{
 
 	function cetak_faktur(){
 		$x['data']=$this->M_penjualan->cetak_faktur();
+		$x['sum_qty'] = $this->M_penjualan->sum_qty();
+		// print_r($x);die();		
 		// print_r ($x['data']); die();
 		$this->load->view('admin/laporan/v_faktur',$x);
 		//$this->session->unset_userdata('nofak');
