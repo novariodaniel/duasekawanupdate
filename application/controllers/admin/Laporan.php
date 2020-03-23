@@ -43,7 +43,52 @@ class Laporan extends CI_Controller{
 		$this->dompdf->loadHTML($html);
 		$this->dompdf->setPaper('A4','landscape');
 		$this->dompdf->render();
-		$this->dompdf->stream("tes.pdf",array("Attachment"=>0));
+		$this->dompdf->stream("lap_beli.pdf",array("Attachment"=>0));
+	}
+
+	function lap_beli_xls_cust(){		
+		$dateFrom=$this->input->post('dateFrom');
+		$dateTo = $this->input->post('dateTo');		
+		$x['data']=$this->M_laporan->get_data_beli_cust($dateFrom,$dateTo);		
+		$x['jml']=$this->M_laporan->get_total_beli_cust($dateFrom,$dateTo);		
+		$this->load->view('admin/laporan/v_lBeli_custX',$x);
+	}
+
+	function lap_beli_pdf_cust(){
+		// $tanggal=$this->input->post('tgl');
+		$dateFrom=$this->input->post('dateFrom');
+		$dateTo = $this->input->post('dateTo');		
+		$x['data']=$this->M_laporan->get_data_beli_cust($dateFrom,$dateTo);		
+		$x['jml']=$this->M_laporan->get_total_beli_cust($dateFrom,$dateTo);		
+		$this->load->view('admin/laporan/v_lBeli_custP',$x);	
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_beli_range_date.pdf",array("Attachment"=>0));		
+	}
+
+	function lap_jual_xls_cust(){		
+		$dtJx1=$this->input->post('dtJx1');
+		$dtJx2 = $this->input->post('dtJx2');			
+		$x['data']=$this->M_laporan->get_data_jual_cust($dtJx1,$dtJx2);		
+		$x['jml']=$this->M_laporan->get_total_jual_cust($dtJx1,$dtJx2);		
+		$this->load->view('admin/laporan/v_lJual_custX',$x);
+	}
+
+	function lap_jual_pdf_cust(){
+		$dtJp1=$this->input->post('dtJp1');
+		$dtJp2 = $this->input->post('dtJp2');		
+		$x['data']=$this->M_laporan->get_data_jual_cust($dtJp1,$dtJp2);		
+		$x['jml']=$this->M_laporan->get_total_jual_cust($dtJp1,$dtJp2);		
+		$this->load->view('admin/laporan/v_lJual_custP',$x);	
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_jual_range_date.pdf",array("Attachment"=>0));		
 	}
 
 	function lap_stok_barang(){
@@ -56,7 +101,13 @@ class Laporan extends CI_Controller{
 	}
 	function lap_data_barang(){
 		$x['data']=$this->M_laporan->get_data_barang1();
-		$this->load->view('admin/laporan/v_lap_barang',$x);
+		$this->load->view('admin/laporan/v_lBarang_pdf',$x);
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_barang.pdf",array("Attachment"=>0));		
 	}
 	function lap_data_penjualan(){
 		$x['data']=$this->M_laporan->get_data_penjualan();
@@ -74,7 +125,7 @@ class Laporan extends CI_Controller{
 		$x['jml']=$this->M_laporan->get_total_jual_perbulan1($bulan);
 		$x['data']=$this->M_laporan->get_jual_perbulan($bulan);
 		$this->load->view('admin/laporan/v_lap_jual_perbulan',$x);
-	}
+	}	
 	function lap_penjualan_pertahun(){
 		$tahun=$this->input->post('thn');
 		$x['jml']=$this->M_laporan->get_total_jual_pertahun1($tahun);

@@ -67,16 +67,15 @@
 
                     <tr>
                         <td style="text-align:center;vertical-align:middle">2</td>
-                        <td style="vertical-align:middle;">Laporan Pembelian Customize</td>
+                        <td style="vertical-align:middle;">Laporan Pembelian Range Date</td>
                         <td style="text-align:center;">
-                            <a class="btn btn-sm btn-default" href="#lap_beli_customize" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
-                            <a class="btn btn-sm btn-default" href="#lap_beli_customize" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
-                            <a class="btn btn-sm btn-default" href="#lap_jual_perbulan" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
+                            <a class="btn btn-sm btn-default" href="#lap_beli_xls_cust" data-toggle="modal"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="#lap_beli_pdf_cust" data-toggle="modal"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>                            
                         </td>
                     </tr>
                 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">2</td>
+                        <td style="text-align:center;vertical-align:middle">3</td>
                         <td style="vertical-align:middle;">Laporan Data Barang</td>
                         <td style="text-align:center;">                            
                             <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_barang_xls'?>" target="_blank"><span style="color:green"class="fa fa-file-excel-o"></span> Excel</a>
@@ -85,7 +84,16 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">2</td>
+                        <td style="text-align:center;vertical-align:middle">4</td>
+                        <td style="vertical-align:middle;">Laporan Penjualan Range Date</td>
+                        <td style="text-align:center;">
+                            <a class="btn btn-sm btn-default" href="#lap_jual_xls_cust" data-toggle="modal"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="#lap_jual_pdf_cust" data-toggle="modal"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>                            
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">4</td>
                         <td style="vertical-align:middle;">Laporan Stok Barang</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/laporan/lap_stok_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
@@ -137,6 +145,195 @@
             </div>
         </div>
         <!-- /.row -->
+
+        <!-- ============ MODAL ADD =============== -->
+        <div class="modal fade" id="lap_jual_pdf_cust" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title" id="myModalLabel">Pilih Tanggal</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_jual_pdf_cust'?>" target="_blank">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >From</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker5' style="width:300px;">
+                                <input type='text' name="dtJp1" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >To</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker6' style="width:300px;">
+                                <input type='text' name="dtJp2" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                           
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info"><span class="fa fa-print"></span> Cetak</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- ============ MODAL ADD =============== -->
+        <div class="modal fade" id="lap_jual_xls_cust" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title" id="myModalLabel">Pilih Tanggal</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_jual_xls_cust'?>" target="_blank">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >From</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker3' style="width:300px;">
+                                <input type='text' name="dtJx1" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >To</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker4' style="width:300px;">
+                                <input type='text' name="dtJx2" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                           
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info"><span class="fa fa-print"></span> Cetak</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- ============ MODAL ADD =============== -->
+        <div class="modal fade" id="lap_beli_pdf_cust" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title" id="myModalLabel">Pilih Tanggal</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_beli_pdf_cust'?>" target="_blank">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >From</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker1' style="width:300px;">
+                                <input type='text' name="dateFrom" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >To</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker2' style="width:300px;">
+                                <input type='text' name="dateTo" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                           
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info"><span class="fa fa-print"></span> Cetak</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- ============ MODAL ADD =============== -->
+        <div class="modal fade" id="lap_beli_xls_cust" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title" id="myModalLabel">Pilih Tanggal</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_beli_xls_cust'?>" target="_blank">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >From</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker3' style="width:300px;">
+                                <input type='text' name="dateFrom" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >To</label>
+                        <div class="col-xs-9">
+                            <div class='input-group date' id='datepicker4' style="width:300px;">
+                                <input type='text' name="dateTo" class="form-control" value="" placeholder="Tanggal..." required/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                           
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info"><span class="fa fa-print"></span> Cetak</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
         <!-- ============ MODAL ADD =============== -->
         <div class="modal fade" id="lap_jual_pertanggal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog">
@@ -318,7 +515,28 @@
                 $('#datepicker').datetimepicker({
                     format: 'YYYY-MM-DD',
                 });
+
+                $('#datepicker1').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                });
+
                 $('#datepicker2').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                });
+
+                $('#datepicker3').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                });
+
+                $('#datepicker4').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                });
+
+                $('#datepicker5').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                });
+
+                $('#datepicker6').datetimepicker({
                     format: 'YYYY-MM-DD',
                 });
 
@@ -330,7 +548,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#mydata').DataTable();
-        } );
+        });
+        
     </script>
     
 </body>

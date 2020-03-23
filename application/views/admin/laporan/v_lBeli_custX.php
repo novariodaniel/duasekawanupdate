@@ -1,6 +1,6 @@
 <?php 
 
-$title = "lap_beli_range_date".date('d-m-Y');;
+$title = "laporan_pembelian".date('d-m-Y');;
 
 header("Content-type: application/octet-stream");
 

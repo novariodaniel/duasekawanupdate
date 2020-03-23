@@ -1,17 +1,21 @@
-<?php 
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-$title = "lap_beli_range_date".date('d-m-Y');;
+th, td {
+  text-align: left;
+  padding: 8px;
+}
 
-header("Content-type: application/octet-stream");
+tr:nth-child(even){background-color: #f2f2f2}
 
-header("Content-Disposition: attachment; filename=$title.xls");
-
-header("Pragma: no-cache");
-
-header("Expires: 0");
-
-?>
-
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
 
 <b><h4>Laporan Pembelian <?php echo date('M-Y');?></h4></b>
 <table width="100%">
@@ -43,21 +47,21 @@ header("Expires: 0");
         <tr>
             <td align='center'><?php echo $i;?></td>
 
-            <td><?php echo $list['beli_nofak'];?></td>
+            <td align='center'><?php echo $list['beli_nofak'];?></td>
 
-            <td><?php echo $list['beli_tanggal'];?></td>
+            <td align='center'><?php echo $list['beli_tanggal'];?></td>
 
-            <td><?php echo $list['d_beli_barang_id'];?></td>
+            <td align='center'><?php echo $list['d_beli_barang_id'];?></td>
 
-            <td><?php echo $list['barang_nama'];?></td>
+            <td align='left'><?php echo $list['barang_nama'];?></td>
 
-            <td><?php echo $list['barang_satuan'];?></td>
+            <td align='center'><?php echo $list['barang_satuan'];?></td>
 
-            <td><?php echo $list['d_beli_harga'];?></td>
+            <td align='center'><?php echo $list['d_beli_harga'];?></td>
 
-            <td><?php echo $list['d_beli_jumlah'];?></td>
+            <td align='center'><?php echo $list['d_beli_jumlah'];?></td>
             
-            <td><?php echo $list['d_beli_total'];?></td>
+            <td align='right'><?php echo $list['d_beli_total'];?></td>
 
         </tr>
 
@@ -72,4 +76,15 @@ header("Expires: 0");
     </tbody>
 </table>
 
-<?php redirect('admin/Laporan','refresh'); ?>
+
+
+
+
+
+
+
+
+
+
+
+

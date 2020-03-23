@@ -17,7 +17,7 @@ class M_laporan extends CI_Model{
 	function get_data_pembelian(){
 		$hsl=$this->db->query("SELECT tb.beli_nofak,DATE_FORMAT(beli_tanggal,'%d %M %Y')AS beli_tanggal,tdb.d_beli_barang_id,tbr.barang_nama,tbr.barang_satuan,tdb.d_beli_harga,tdb.d_beli_jumlah,tdb.d_beli_total,tdb.d_beli_kode
 		FROM tbl_beli tb
-		JOIN tbl_detail_beli tdb ON tb.beli_nofak=tdb.d_beli_nofak 
+		JOIN tbl_detail_beli tdb ON tb.beli_kode=tdb.d_beli_kode 
 		JOIN tbl_barang tbr ON tdb.d_beli_barang_id = tbr.barang_id
 		ORDER BY beli_tanggal,tb.beli_nofak");
 		return $hsl;
@@ -28,6 +28,22 @@ class M_laporan extends CI_Model{
 		return $hsl;
 	}
 
+	function get_data_beli_cust($dateFrom,$dateTo){
+		$hsl=$this->db->query("SELECT tb.beli_nofak,DATE_FORMAT(beli_tanggal,'%d %M %Y')AS beli_tanggal,tdb.d_beli_barang_id,tbr.barang_nama,tbr.barang_satuan,tdb.d_beli_harga,tdb.d_beli_jumlah,tdb.d_beli_total,tdb.d_beli_kode
+		FROM tbl_beli tb
+		JOIN tbl_detail_beli tdb ON tb.beli_kode=tdb.d_beli_kode 
+		JOIN tbl_barang tbr ON tdb.d_beli_barang_id = tbr.barang_id
+		WHERE beli_tanggal BETWEEN '$dateFrom' AND '$dateTo'
+		ORDER BY beli_tanggal,tb.beli_nofak");
+		return $hsl;
+	}
+
+	function get_total_beli_cust($dateFrom,$dateTo){
+		$hsl=$this->db->query("SELECT sum(d_beli_total)as beli_total FROM tbl_detail_beli tdb 
+		JOIN tbl_beli tb ON tdb.d_beli_kode = tb.beli_kode WHERE tb.beli_tanggal BETWEEN '$dateFrom' AND '$dateTo'");
+		return $hsl;
+	}
+
 	function get_data_penjualan(){
 		$hsl=$this->db->query("SELECT tj.jual_nofak,DATE_FORMAT(tj.jual_tanggal,'%d %M %Y') AS jual_tanggal,tj.jual_total,tdj.d_jual_barang_id,tdj.d_jual_barang_nama,tdj.d_jual_barang_satuan,tdj.d_jual_barang_harpok,tdj.d_jual_barang_harjul,tdj.d_jual_qty,tdj.d_jual_diskon,tdj.d_jual_total,tdj.d_jual_disc_val FROM tbl_jual tj JOIN tbl_detail_jual tdj ON tj.jual_nofak=tdj.d_jual_nofak ORDER BY tj.jual_nofak DESC");
 		return $hsl;
@@ -35,6 +51,16 @@ class M_laporan extends CI_Model{
 	
 	function get_total_penjualan(){
 		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,jual_total,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,sum(d_jual_total) as total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak ORDER BY jual_nofak DESC");
+		return $hsl;
+	}
+
+	function get_data_jual_cust($dtJx1,$dtJx2){
+		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE DATE(jual_tanggal)BETWEEN '$dtJx1' AND '$dtJx2' ORDER BY jual_nofak DESC");
+		return $hsl;
+	}
+
+	function get_total_jual_cust($dtJx1,$dtJx2){
+		$hsl=$this->db->query("SELECT sum(jual_total)as jual_total, sum(jual_belanja)as grand_total,sum(jual_cashback) as total_cashback FROM tbl_jual WHERE DATE(jual_tanggal) BETWEEN '$dtJx1' AND '$dtJx2'");
 		return $hsl;
 	}
 
