@@ -14,7 +14,7 @@
 
 <table border="0" align="center" style="width:800px; border:none;margin-top:5px;margin-bottom:0px;">
 <tr>
-    <td colspan="2" style="width:800px;paddin-left:20px;"><center><h4>LAPORAN PENJUALAN BARANG</h4></center><br/></td>
+    <td colspan="2" style="width:800px;padding-left:20px;"><center><h4>LAPORAN PENJUALAN BARANG</h4></center><br/></td>
 </tr>
                        
 </table>

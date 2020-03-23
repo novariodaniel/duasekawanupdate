@@ -13,6 +13,8 @@ class Laporan extends CI_Controller{
 		$this->load->model('M_pembelian');
 		$this->load->model('M_penjualan');
 		$this->load->model('M_laporan');
+		$this->load->library('Excel');
+		$this->load->library('pdf');
 	}
 	function index(){
 	if($this->session->userdata('akses')=='1'){
@@ -25,12 +27,35 @@ class Laporan extends CI_Controller{
         echo "Halaman tidak ditemukan";
     }
 	}
+
+	function lap_pembelian_xls(){
+		$x['data'] = $this->M_laporan->get_data_pembelian();
+		$x['jml']  = $this->M_laporan->get_total_pembelian();
+		$this->load->view('admin/laporan/v_lap_beli_xls',$x);
+	}
+
+	function lap_pembelian_pdf(){
+		$x['data'] = $this->M_laporan->get_data_pembelian();
+		$x['jml']  = $this->M_laporan->get_total_pembelian();
+		$this->load->view('admin/laporan/v_lap_beli_pdf',$x);	
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("tes.pdf",array("Attachment"=>0));
+	}
+
 	function lap_stok_barang(){
 		$x['data']=$this->M_laporan->get_stok_barang();
 		$this->load->view('admin/laporan/v_lap_stok_barang',$x);
 	}
+	function lap_data_barang_xls(){		
+		$x['data']=$this->M_laporan->get_data_barang1();
+		$this->load->view('admin/laporan/v_lap_barang_xls',$x);
+	}
 	function lap_data_barang(){
-		$x['data']=$this->M_laporan->get_data_barang();
+		$x['data']=$this->M_laporan->get_data_barang1();
 		$this->load->view('admin/laporan/v_lap_barang',$x);
 	}
 	function lap_data_penjualan(){

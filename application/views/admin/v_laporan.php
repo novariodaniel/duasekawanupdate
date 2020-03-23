@@ -51,7 +51,7 @@
                     <tr>
                         <th style="text-align:center;width:40px;">No</th>
                         <th>Laporan</th>
-                        <th style="width:100px;text-align:center;">Aksi</th>
+                        <th style="width:120px;text-align:center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,15 +60,27 @@
                         <td style="text-align:center;vertical-align:middle">1</td>
                         <td style="vertical-align:middle;">Laporan Pembelian</td>
                         <td style="text-align:center;">
-                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_pembelian_xls'?>" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_pembelian_pdf'?>" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">2</td>
+                        <td style="vertical-align:middle;">Laporan Pembelian Customize</td>
+                        <td style="text-align:center;">
+                            <a class="btn btn-sm btn-default" href="#lap_beli_customize" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="#lap_beli_customize" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                            <a class="btn btn-sm btn-default" href="#lap_jual_perbulan" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
                         </td>
                     </tr>
                 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">1</td>
+                        <td style="text-align:center;vertical-align:middle">2</td>
                         <td style="vertical-align:middle;">Laporan Data Barang</td>
-                        <td style="text-align:center;">
-                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
+                        <td style="text-align:center;">                            
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_barang_xls'?>" target="_blank"><span style="color:green"class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_barang'?>" target="_blank"><span style="color:red"class="fa fa-file-pdf-o"></span> Pdf</a>
                         </td>
                     </tr>
 

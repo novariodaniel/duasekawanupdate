@@ -8,6 +8,26 @@ class M_laporan extends CI_Model{
 		$hsl=$this->db->query("SELECT kategori_id,barang_id,kategori_nama,barang_nama,barang_satuan,barang_harjul,barang_stok FROM tbl_kategori JOIN tbl_barang ON kategori_id=barang_kategori_id GROUP BY kategori_id,barang_nama");
 		return $hsl;
 	}
+
+	function get_data_barang1(){
+		$hsl=$this->db->query("SELECT * from tbl_barang");
+		return $hsl;
+	}
+
+	function get_data_pembelian(){
+		$hsl=$this->db->query("SELECT tb.beli_nofak,DATE_FORMAT(beli_tanggal,'%d %M %Y')AS beli_tanggal,tdb.d_beli_barang_id,tbr.barang_nama,tbr.barang_satuan,tdb.d_beli_harga,tdb.d_beli_jumlah,tdb.d_beli_total,tdb.d_beli_kode
+		FROM tbl_beli tb
+		JOIN tbl_detail_beli tdb ON tb.beli_nofak=tdb.d_beli_nofak 
+		JOIN tbl_barang tbr ON tdb.d_beli_barang_id = tbr.barang_id
+		ORDER BY beli_tanggal,tb.beli_nofak");
+		return $hsl;
+	}
+
+	function get_total_pembelian(){
+		$hsl=$this->db->query("SELECT sum(d_beli_total)as beli_total FROM tbl_detail_beli");
+		return $hsl;
+	}
+
 	function get_data_penjualan(){
 		$hsl=$this->db->query("SELECT tj.jual_nofak,DATE_FORMAT(tj.jual_tanggal,'%d %M %Y') AS jual_tanggal,tj.jual_total,tdj.d_jual_barang_id,tdj.d_jual_barang_nama,tdj.d_jual_barang_satuan,tdj.d_jual_barang_harpok,tdj.d_jual_barang_harjul,tdj.d_jual_qty,tdj.d_jual_diskon,tdj.d_jual_total,tdj.d_jual_disc_val FROM tbl_jual tj JOIN tbl_detail_jual tdj ON tj.jual_nofak=tdj.d_jual_nofak ORDER BY tj.jual_nofak DESC");
 		return $hsl;
@@ -59,7 +79,7 @@ class M_laporan extends CI_Model{
 		return $hsl;
 	}
 	function get_jual_pertahun($tahun){
-		$hsl=$this->db->query("SELECT jual_nofak,YEAR(jual_tanggal) AS tahun,DATE_FORMAT(jual_tanggal,'%M %Y') AS bulan,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE YEAR(jual_tanggal)='$tahun' ORDER BY jual_nofak DESC");
+		$hsl=$this->db->query("SELECT jual_nofak,YEAR(jual_tanggal) AS tahun,DATE_FORMAT(jual_tanggal,'%M %Y') AS bulan,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE YEAR(jual_tanggal)='$tahun' ORDER BY bulan DESC, jual_tanggal ASC, d_jual_nofak asc,d_jual_barang_id asc");
 		return $hsl;
 	}
 	function get_total_jual_pertahun($tahun){
@@ -67,7 +87,7 @@ class M_laporan extends CI_Model{
 		return $hsl;
 	}
 	function get_total_jual_pertahun1($tahun){
-		$hsl=$this->db->query("SELECT sum(jual_total)as jual_total, sum(jual_belanja)as grand_total,sum(jual_cashback) as total_cashback FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE YEAR(jual_tanggal)='$tahun' ORDER BY jual_nofak DESC");
+		$hsl=$this->db->query("SELECT sum(jual_total)as jual_total, sum(jual_belanja)as grand_total,sum(jual_cashback) as total_cashback FROM tbl_jual WHERE YEAR(jual_tanggal)='$tahun' ORDER BY jual_nofak DESC");
 		return $hsl;
 	}
 	//=========Laporan Laba rugi============
