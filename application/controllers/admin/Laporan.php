@@ -69,6 +69,41 @@ class Laporan extends CI_Controller{
 		$this->dompdf->stream("lap_beli_range_date.pdf",array("Attachment"=>0));		
 	}
 
+	function lap_return_xls(){
+		$x['data'] = $this->M_laporan->get_data_return();				
+		$this->load->view('admin/laporan/v_lReturn_xls',$x);		
+	}
+
+	function lap_return_pdf(){
+		$x['data'] = $this->M_laporan->get_data_return();
+		// $x['jml']  = $this->M_laporan->get_total_return();
+		$this->load->view('admin/laporan/v_lReturn_pdf',$x);	
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_return.pdf",array("Attachment"=>0));
+	}
+
+	function lap_jual_xls(){
+		$x['data'] = $this->M_laporan->get_data_jual();
+		$x['jml']  = $this->M_laporan->get_total_jual();
+		$this->load->view('admin/laporan/v_lJual_xls',$x);		
+	}
+
+	function lap_jual_pdf(){
+		$x['data'] = $this->M_laporan->get_data_jual();
+		$x['jml']  = $this->M_laporan->get_total_jual();
+		$this->load->view('admin/laporan/v_lJual_pdf',$x);	
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_jual.pdf",array("Attachment"=>0));
+	}
+
 	function lap_jual_xls_cust(){		
 		$dtJx1=$this->input->post('dtJx1');
 		$dtJx2 = $this->input->post('dtJx2');			

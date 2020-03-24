@@ -51,7 +51,7 @@
                     <tr>
                         <th style="text-align:center;width:40px;">No</th>
                         <th>Laporan</th>
-                        <th style="width:120px;text-align:center;">Aksi</th>
+                        <th style="width:120px;text-align:center;">Download</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,6 +85,15 @@
 
                     <tr>
                         <td style="text-align:center;vertical-align:middle">4</td>
+                        <td style="vertical-align:middle;">Laporan Penjualan</td>
+                        <td style="text-align:center;">
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_jual_xls'?>" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_jual_pdf'?>" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">5</td>
                         <td style="vertical-align:middle;">Laporan Penjualan Range Date</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_xls_cust" data-toggle="modal"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
@@ -93,7 +102,16 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">4</td>
+                        <td style="text-align:center;vertical-align:middle">6</td>
+                        <td style="vertical-align:middle;">Laporan Return</td>
+                        <td style="text-align:center;">
+                        <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_return_xls'?>" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_return_pdf'?>" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">7</td>
                         <td style="vertical-align:middle;">Laporan Stok Barang</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/laporan/lap_stok_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
@@ -101,15 +119,7 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">3</td>
-                        <td style="vertical-align:middle;">Laporan Penjualan</td>
-                        <td style="text-align:center;">
-                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_data_penjualan'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="text-align:center;vertical-align:middle">4</td>
+                        <td style="text-align:center;vertical-align:middle">7</td>
                         <td style="vertical-align:middle;">Laporan Penjualan PerTanggal</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_pertanggal" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
@@ -117,7 +127,7 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">5</td>
+                        <td style="text-align:center;vertical-align:middle">8</td>
                         <td style="vertical-align:middle;">Laporan Penjualan PerBulan</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_perbulan" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
@@ -125,7 +135,7 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">6</td>
+                        <td style="text-align:center;vertical-align:middle">8</td>
                         <td style="vertical-align:middle;">Laporan Penjualan PerTahun</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_pertahun" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
@@ -145,6 +155,7 @@
             </div>
         </div>
         <!-- /.row -->
+        
 
         <!-- ============ MODAL ADD =============== -->
         <div class="modal fade" id="lap_jual_pdf_cust" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">

@@ -64,6 +64,22 @@ class M_laporan extends CI_Model{
 		return $hsl;
 	}
 
+	function get_data_return(){
+		$hsl=$this->db->query("SELECT a.jual_nofak,a.insert_datetime,a.barang_id,b.barang_nama,a.harga_jual,a.qty,a.stok_retur_good,a.stok_retur_broken,a.reason,a.change_with FROM tbl_after_sales a 
+		JOIN tbl_barang b ON a.barang_id = b.barang_id");
+		return $hsl;
+	}
+
+	function get_data_jual(){
+		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak");
+		return $hsl;
+	}
+
+	function get_total_jual(){
+		$hsl=$this->db->query("SELECT sum(jual_total)as jual_total, sum(jual_belanja)as grand_total,sum(jual_cashback) as total_cashback FROM tbl_jual WHERE DATE(jual_tanggal)");
+		return $hsl;
+	}
+
 	function get_total_penjualan1(){
 		$hsl=$this->db->query("SELECT sum(jual_total)as jual_total, sum(jual_belanja)as grand_total,sum(jual_cashback) as total_cashback FROM tbl_jual");
 		return $hsl;
