@@ -21,11 +21,46 @@ class Laporan extends CI_Controller{
 		$data['data']=$this->M_barang->tampil_barang();
 		$data['kat']=$this->M_kategori->tampil_kategori();
 		$data['jual_bln']=$this->M_laporan->get_bulan_jual();
+		$data['so_bln']=$this->M_laporan->get_bulan_so();
 		$data['jual_thn']=$this->M_laporan->get_tahun_jual();
 		$this->load->view('admin/v_laporan',$data);
 	}else{
         echo "Halaman tidak ditemukan";
     }
+	}
+
+	function lap_so_perbulan_xls(){
+		$bln = $this->input->post('bln');
+		$x['data'] = $this->M_laporan->get_data_so($bln);
+		$this->load->view('admin/laporan/v_lSo_xls',$x);		
+	}
+
+	function lap_so_perbulan_pdf(){
+		$bln = $this->input->post('bln');
+		$x['data'] = $this->M_laporan->get_data_so($bln);
+		$this->load->view('admin/laporan/v_lSo_pdf',$x);
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_so.pdf",array("Attachment"=>0));
+	}
+
+	function lap_rankItem_xls(){
+		$x['data'] = $this->M_laporan->get_top_item();
+		$this->load->view('admin/laporan/v_lTop_xls',$x);
+	}
+
+	function lap_rankItem_pdf(){
+		$x['data'] = $this->M_laporan->get_top_item();
+		$this->load->view('admin/laporan/v_lTop_pdf',$x);
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_top_item.pdf",array("Attachment"=>0));
 	}
 
 	function lap_pembelian_xls(){
@@ -67,6 +102,54 @@ class Laporan extends CI_Controller{
 		$this->dompdf->setPaper('A4','landscape');
 		$this->dompdf->render();
 		$this->dompdf->stream("lap_beli_range_date.pdf",array("Attachment"=>0));		
+	}
+
+	function lap_dtUser_xls(){
+		$x['data'] = $this->M_laporan->get_data_user();				
+		$this->load->view('admin/laporan/v_lUser_xls',$x);
+	}
+
+	function lap_dtUser_pdf(){
+		$x['data'] = $this->M_laporan->get_data_user();				
+		$this->load->view('admin/laporan/v_lUser_pdf',$x);
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_user.pdf",array("Attachment"=>0));
+	}
+
+	function lap_dtKaryawan_xls(){
+		$x['data'] = $this->M_laporan->get_data_karyawan();				
+		$this->load->view('admin/laporan/v_lKaryawan_xls',$x);
+	}
+
+	function lap_dtKaryawan_pdf(){
+		$x['data'] = $this->M_laporan->get_data_karyawan();				
+		$this->load->view('admin/laporan/v_lKaryawan_pdf',$x);
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_karyawan.pdf",array("Attachment"=>0));
+	}
+
+	function lap_dtSales_xls(){
+		$x['data'] = $this->M_laporan->get_data_sales();				
+		$this->load->view('admin/laporan/v_lSales_xls',$x);
+	}
+
+	function lap_dtSales_pdf(){
+		$x['data'] = $this->M_laporan->get_data_sales();				
+		$this->load->view('admin/laporan/v_lSales_pdf',$x);
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$this->dompdf->setPaper('A4','landscape');
+		$this->dompdf->render();
+		$this->dompdf->stream("lap_sales.pdf",array("Attachment"=>0));
 	}
 
 	function lap_return_xls(){

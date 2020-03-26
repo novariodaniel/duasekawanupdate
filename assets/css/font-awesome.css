@@ -204,6 +204,9 @@
 .fa-user:before {
   content: "\f007";
 }
+.fa-user-tie:before {
+  content: "\f508";
+}
 .fa-film:before {
   content: "\f008";
 }

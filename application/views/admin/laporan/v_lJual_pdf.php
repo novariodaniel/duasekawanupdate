@@ -40,8 +40,7 @@ th {
 
             <th>Diskon</th>
 
-            <th>Subtotal (Rp)</th>
-                        
+            <th>Subtotal (Rp)</th>                  
         </tr>
     </thead>
     <tbody>

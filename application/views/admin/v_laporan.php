@@ -112,6 +112,51 @@
 
                     <tr>
                         <td style="text-align:center;vertical-align:middle">7</td>
+                        <td style="vertical-align:middle;">Laporan Data Sales</td>
+                        <td style="text-align:center;">
+                        <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_dtSales_xls'?>" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_dtSales_pdf'?>" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">8</td>
+                        <td style="vertical-align:middle;">Laporan Data Karyawan</td>
+                        <td style="text-align:center;">
+                        <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_dtKaryawan_xls'?>" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_dtKaryawan_pdf'?>" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">9</td>
+                        <td style="vertical-align:middle;">Laporan Data User</td>
+                        <td style="text-align:center;">
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_dtUser_xls'?>" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_dtUser_pdf'?>" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">10</td>
+                        <td style="vertical-align:middle;">Laporan Stock Opname</td>
+                        <td style="text-align:center;">
+                            <a class="btn btn-sm btn-default" href="#lap_history_so_xls" data-toggle="modal"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="#lap_history_so_pdf" data-toggle="modal"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">11</td>
+                        <td style="vertical-align:middle;">Laporan Top Item</td>
+                        <td style="text-align:center;">
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_rankItem_xls'?>" target="_blank"><span style="color:green" class="fa fa-file-excel-o"></span> Excel</a>
+                            <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/Laporan/lap_rankItem_pdf'?>" target="_blank"><span style="color:red" class="fa fa-file-pdf-o"></span> Pdf</a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center;vertical-align:middle">40</td>
                         <td style="vertical-align:middle;">Laporan Stok Barang</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="<?php echo base_url().'admin/laporan/lap_stok_barang'?>" target="_blank"><span class="fa fa-print"></span> Print</a>
@@ -119,7 +164,7 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">7</td>
+                        <td style="text-align:center;vertical-align:middle">100</td>
                         <td style="vertical-align:middle;">Laporan Penjualan PerTanggal</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_pertanggal" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
@@ -127,7 +172,7 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">8</td>
+                        <td style="text-align:center;vertical-align:middle">12</td>
                         <td style="vertical-align:middle;">Laporan Penjualan PerBulan</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_perbulan" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
@@ -135,7 +180,7 @@
                     </tr>
 
                     <tr>
-                        <td style="text-align:center;vertical-align:middle">8</td>
+                        <td style="text-align:center;vertical-align:middle">11</td>
                         <td style="vertical-align:middle;">Laporan Penjualan PerTahun</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_pertahun" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
@@ -143,7 +188,7 @@
                     </tr>
 
                      <tr>
-                        <td style="text-align:center;vertical-align:middle">7</td>
+                        <td style="text-align:center;vertical-align:middle">11</td>
                         <td style="vertical-align:middle;">Laporan Laba/Rugi</td>
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_laba_rugi" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
@@ -381,6 +426,78 @@
         </div>
 
         <!-- ============ MODAL ADD =============== -->
+        <div class="modal fade" id="lap_history_so_xls" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title" id="myModalLabel">Pilih Bulan</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_so_perbulan_xls'?>" target="_blank">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >Bulan</label>
+                        <div class="col-xs-9">
+                                <select name="bln" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Bulan" data-width="80%" required/>
+                                <?php foreach ($so_bln->result_array() as $k) {
+                                    $bln=$k['bulan'];
+                                ?>
+                                    <option><?php echo $bln;?></option>
+                                <?php }?>
+                                </select>
+                        </div>
+                    </div>
+                           
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info"><span class="fa fa-print"></span> Cetak</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- ============ MODAL ADD =============== -->
+        <div class="modal fade" id="lap_history_so_pdf" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title" id="myModalLabel">Pilih Bulan</h3>
+            </div>
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Laporan/lap_so_perbulan_pdf'?>" target="_blank">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >Bulan</label>
+                        <div class="col-xs-9">
+                                <select name="bln" class="selectpicker show-tick form-control" data-live-search="true" title="Pilih Bulan" data-width="80%" required/>
+                                <?php foreach ($so_bln->result_array() as $k) {
+                                    $bln=$k['bulan'];
+                                ?>
+                                    <option><?php echo $bln;?></option>
+                                <?php }?>
+                                </select>
+                        </div>
+                    </div>
+                           
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info"><span class="fa fa-print"></span> Cetak</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- ============ MODAL ADD =============== -->
         <div class="modal fade" id="lap_jual_perbulan" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -558,6 +675,7 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
+            alert("ss");
             $('#mydata').DataTable();
         });
         

@@ -70,6 +70,35 @@ class M_laporan extends CI_Model{
 		return $hsl;
 	}
 
+	function get_data_karyawan(){
+		$hsl=$this->db->query("SELECT * from tbl_karyawan WHERE karyawan_status = '1'");
+		return $hsl;
+	}
+
+	function get_top_item(){
+		$hsl=$this->db->query("SELECT d_jual_barang_id,d_jual_barang_nama,count(d_jual_barang_id) as rank_item FROM tbl_detail_jual GROUP BY d_jual_barang_id,d_jual_barang_nama ORDER BY rank_item DESC");
+		return $hsl;
+	}
+
+	function get_data_sales(){
+		$hsl=$this->db->query("SELECT a.karyawan_id,b.sales_id,a.karyawan_nama,c.sales_area,c.sales_buyer
+		FROM tbl_karyawan a
+		JOIN tbl_sales_master b ON a.karyawan_id = b.karyawan_id
+		JOIN tbl_sales_detail c ON b.sales_id = c.sales_id
+		WHERE b.sales_status = 1");
+		return $hsl;
+	}
+
+	function get_data_so($bln){
+		$hsl=$this->db->query("SELECT * FROM tbl_history_so WHERE DATE_FORMAT(insert_datetime,'%M %Y')='$bln' ");
+		return $hsl;
+	}
+
+	function get_data_user(){
+		$hsl=$this->db->query("SELECT * FROM tbl_user where user_status = '1'");
+		return $hsl;
+	}
+
 	function get_data_jual(){
 		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d %M %Y') AS jual_tanggal,d_jual_barang_id,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harpok,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak");
 		return $hsl;
@@ -103,6 +132,12 @@ class M_laporan extends CI_Model{
 		$hsl=$this->db->query("SELECT DISTINCT DATE_FORMAT(jual_tanggal,'%M %Y') AS bulan FROM tbl_jual");
 		return $hsl;
 	}
+
+	function get_bulan_so(){
+		$hsl=$this->db->query("SELECT DISTINCT DATE_FORMAT(insert_datetime,'%M %Y') AS bulan FROM tbl_history_so ths");
+		return $hsl;
+	}
+
 	function get_tahun_jual(){
 		$hsl=$this->db->query("SELECT DISTINCT YEAR(jual_tanggal) AS tahun FROM tbl_jual");
 		return $hsl;

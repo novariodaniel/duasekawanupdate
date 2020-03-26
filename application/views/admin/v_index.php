@@ -68,7 +68,7 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item green" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Stock_opname'?>" data-toggle="modal">
-                           <i class="fa fa-cubes"></i>
+                           <i class="fa fa-calendar-check-o"></i>
                             <p style="text-align:left;font-size:14px;padding-left:5px;">Stock Opname</p>
                       </a>
                 </div> 
@@ -84,7 +84,7 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item color" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Adjustment'?>" data-toggle="modal">
-                           <i class="fa fa-sitemap"></i>
+                           <i class="fa fa-balance-scale"></i>
                             <p style="text-align:left;font-size:14px;padding-left:5px;">Adjustment</p>
                       </a>
                 </div> 
@@ -135,7 +135,7 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item red" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Pengguna'?>" data-toggle="modal">
-                           <i class="fa fa-users"></i>
+                           <i class="fa fa-user-tie"></i>
                             <p style="text-align:left;font-size:14px;padding-left:5px;">Pengguna</p>
                       </a>
                 </div> 
@@ -201,7 +201,7 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item purple" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Karyawan'?>" data-toggle="modal">
-                           <i class="fa fa-male"></i>
+                           <i class="fas fa-group"></i>
                             <p style="text-align:left;font-size:14px;padding-left:5px;">Karyawan</p>
                       </a>
                 </div> 
