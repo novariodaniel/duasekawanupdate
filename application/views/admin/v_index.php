@@ -11,10 +11,14 @@
 
     <title><?=$webtitle?></title>
 
+    
+
+
     <!-- Bootstrap Core CSS -->
       <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
-	    <link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	    <link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
+          <link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
+          <link href="<?php echo base_url().'assets/newfa/css/fontawesome.css'?>" rel="stylesheet">
+	    
     <!-- Custom CSS -->
       <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
 
@@ -27,6 +31,12 @@
            float: left;
            left: 0;
            margin-top: -20px;
+      }
+      p{
+            font-family: Arial, Helvetica, sans-serif !important;
+            text-align:left !important;
+            font-size:14px !important;;
+            padding-left:5px !important;;
       }
       </style>
 </head>
@@ -60,15 +70,15 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item blue" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Penjualan'?>" data-toggle="modal">
-                           <i class="fa fa-shopping-bag"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">Penjualan</p>
+                           <i class="fa fa-cash-register"></i>
+                            <p>Penjualan</p>
                       </a>
                 </div> 
             </div>
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item green" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Stock_opname'?>" data-toggle="modal">
-                           <i class="fa fa-calendar-check-o"></i>
+                           <i class="fa fa-calendar-check"></i>
                             <p style="text-align:left;font-size:14px;padding-left:5px;">Stock Opname</p>
                       </a>
                 </div> 
@@ -150,16 +160,16 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item blue" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Laporan'?>" data-toggle="modal">
-                           <i class="fa fa-bar-chart"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">Laporan</p>
+                           <i class="fa fa-file-download"></i>
+                            <p>Laporan</p>
                       </a>
                 </div> 
             </div>
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item light-red" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Pembelian'?>" data-toggle="modal">
-                           <i class="fa fa-cubes"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">Pembelian</p>
+                           <i class="fa fa-shopping-basket"></i>
+                            <p>Pembelian</p>
                       </a>
                 </div> 
             </div>
@@ -169,7 +179,7 @@
                 <div class="menu-item purple" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Penjualan_grosir'?>" data-toggle="modal">
                            <i class="fa fa-cubes"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">Penjualan Grossir</p>
+                            <p>Penjualan Grossir</p>
                       </a>
                 </div> 
             </div>
@@ -201,32 +211,32 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item purple" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Karyawan'?>" data-toggle="modal">
-                           <i class="fas fa-group"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">Karyawan</p>
+                           <i class="fas fa-users"></i>
+                            <p>Karyawan</p>
                       </a>
                 </div> 
             </div>
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item red" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Sales'?>" data-toggle="modal">
-                           <i class="fa fa-users"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">Sales</p>
+                           <i class="fa fa-hand-holding-usd"></i>
+                            <p>Sales</p>
                       </a>
                 </div> 
             </div>
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item blue" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Stock_minimum'?>" data-toggle="modal">
-                           <i class="fa fa-bar-chart"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">Stock Minimum</p>
+                           <i class="fa fa-store-alt-slash"></i>
+                            <p>Stock Minimum</p>
                       </a>
                 </div> 
             </div>
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item light-red" style="height:150px;">
                      <a href="<?php echo base_url().'admin/After_sales'?>" data-toggle="modal">
-                           <i class="fa fa-cubes"></i>
-                            <p style="text-align:left;font-size:14px;padding-left:5px;">After Sales</p>
+                           <i class="fa fa-recycle"></i>
+                            <p>Return</p>
                       </a>
                 </div> 
             </div>

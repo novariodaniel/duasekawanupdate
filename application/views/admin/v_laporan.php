@@ -675,7 +675,6 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            alert("ss");
             $('#mydata').DataTable();
         });
         

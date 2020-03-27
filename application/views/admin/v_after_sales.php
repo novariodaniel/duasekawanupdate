@@ -22,6 +22,10 @@
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/jquery-ui-1.12.1/jquery-ui.css'?>">
+    <!-- Swal -->
+    <link href="<?php echo base_url().'assets/swal/sweetalert2.min.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url().'assets/swal/all.css'?>" rel="stylesheet">
+    <script src="<?php echo base_url().'assets/swal/sweetalert2.min.js'?>"></script>
 </head>
 
 <body>
@@ -259,11 +263,25 @@
                 var tanggal = $('#tgl').val();
 
                 if (noFak == ""){
-                    alert("Faktur wajib diisi!");
-                    $('#nofak').focus();
+                    Swal.fire({
+                        type:'error',
+                        title: 'Oops...',
+                        text: 'Faktur wajib diisi!',
+                        footer: '<a href="https://google.com">Why do I have this issue?</a>'
+                        },function(){
+                            $('#nofak').focus();
+                        })
+                    // alert("Faktur wajib diisi!");                    
                 }else if (tanggal == ""){
-                    alert("Tanggal wajib diisi!");
-                    $('#tgl').focus();
+                    Swal.fire({
+                        type:'error',
+                        title: 'Oops...',
+                        text: 'Tanggal wajib diisi',
+                        footer: '<a href="https://google.com">Why do I have this issue?</a>'
+                        },function(){
+                            $('#tgl').focus();
+                        })
+                    // $('#tgl').focus();
                 }else{
                     $.ajax({
                         type: "POST",
@@ -318,14 +336,24 @@
                         // var dataResult = JSON.parse(dataResult);
                         var dataResult = $.parseJSON(dataResult); 
                         if(dataResult.status_code == 200){
-                            console.log("tes");
-                            $('#insert_retur').modal().hide();
-                            alert('Data inserted successfully !');
-                            location.reload();
+                            Swal.fire({
+                                type:'success',
+                                title: 'Sukses!',
+                                text: 'Data berhasil diinput ',                                
+                            }).then (function(){
+                                $('#insert_retur').modal().hide();                                
+                                location.reload();
+                            })                                                                                    
                         }else if(dataResult.status_code == 400){
-                            $('#insert_retur').modal().hide();
-                            alert('Invalid transaction caused return by cash!');
-                            location.reload();
+                            Swal.fire({
+                                type:'error',
+                                title: 'Oops...',
+                                text: 'Transaksi gagal! Data sudah pernah direturn by cash',
+                                footer: '<a href="https://google.com">Why do I have this issue?</a>'
+                            },function(){
+                                $('#insert_retur').modal().hide();
+                                location.reload();
+                            })
                         }
                     }
                 })

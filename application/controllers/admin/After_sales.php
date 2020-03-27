@@ -43,15 +43,19 @@ class After_sales extends CI_Controller{
 
 				if ($d_qty_nominal == ""){
 					$d_qty_nominal = 0;
-				}else if ($d_qty_good == ""){
+				};
+				if ($d_qty_good == ""){
 					$d_qty_good = 0;
-				}else if ($d_qty_broke == ""){
+				};
+				if ($d_qty_broke == ""){
 					$d_qty_broke = 0;
-				}else if ($d_harjul == ""){
+				};
+				if ($d_harjul == ""){
 					$d_harjul = 0;
-				}else if($d_harpok == ""){
+				};
+				if($d_harpok == ""){
 					$d_harpok = 0;
-				}
+				};
 
 				
 				if($d_change_with == 1){
@@ -91,6 +95,7 @@ class After_sales extends CI_Controller{
     function tampil_faktur(){
 		$nofak = $this->input->post('noFak');	
 		$data = $this->M_penjualan->get_detail($nofak);	 
+		// print_r($data);die();
 		$i=1;
 		foreach($data as $row){			
 			echo "<tr>";

@@ -24,8 +24,6 @@
     <link href="<?php echo base_url().'assets/select2/dist/css/select2.min.css'?>" rel="stylesheet" />
     <!-- jQuery library -->
    <script src="<?php echo base_url().'assets/jquery-3.3.1.min.js'?>"></script>
-   <!-- Select2 JS -->
-   <script src="<?php echo base_url().'assets/select2/dist/js/select2.min.js'?>"></script>
 
 </head>
 
@@ -90,7 +88,7 @@
                         <td style="text-align:center;">
                             <!-- <a class="btn btn-xs btn-warning" href="#" data-toggle="modal" title="Edit"><span class="fa fa-edit"></span> Edit</a> -->
                             <a href="#" class="btn btn-xs btn-warning update-record" data-sales_mapping_id="<?php echo $id;?>" data-karyawan_id="<?php echo $karyawan_id;?>" data-sales_nama="<?php echo $sales_nama;?>" data-sales_area="<?php echo $sales_area;?>"data-sales_buyer="<?php echo $sales_buyer;?>"data-isactive="<?php echo $sales_status;?>"data-sales_id="<?php echo $sales_id;?>"><span class="fa fa-edit"></span>Edit</a>
-                            <a class="btn btn-xs btn-danger" href="#modalHapusPelanggan<?php echo $id?>" data-toggle="modal" title="Hapus"><span class="fa fa-close"></span> Nonaktifkan</a>
+                            <!-- <a class="btn btn-xs btn-danger" href="#modalHapusPelanggan<?php echo $id?>" data-toggle="modal" title="Hapus"><span class="fa fa-close"></span> Nonaktifkan</a> -->
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -281,6 +279,8 @@
     <script src="<?php echo base_url().'assets/js/jquery.dataTables.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/jquery.price_format.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/dist/js/bootstrap-select.js'?>"></script>
+    <!-- Select2 JS -->
+   <script src="<?php echo base_url().'assets/select2/dist/js/select2.min.js'?>"></script>
     <script type="text/javascript">
 
         $(document).ready(function() {         

@@ -20,17 +20,17 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Transaksi"><span class="fa fa-shopping-cart" aria-hidden="true"></span> Transaksi</a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url().'admin/Penjualan'?>"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Penjualan (Eceran)</a></li> 
-                            <li><a href="<?php echo base_url().'admin/Penjualan_grosir'?>"><span class="fa fa-cubes" aria-hidden="true"></span> Penjualan (Grosir)</a></li> 
+                            <li><a href="<?php echo base_url().'admin/Penjualan'?>"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Penjualan</a></li> 
+                            <li><a href="<?php echo base_url().'admin/Pembelian'?>"><span class="fa fa-cubes" aria-hidden="true"></span> Pembelian</a></li> 
                         </ul>
                     </li>
                     <!--ending dropdown-->
                     <li>
-                        <a href="<?php echo base_url().'admin/Retur'?>"><span class="fa fa-refresh"></span> Retur</a>
+                        <a href="<?php echo base_url().'admin/After_sales'?>"><span class="fa fa-refresh"></span> Retur</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?php echo base_url().'admin/Grafik'?>"><span class="fa fa-line-chart"></span> Grafik</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<?php echo base_url().'admin/Laporan'?>"><span class="fa fa-file"></span> Laporan</a>
                     </li>
