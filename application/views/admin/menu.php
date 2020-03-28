@@ -26,13 +26,13 @@
                     </li>
                     <!--ending dropdown-->
                     <li>
-                        <a href="<?php echo base_url().'admin/After_sales'?>"><span class="fa fa-refresh"></span> Retur</a>
+                        <a href="<?php echo base_url().'admin/After_sales'?>"><span class="fa fa-recycle"></span> Return</a>
                     </li>
                     <!-- <li>
                         <a href="<?php echo base_url().'admin/Grafik'?>"><span class="fa fa-line-chart"></span> Grafik</a>
                     </li> -->
                     <li>
-                        <a href="<?php echo base_url().'admin/Laporan'?>"><span class="fa fa-file"></span> Laporan</a>
+                        <a href="<?php echo base_url().'admin/Laporan'?>"><span class="fa fa-file-download"></span> Laporan</a>
                     </li>
                     <?php }?>
                     <?php if($h=='2'){ ?> 
@@ -46,11 +46,11 @@
                     </li>
                     <!--ending dropdown-->
                     <li>
-                        <a href="<?php echo base_url().'admin/Retur'?>"><span class="fa fa-refresh"></span> Retur</a>
+                        <a href="<?php echo base_url().'admin/Retur'?>"><span class="fa fa-recycle"></span> Return</a>
                     </li>
                     <?php }?>
                      <li>
-                        <a href="<?php echo base_url().'Administrator/logout'?>"><span class="fa fa-sign-out"></span> Logout</a>
+                        <a href="<?php echo base_url().'Administrator/logout'?>"><span class="fa fa-sign-out-alt"></span> Logout</a>
                     </li>
                 </ul>
 
