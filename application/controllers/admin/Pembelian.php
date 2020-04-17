@@ -66,13 +66,14 @@ class Pembelian extends CI_Controller{
 				'id'       => $i['barang_id'],
 				'name'     => $i['barang_nama'],
 				'satuan'   => $i['barang_satuan'],
-				'price'    => $harpok,
-				'harga'    => $harjul,
+				'price'    => str_replace(",", "", $harpok),
+				'harga'    => str_replace(",", "", $harjul),
 				'qty'      => $jumlah
 				);
 				// print_r($data);die();
 			// print_r($this->cart->contents());die();
-			if (($harpok == 0) || ($harjul == 0) || ($jumlah == 0)){				
+			if (($harpok == 0) || ($harjul == 0) || ($jumlah == 0)){	
+				// echo "ssss";			
 				echo '<script language="javascript" type="text/javascript"> 
 				alert("Tidak boleh mengandung value 0");   
 				window.location = "'.base_url().'admin/Pembelian";             
@@ -98,7 +99,8 @@ class Pembelian extends CI_Controller{
 					}
 				}
 				if($count==0){
-					echo "1";
+					// echo "masuk sini";
+					// echo "1";
 					$this->cart->insert($data);
 				}
 			}else{				

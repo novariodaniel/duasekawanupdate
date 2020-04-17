@@ -87,7 +87,7 @@ class CI_Cart {
 	{
 		// Was any cart data passed? No? Bah...
 		if ( ! is_array($items) OR count($items) == 0)
-		{
+		{			
 			log_message('error', 'The insert method must be passed an array containing data.');
 			return FALSE;
 		}
@@ -139,7 +139,8 @@ class CI_Cart {
 	 * @return	bool
 	 */
 	function _insert($items = array())
-	{
+	{		
+		// print_r($items);die();
 		// Was any cart data passed? No? Bah...
 		if ( ! is_array($items) OR count($items) == 0)
 		{
@@ -152,9 +153,52 @@ class CI_Cart {
 		// Does the $items array contain an id, quantity, price, and name?  These are required
 		if ( ! isset($items['id']) OR ! isset($items['qty']) OR ! isset($items['price']) OR ! isset($items['name']))
 		{
-			log_message('error', 'The cart array must contain a product ID, quantity, price, and name.');
+		// echo "masuk sini";die();
+
+			log_message('error', 'The cart array must contain a product ID, quantity, price, amount, disc and name.');
 			return FALSE;
 		}
+
+		// --------------------------------------------------------------------
+
+		// Prep the quantity. It can only be a number.  Duh...
+		$items['disc'] = trim(preg_replace('/([^0-9])/i', '', $items['disc']));
+		// Trim any leading zeros
+		// $items['disc'] = trim(preg_replace('/(^[0]+)/i', '', $items['disc']));
+		// print_r($items);die();
+		// If the quantity is zero or blank there's nothing for us to do
+		// if ( ! is_numeric($items['disc']) OR $items['disc'] == 0)
+		// {
+		// 	// print_r($items['disc']);
+		// 	// echo "masuk sini";die();
+		// 	return FALSE;
+		// }
+
+		// --------------------------------------------------------------------
+
+		// Prep the quantity. It can only be a number.  Duh...
+		$items['amount'] = trim(preg_replace('/([^0-9])/i', '', $items['amount']));
+		// Trim any leading zeros
+		// $items['amount'] = trim(preg_replace('/(^[0]+)/i', '', $items['amount']));
+		// // print_r($items);die();
+		// // If the quantity is zero or blank there's nothing for us to do
+		// if ( ! is_numeric($items['amount']) OR $items['amount'] == 0)
+		// {
+		// 	return FALSE;
+		// }
+
+		// --------------------------------------------------------------------
+
+		// Prep the quantity. It can only be a number.  Duh...
+		$items['harga'] = trim(preg_replace('/([^0-9])/i', '', $items['harga']));
+		// Trim any leading zeros
+		// $items['harga'] = trim(preg_replace('/(^[0]+)/i', '', $items['harga']));
+
+		// // If the quantity is zero or blank there's nothing for us to do
+		// if ( ! is_numeric($items['harga']) OR $items['harga'] == 0)
+		// {
+		// 	return FALSE;
+		// }
 
 		// --------------------------------------------------------------------
 
@@ -162,7 +206,7 @@ class CI_Cart {
 		$items['qty'] = trim(preg_replace('/([^0-9])/i', '', $items['qty']));
 		// Trim any leading zeros
 		$items['qty'] = trim(preg_replace('/(^[0]+)/i', '', $items['qty']));
-
+		
 		// If the quantity is zero or blank there's nothing for us to do
 		if ( ! is_numeric($items['qty']) OR $items['qty'] == 0)
 		{
@@ -368,7 +412,7 @@ class CI_Cart {
 	 * @return	bool
 	 */
 	function _save_cart()
-	{
+	{		
 		// Unset these so our total can be calculated correctly below
 		unset($this->_cart_contents['total_items']);
 		unset($this->_cart_contents['cart_total']);
@@ -387,6 +431,14 @@ class CI_Cart {
 			$total += ($val['price'] * $val['qty']);
 			$items += $val['qty'];
 
+			// Set the harga 
+			$this->_cart_contents[$key]['harga'] = ($this->_cart_contents[$key]['harga']);
+
+			// Set the disc 
+			$this->_cart_contents[$key]['disc'] = ($this->_cart_contents[$key]['disc']);
+
+			// Set the amount 
+			$this->_cart_contents[$key]['amount'] = ($this->_cart_contents[$key]['amount']);
 			// Set the subtotal
 			$this->_cart_contents[$key]['subtotal'] = ($this->_cart_contents[$key]['price'] * $this->_cart_contents[$key]['qty']);
 		}

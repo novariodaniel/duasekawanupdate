@@ -164,7 +164,7 @@
     <script src="<?php echo base_url().'assets/js/moment.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/jquery-ui-1.12.1/jquery-ui.js'?>"></script>
-    /home/daniel/Downloads/jquery-ui-1.12.1
+    <!-- /home/daniel/Downloads/jquery-ui-1.12.1 -->
     <script type="text/javascript">
             $(function () {
                 $('#datetimepicker').datetimepicker({

@@ -62,6 +62,7 @@ class Sales extends CI_Controller{
         if($this->session->userdata('akses')=='1'){
             $data['data']=$this->M_sales->get_sales();
             $this->load->view('admin/v_sales',$data);
+            // $this->load->view('admin/coba');
         }else{
             echo "Halaman tidak ditemukan";
         }
@@ -127,5 +128,27 @@ class Sales extends CI_Controller{
 	}else{
         echo "Halaman tidak ditemukan";
     }
-	}
+    }
+    
+    function searchEngine(){
+        if($this->session->userdata('akses')=='1'){                                
+            $search = $this->input->post("search");
+            $url='http://10.1.35.40:8382/api/searchElastic';                                             
+            $ch = curl_init();                         
+            curl_setopt($ch,CURLOPT_URL,$url); 
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,"{ \"search\":\"$search\"}");                                              
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch,CURLOPT_POSTFIELDS,$search);                                              
+            $data = curl_exec($ch);
+            curl_close($ch);
+            // print_r($output);die();
+            // $data["status"] = $output.status;
+            // $data["detail"] = $output["data"];
+            
+            echo json_encode($data);
+        }else{
+            echo "Halaman tidak ditemukan";
+        }
+    }
 }

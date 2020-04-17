@@ -21,6 +21,7 @@
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/jquery-ui-1.12.1/jquery-ui.css'?>">
 </head>
 
 <body>
@@ -53,7 +54,7 @@
                     <th>Kode/ Nama Barang</th>
                 </tr>
                 <tr>
-                    <th><input type="text" name="kode_brg" id="kode_brg" class="form-control input-sm"></th>                     
+                    <th><input type="text" name="kode_brg" id="kode_brg" class="form-control input-sm"></th>                                                              
                 </tr>
                     <div id="detail_barang" style="position:absolute;">
                     </div>
@@ -75,7 +76,8 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($this->cart->contents() as $items): ?>
-                    <?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+                    <?php echo form_hidden($i.'[rowid]', $items['rowid']);
+                    ?>
                     <tr>
                          <td><?=$items['id'];?></td>
                          <td><?=$items['name'];?></td>
@@ -168,7 +170,7 @@
                             <td style="text-align:center;"><?php echo $stok;?></td>
                             <td style="text-align:center;">
                             <form action="<?php echo base_url().'admin/Penjualan/add_to_cart'?>" method="post">
-                            <input type="hidden" name="kode_brg" value="<?php echo $id?>">
+                            <input type="text" name="kode_brg_hid" value="<?php echo $id?>">
                             <input type="hidden" name="nabar" value="<?php echo $nm;?>">
                             <input type="hidden" name="satuan" value="<?php echo $satuan;?>">
                             <input type="hidden" name="stok" value="<?php echo $stok;?>">
@@ -226,6 +228,7 @@
     <script src="<?php echo base_url().'assets/js/jquery.price_format.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/moment.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/jquery-ui-1.12.1/jquery-ui.js'?>"></script>
     <script type="text/javascript">
         $(function(){
             $('#jml_uang').on("input",function(){
@@ -271,11 +274,11 @@
             
         });
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function() {
-            $('#mydata').DataTable();
+            // $('#mydata').DataTable();
         } );
-    </script>
+    </script> -->
     <script type="text/javascript">
         $(function(){
             function reset(){
@@ -319,22 +322,38 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //Ajax kabupaten/kota insert
+
+            $("#kode_brg").autocomplete({
+              source: "<?php echo base_url().'admin/Penjualan/get_autocomplete';?>"
+            });
             
             $("#kode_brg").focus();
-            $("#kode_brg").on("input",function(){
-                var kobar = {kode_brg:$(this).val()};                
-                   $.ajax({
-               type: "POST",
-               url : "<?php echo base_url().'admin/Penjualan/get_barang';?>",
-               data: kobar,
-               success: function(msg){
-               $('#detail_barang').html(msg);
-               }
-            });
-            }); 
 
-            $("#kode_brg").keypress(function(e){
-                if(e.which==13){
+            $("#kode_brg").keyup(function(){
+                var kobar = {kode_brg:$(this).val()};
+                $.ajax({
+                    type: "POST",
+                    url : "<?php echo base_url().'admin/Penjualan/get_barang';?>",
+                    data: kobar,
+                    success: function(msg){
+                        $('#detail_barang').html(msg);
+                    }
+                });
+            }); 
+            // $("#kode_brg").on("input",function(){
+            //     var kobar = {kode_brg:$(this).val()};                
+            //        $.ajax({
+            //    type: "POST",
+            //    url : "<?php echo base_url().'admin/Penjualan/get_barang';?>",
+            //    data: kobar,
+            //    success: function(msg){
+            //    $('#detail_barang').html(msg);
+            //    }
+            // });
+            // }); 
+
+            $("#kode_brg").keypress(function(e){                
+                if(e.which==13){                    
                     $("#jumlah").focus();
                 }
             });

@@ -46,13 +46,16 @@ class Penjualan extends CI_Controller{
                'satuan'   => $i['barang_satuan'],
                'harpok'   => $i['barang_harpok'],	
 			   'price'    => str_replace(",", "", $this->input->post('harjul'))-(($this->input->post('diskon')*str_replace(",", "", $this->input->post('harjul')))/100),
-			   'disc'     => $this->input->post('diskon'),
-			   'discVal'     => $diskonVal,
-               'qty'      => $this->input->post('qty'),
+			   'disc'     => str_replace(",", "", $this->input->post('diskon')),
+			   'discVal'  => $diskonVal,
+               'qty'      => str_replace(",", "", $this->input->post('qty')),
                'amount'	  => str_replace(",", "", $this->input->post('harjul'))
 			);		
+			// print_r($data);die();
+			// $this->cart->contents();die();
 	if(!empty($this->cart->total_items())){
 		$count = 0;
+		// print_r($this->cart->contents());die();																																																				
 		foreach ($this->cart->contents() as $items){
 			$id=$items['id'];
 			$qtylama=$items['qty'];			
@@ -85,6 +88,7 @@ class Penjualan extends CI_Controller{
         echo "Halaman tidak ditemukan";
     }
 	}
+
 	function remove(){
 	if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'){
 		$row_id=$this->uri->segment(4);
@@ -140,6 +144,21 @@ class Penjualan extends CI_Controller{
 		// print_r ($x['data']); die();
 		$this->load->view('admin/laporan/v_faktur',$x);
 		//$this->session->unset_userdata('nofak');
+	}
+
+	function get_autocomplete(){		
+        if (isset($_GET['term'])) {
+			$result = $this->M_barang->search_barang($_GET['term']);			
+			// print_r($result);die();
+			// $final = $result->row_array();
+			// print_r($final);die();
+            if (count($result) > 0) {
+			foreach ($result as $row)								
+				$arr_result[] = $row->barang_nama;				
+				// $arr_result[] = $row->barang_id;	
+                echo json_encode($arr_result);
+            }
+        }
 	}
 
 
