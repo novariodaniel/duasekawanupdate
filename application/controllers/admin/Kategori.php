@@ -7,11 +7,11 @@ class Kategori extends CI_Controller{
 			$url = 'Administrator';
             redirect($url);
         };
-		$this->load->model('m_kategori');
+		$this->load->model('M_kategori');
 	}
 	function index(){
 	if($this->session->userdata('akses')=='1'){
-		$data['data']=$this->m_kategori->tampil_kategori();
+		$data['data']=$this->M_kategori->tampil_kategori();
 		$this->load->view('admin/v_kategori',$data);
 	}else{
         echo "Halaman tidak ditemukan";
@@ -20,8 +20,8 @@ class Kategori extends CI_Controller{
 	function tambah_kategori(){
 	if($this->session->userdata('akses')=='1'){
 		$kat=$this->input->post('kategori');
-		$this->m_kategori->simpan_kategori($kat);
-		redirect('admin/kategori');
+		$this->M_kategori->simpan_kategori($kat);
+		redirect('admin/Kategori');
 	}else{
         echo "Halaman tidak ditemukan";
     }
@@ -30,8 +30,8 @@ class Kategori extends CI_Controller{
 	if($this->session->userdata('akses')=='1'){
 		$kode=$this->input->post('kode');
 		$kat=$this->input->post('kategori');
-		$this->m_kategori->update_kategori($kode,$kat);
-		redirect('admin/kategori');
+		$this->M_kategori->update_kategori($kode,$kat);
+		redirect('admin/Kategori');
 	}else{
         echo "Halaman tidak ditemukan";
     }
@@ -39,8 +39,8 @@ class Kategori extends CI_Controller{
 	function hapus_kategori(){
 	if($this->session->userdata('akses')=='1'){
 		$kode=$this->input->post('kode');
-		$this->m_kategori->hapus_kategori($kode);
-		redirect('admin/kategori');
+		$this->M_kategori->hapus_kategori($kode);
+		redirect('admin/Kategori');
 	}else{
         echo "Halaman tidak ditemukan";
     }

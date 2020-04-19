@@ -242,8 +242,18 @@
             </div>
         </div>
 
-        <!-- Projects Row  3-->
-        <div class="row">
+      <!-- Projects Row  3-->
+      <div class="row">
+            <div class="col-md-2 portfolio-item">
+                  <div class="menu-item color" style="height:150px;">
+                        <a href="<?php echo base_url().'admin/Kategori'?>" data-toggle="modal">
+                              <i class="fa fa-cog"></i>
+                              <p style="text-align:left;font-size:14px;padding-left:5px;">Kategori</p>
+                        </a>
+                  </div> 
+            </div>
+      </div>
+        <!-- <div class="row">
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item light-red" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Customer'?>" data-toggle="modal">
@@ -252,7 +262,7 @@
                       </a>
                 </div> 
             </div>
-        </div>
+        </div> -->
         
 		
         <!-- /.row -->

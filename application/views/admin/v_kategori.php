@@ -83,7 +83,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 class="modal-title" id="myModalLabel">Tambah Kategori</h3>
             </div>
-            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/kategori/tambah_kategori'?>">
+            <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Kategori/tambah_kategori'?>">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -118,7 +118,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         <h3 class="modal-title" id="myModalLabel">Edit Kategori</h3>
                     </div>
-                    <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/kategori/edit_kategori'?>">
+                    <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Kategori/edit_kategori'?>">
                         <div class="modal-body">
                             <input name="kode" type="hidden" value="<?php echo $id;?>">
 
@@ -155,7 +155,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         <h3 class="modal-title" id="myModalLabel">Hapus Kategori</h3>
                     </div>
-                    <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/kategori/hapus_kategori'?>">
+                    <form class="form-horizontal" method="post" action="<?php echo base_url().'admin/Kategori/hapus_kategori'?>">
                         <div class="modal-body">
                             <p>Yakin mau menghapus data..?</p>
                                     <input name="kode" type="hidden" value="<?php echo $id; ?>">

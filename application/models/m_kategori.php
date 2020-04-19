@@ -2,7 +2,8 @@
 class M_kategori extends CI_Model{
 
 	function hapus_kategori($kode){
-		$hsl=$this->db->query("DELETE FROM tbl_kategori where kategori_id='$kode'");
+		// $hsl=$this->db->query("DELETE FROM tbl_kategori where kategori_id='$kode'");
+		$hsl=$this->db->query("UPDATE tbl_kategori set isExist = 0 where kategori_id='$kode'");
 		return $hsl;
 	}
 
@@ -12,7 +13,7 @@ class M_kategori extends CI_Model{
 	}
 
 	function tampil_kategori(){
-		$hsl=$this->db->query("select * from tbl_kategori order by kategori_id desc");
+		$hsl=$this->db->query("select * from tbl_kategori where isExist = 1 order by kategori_id desc");
 		return $hsl;
 	}
 
