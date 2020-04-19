@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 
 <head>
@@ -22,6 +24,7 @@
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
 
 </head>
+
 
 <body>
 
@@ -138,7 +141,8 @@
                     <div class="form-group">
                         <label class="control-label col-xs-3" >Tanggal Lahir</label>
                         <div class="col-xs-9">
-                            <input name="tglLahir" id="add_tglLahir" class="form-control" type="date" placeholder="Input Tanggal Lahir..." style="width:280px;" value=required>
+                            <!-- <input name="tglLahir" id="add_tglLahir" class="form-control" type="date" placeholder="Input Tanggal Lahir..." style="width:280px;" value=required> -->
+                            <input type="date" id="add_tglLahir" name="tglLahir" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">
                         </div>
                     </div>
                     
