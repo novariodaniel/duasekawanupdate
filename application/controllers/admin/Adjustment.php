@@ -20,7 +20,7 @@ class Adjustment extends CI_Controller{
 
     function proses_adjustment(){
         if($this->session->userdata('akses')=='1'){
-            $mapAdjustment = $this->input->post('json');            
+            $mapAdjustment = $this->input->post('json');                    
             $false = 0;
             for($i=0;$i<count($mapAdjustment);$i++){       
                 $barang_id = $mapAdjustment[$i]['barang_id'];

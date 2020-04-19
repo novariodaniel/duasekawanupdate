@@ -26,7 +26,7 @@ class After_sales extends CI_Controller{
 	}
 	
 	function proses_retur(){
-		if($this->session->userdata('akses') == '1'){
+		if($this->session->userdata('akses') == '1'){			
 			if ($this->input->post('d_status') != -1){
 				$d_jual_id = $this->input->post('d_jual_id');
 				$d_jual_nofak = $this->input->post('d_jual_nofak');
@@ -97,7 +97,7 @@ class After_sales extends CI_Controller{
 		$data = $this->M_penjualan->get_detail($nofak);	 
 		// print_r($data);die();
 		$i=1;
-		foreach($data as $row){			
+		foreach($data as $row){					
 			echo "<tr>";
 			echo "<td>".$i."</td>";
 			echo "<td>".$row->d_jual_nofak."</td>";
@@ -113,7 +113,7 @@ class After_sales extends CI_Controller{
 				data-d_jual_id=".$row->d_jual_id."
 				data-d_jual_nofak=".$row->d_jual_nofak."
 				data-d_jual_barang_id=".$row->d_jual_barang_id."
-				data-d_jual_barang_nama=".$row->d_jual_barang_nama."
+				data-d_jual_barang_nama=".str_replace(' ','_',$row->d_jual_barang_nama)."
 				data-d_jual_barang_satuan=".$row->d_jual_barang_satuan."
 				data-d_jual_barang_harpok=".$row->d_jual_barang_harpok."
 				data-d_jual_barang_harjul=".$row->d_jual_barang_harjul."

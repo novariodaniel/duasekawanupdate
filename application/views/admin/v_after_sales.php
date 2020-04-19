@@ -26,6 +26,7 @@
     <link href="<?php echo base_url().'assets/swal/sweetalert2.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/swal/all.css'?>" rel="stylesheet">
     <script src="<?php echo base_url().'assets/swal/sweetalert2.min.js'?>"></script>
+    <link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
 </head>
 
 <body>
@@ -121,7 +122,7 @@
                 <tbody id ="table">
                 </tbody>
             </table>
-            <a href="<?php echo base_url().'admin/Pembelian/simpan_pembelian'?>" class="btn btn-info btn-lg"><span class="fa fa-save"></span> Simpan</a>
+            <!-- <a href="<?php echo base_url().'admin/Pembelian/simpan_pembelian'?>" class="btn btn-info btn-lg"><span class="fa fa-save"></span> Simpan</a> -->
             </div>
         </div>
         <!-- Modal Edit Start -->            
@@ -144,8 +145,26 @@
                                 <option value="2">Cash</option>                                
                              </select>
                             </div>	
-				        </div>				        
-			    <!--2-->
+                        </div>
+                <!--2-->
+                <div class="row" style="padding-bottom:5px">
+					        <div class="col-md-4">
+					            <label>Barang Id</label>
+					        </div>
+                            <div class="col-md-8">
+                                <input type="text" name="t_barang_id" id="t_barang_id" class="form-control-sm" readonly>
+                            </div>	
+                        </div>	
+                <!--3-->
+                <div class="row" style="padding-bottom:5px">
+					        <div class="col-md-4">
+					            <label>Barang Nama</label>
+					        </div>
+                            <div class="col-md-8">
+                                <input style="width:250px" type="text" name="t_barang_nama" id="t_barang_nama" class="form-control-sm" readonly>
+                            </div>	
+                        </div>	        				        
+			    <!--4-->
                         <div class="row" style="padding-bottom:5px">
 					        <div class="col-md-4">
 					            <label>Qty/Nominal</label>
@@ -154,7 +173,7 @@
                                 <input type="text" name="t_qty" id="t_qty" class="form-control-sm" required>
                             </div>	
                         </div>
-                <!--3-->
+                <!--5-->
                         <div class="row" style="padding-bottom:5px" id="good_quality">
 					        <div class="col-md-4">
 					            <label>Good Quality</label>
@@ -163,7 +182,7 @@
                                 <input type="text" name="t_good_quality" id="t_good_quality" class="form-control-sm" >
                             </div>	
                         </div>
-                <!--4-->
+                <!--6-->
                         <div class="row" style="padding-bottom:5px" id="broke_quality">
 					        <div class="col-md-4">
 					            <label>Broke Quality</label>
@@ -172,7 +191,7 @@
                                 <input type="text" name="t_broke_quality" id="t_broke_quality" class="form-control-sm" >
                             </div>	
                         </div>
-                <!--5-->                     
+                <!--7-->                     
                         <div class="row" style="padding-bottom:5px">
 					        <div class="col-md-4">
 					            <label>Keterangan</label>
@@ -190,7 +209,7 @@
 			        </div>
                     <div class="modal-footer" style="padding-bottom:0px !important;text-align:center !important;">
                         <p style="text-align:center;float:center;"><button type="submit" id="update_data" class="btn btn-default btn-sm" style="background-color: #e35f14;color:#fff;">Save</button>
-                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="background-color: #e35f14;color:#fff;">Close</button></p>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="background-color: #e35f14;color:#fff;" id="close_btn">Close</button></p>
                     </div>
 		        </div>
 		    </div>
@@ -256,6 +275,16 @@
 
     <script type="text/javascript">
         $(document).ready(function(){  
+            $('#close_btn').click(function(){
+                $('#t_qty').val("");
+                $('#t_good_quality').val("");
+                $('#t_broke_quality').val("");
+                $('#t_reason').val("");
+                $('#t_broke_quality').val("");
+                $('#d_status_modal').val("");
+                reload_page();
+                // $('#change_with').val("");
+            });
             $('#good_quality').hide();
             $('#broke_quality').hide();          
             $('#confirm').click(function(){
@@ -294,17 +323,33 @@
                 }
             });
 
+            function reload_page(){
+                var noFak = $('#nofak').val();
+                $.ajax({
+                        type: "POST",
+                        data: {noFak:noFak},
+                        url: "<?php echo base_url()?>admin/After_sales/tampil_faktur",
+                        success:function(data){                            
+                            $("#table").html(data);
+                        }
+                });
+            }
+
             $(function () {
                 $('#insert_retur').on('show.bs.modal', function (event) {
-                    var button = $(event.relatedTarget); 
+                    var button = $(event.relatedTarget);           
+                    // console.log(button.data(d_jual_barang_nama));          
                     var d_jual_id = button.data('d_jual_id');                    
                     var d_jual_nofak = button.data('d_jual_nofak');                    
                     var d_jual_barang_id = button.data('d_jual_barang_id'); 
                     var d_jual_harpok = button.data('d_jual_barang_harpok');                   
                     var d_jual_harjul = button.data('d_jual_barang_harjul');
-                    var d_jual_status = button.data('d_jual_status');                   
-                    
-                    var modal = $(this);                                        
+                    var d_jual_status = button.data('d_jual_status');
+                    var d_jual_barang_nama = button.data('d_jual_barang_nama').replace(/_/g," ");                    
+
+                    var modal = $(this);              
+                    modal.find('#t_barang_id').val(d_jual_barang_id);   
+                    modal.find('#t_barang_nama').val(d_jual_barang_nama);   
                     modal.find('#d_jual_id_modal').val(d_jual_id);
                     modal.find('#d_jual_nofak_modal').val(d_jual_nofak);
                     modal.find('#d_barangId_modal').val(d_jual_barang_id);
@@ -334,7 +379,7 @@
                     },
                     success: function(dataResult){
                         // var dataResult = JSON.parse(dataResult);
-                        var dataResult = $.parseJSON(dataResult); 
+                        var dataResult = $.parseJSON(dataResult);                         
                         if(dataResult.status_code == 200){
                             Swal.fire({
                                 type:'success',
@@ -342,9 +387,9 @@
                                 text: 'Data berhasil diinput ',                                
                             }).then (function(){
                                 $('#insert_retur').modal().hide();                                
-                                location.reload();
+                                reload_page();
                             })                                                                                    
-                        }else if(dataResult.status_code == 400){
+                        }else if(dataResult.status_code == 400){                            
                             Swal.fire({
                                 type:'error',
                                 title: 'Oops...',
@@ -352,11 +397,11 @@
                                 footer: '<a href="https://google.com">Why do I have this issue?</a>'
                             },function(){
                                 $('#insert_retur').modal().hide();
-                                location.reload();
+                                reload_page();
                             })
                         }
-                    }
-                })
+                    }                    
+                })                
             })
         });
     </script>

@@ -31,10 +31,11 @@ class M_stock_opname extends CI_Model{
 		return $hsl;
 	}
 
-	function update_adjustment($barang_id,$adj_qty){
-		// $final_stok = 
+	function update_adjustment($barang_id,$adj_qty){		
 		$this->db->trans_begin();
-		$this->db->query("UPDATE tbl_history_so set adjustment_stok = '$adj_qty', final_stok = real_stok + $adj_qty where barang_id = '$barang_id'");
+		$this->db->query("UPDATE tbl_history_so set adjustment_stok = '$adj_qty', final_stok = real_stok + $adj_qty where barang_id = '$barang_id' ORDER BY insert_datetime DESC LIMIT 1");
+		$this->db->query("UPDATE tbl_barang a set a.barang_stok = (SELECT b.final_stok FROM tbl_history_so b WHERE b.barang_id = '$barang_id' ORDER BY b.insert_datetime DESC LIMIT 1) WHERE a.barang_id='$barang_id'");
+		
 		if($this->db->trans_status() === FALSE){
 			$this->db->trans_rollback();
 			return false;

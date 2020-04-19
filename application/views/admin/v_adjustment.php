@@ -196,7 +196,7 @@
 //                     headerOffset: 0
 // 	            },
 //    });
-            $('button').click( function() {
+            $('button').click( function() {                
                 var table = $('#mydata').DataTable();
                 var json = $('#mydata tbody tr').map(function () {                        
                     barang_id = $('td', this).eq(1).text(),
