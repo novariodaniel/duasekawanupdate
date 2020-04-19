@@ -228,9 +228,9 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
      */
     protected function openFile($pFilename)
     {
-        // Check if file exists
+        // Check if file exists        
         if (file_exists($pFilename) == true){
-            echo "ok";
+            echo "ok1";
         }else{
             echo "not ok";
         }

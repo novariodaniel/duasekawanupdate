@@ -153,16 +153,17 @@ class CI_Upload {
 
 		// Is the upload path valid?
 		if ( ! $this->validate_upload_path())
-		{
+		{			
 			// errors will already be set by validate_upload_path() so just return FALSE
 			return FALSE;
-		}
+		}		
+
+		// print_r($_FILES);die();
 
 		// Was the file able to be uploaded? If not, determine the reason why.
 		if ( ! is_uploaded_file($_FILES[$field]['tmp_name']))
 		{
-			$error = ( ! isset($_FILES[$field]['error'])) ? 4 : $_FILES[$field]['error'];
-
+			$error = ( ! isset($_FILES[$field]['error'])) ? 4 : $_FILES[$field]['error'];			
 			switch($error)
 			{
 				case 1:	// UPLOAD_ERR_INI_SIZE
@@ -189,7 +190,7 @@ class CI_Upload {
 				default :   $this->set_error('upload_no_file_selected');
 					break;
 			}
-
+			// print_r($_FILES);die();
 			return FALSE;
 		}
 
@@ -198,12 +199,14 @@ class CI_Upload {
 		$this->file_temp = $_FILES[$field]['tmp_name'];
 		$this->file_size = $_FILES[$field]['size'];
 		$this->_file_mime_type($_FILES[$field]);
-		// $this->_file_mime_type($_FILES[$field]); var_dump($this->file_type); die();
+		// $this->_file_mime_type($_FILES[$field]); var_dump($this->file_type); die();		
+		$this->file_type = $_FILES[$field]['type'];
 		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $this->file_type);
 		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
 		$this->file_name = $this->_prep_filename($_FILES[$field]['name']);
 		$this->file_ext	 = $this->get_extension($this->file_name);
 		$this->client_name = $this->file_name;
+		// print_r($this->file_type);die();
 
 		// Is the file type allowed to be uploaded?
 		if ( ! $this->is_allowed_filetype())

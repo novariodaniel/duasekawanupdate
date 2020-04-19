@@ -241,6 +241,18 @@
                 </div> 
             </div>
         </div>
+
+        <!-- Projects Row  3-->
+        <div class="row">
+            <div class="col-md-2 portfolio-item">
+                <div class="menu-item light-red" style="height:150px;">
+                     <a href="<?php echo base_url().'admin/Customer'?>" data-toggle="modal">
+                           <i class="fa fa-recycle"></i>
+                            <p>Customer</p>
+                      </a>
+                </div> 
+            </div>
+        </div>
         
 		
         <!-- /.row -->
