@@ -97,25 +97,38 @@
             <table>
                 <tr>
                     <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td>
-                    <th style="width:140px;">Total Belanja(Rp)</th>
+                    <th style="width:140px;">Sub Total</th>
                     <th style="text-align:right;width:140px;"><input type="text" name="total2" value="<?php echo number_format($this->cart->total());?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
                     <input type="hidden" id="total" name="total" value="<?php echo $this->cart->total();?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
-                </tr>                
+                </tr>                                
                 <tr>                    
-                    <th>Tunai(Rp)</th>
-                    <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
-                    <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
-                </tr>
-                <tr>
-                    <td></td>
                     <th>Cashback</th>
                     <th style="text-align:right;"><input type="text" id="cashback" name="cashback" class="cashback form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
                     <input type="hidden" id="cashback2" name="cashback2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
                 <tr>
                     <td></td>
-                    <th>Kembalian(Rp)</th>
+                    <th>Potong Aki Bekas</th>
+                    <th style="text-align:right;"><input type="text" id="aki_bekas" name="aki_bekas" class="aki_bekas form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                    <input type="hidden" id="aki_bekas2" name="aki_bekas2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Total Belanja</th>
+                    <th style="text-align:right;"><input type="text" id=total_bel name="total_bel" value="<?php echo $this->cart->total();?>" class="total_bel form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>                    
+                    <input type="hidden" id="total_bel2" name="total_bel2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" value="<?php echo $this->cart->total();?>" required>
+                </tr>
+                <tr> 
+                    <td></td>                   
+                    <th>Tunai</th>
+                    <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                    <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Kembalian</th>
                     <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                    <input type="hidden" id="kembalian2" name="kembalian2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
 
             </table>
@@ -234,12 +247,24 @@
             $('#jml_uang').on("input",function(){
                 var total=$('#total').val();
                 var jumuang=$('#jml_uang').val();
-                var cashback=$('#cashback').val();
+                var cashback=$('#cashback').val();                
+                var aki_bekas=$('#aki_bekas').val();
                 var cb=cashback.replace(/[^\d]/g,"");
+                var ab=aki_bekas.replace(/[^\d]/g,"");
                 $('#cashback2').val(cb);
-                var hsl=jumuang.replace(/[^\d]/g,"");
-                $('#jml_uang2').val(hsl);
-                var tes = hsl - (total - cb);                
+                $('#aki_bekas2').val(ab);
+                var hsl=jumuang.replace(/[^\d]/g,"");                
+                $('#jml_uang2').val(hsl);                
+                var tes = hsl - (total - cb - ab);                  
+                var total_bel = total - cb - ab;   
+                $('#total_bel2').val(total_bel);               
+                $('#total_bel').val(total_bel).priceFormat({
+                        prefix: '',
+                        //centsSeparator: '',
+                        centsLimit: 0,
+                        thousandsSeparator: ','
+                    });
+                $('#kembalian2').val(tes);             
                 if (tes > 0){
                     $('#kembalian').val(tes).priceFormat({
                         prefix: '',
@@ -254,12 +279,56 @@
 
             $('#cashback').on("input",function(){             
                 var cashback=$('#cashback').val();
+                var aki_bekas=$('#aki_bekas').val();
                 var jumuang=$('#jml_uang').val();
                 var total=$('#total').val();
                 var hsl=jumuang.replace(/[^\d]/g,"");
                 var cb=cashback.replace(/[^\d]/g,"");
+                var ab=aki_bekas.replace(/[^\d]/g,"");
                 $('#cashback2').val(cb);
-                var tes = hsl - (total - cb);
+                $('#aki_bekas2').val(ab);
+                var tes = hsl - (total - cb - ab);
+                $('#kembalian2').val(tes);
+                var total_bel = total - cb - ab;                  
+                $('#total_bel2').val(total_bel);               
+                $('#total_bel').val(total_bel).priceFormat({
+                        prefix: '',
+                        //centsSeparator: '',
+                        centsLimit: 0,
+                        thousandsSeparator: ','
+                    });
+                if (tes > 0){
+                    $('#kembalian').val(tes).priceFormat({
+                        prefix: '',
+                        //centsSeparator: '',
+                        centsLimit: 0,
+                        thousandsSeparator: ','
+                    });
+                }else{
+                    $('#kembalian').val(tes);
+                }
+            })
+
+            $('#aki_bekas').on("input",function(){   
+                var cashback=$('#cashback').val();          
+                var aki_bekas=$('#aki_bekas').val();
+                var jumuang=$('#jml_uang').val();
+                var total=$('#total').val();
+                var hsl=jumuang.replace(/[^\d]/g,"");
+                var ab=aki_bekas.replace(/[^\d]/g,"");
+                var cb=cashback.replace(/[^\d]/g,"");
+                $('#cashback2').val(cb);
+                $('#aki_bekas2').val(ab);
+                var tes = hsl - (total - cb - ab);
+                $('#kembalian2').val(tes);  
+                var total_bel = total - cb - ab;
+                $('#total_bel2').val(total_bel);                                 
+                $('#total_bel').val(total_bel).priceFormat({
+                        prefix: '',
+                        //centsSeparator: '',
+                        centsLimit: 0,
+                        thousandsSeparator: ','
+                    });              
                 if (tes > 0){
                     $('#kembalian').val(tes).priceFormat({
                         prefix: '',
@@ -285,14 +354,32 @@
                 $('#cashback').val(0);
                 $('#jml_uang').val(0);
                 $('#kembalian').val(0);
+                $('#aki_bekas').val(0);
+                // $('#total_bel').val(0);
             }
             reset();
+
+            $('.total_bel').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+
             $('.cashback').priceFormat({
                     prefix: '',
                     //centsSeparator: '',
                     centsLimit: 0,
                     thousandsSeparator: ','
             });
+
+            $('.aki_bekas').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+
             $('.jml_uang').priceFormat({
                     prefix: '',
                     //centsSeparator: '',

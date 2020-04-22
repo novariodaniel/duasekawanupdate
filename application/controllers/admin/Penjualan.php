@@ -105,17 +105,22 @@ class Penjualan extends CI_Controller{
 	if($this->session->userdata('akses')=='1' || $this->session->userdata('akses')=='2'){
 		$total=$this->input->post('total');
 		$cashback = $this->input->post('cashback2');		
-		$jual_belanja = $total - $cashback;
+		$kembalian = $this->input->post('kembalian2');
+		$aki_bekas = $this->input->post('aki_bekas2');
+		// echo $cashback."--".$aki_bekas."--".$kembalian;die();
+		// $jual_belanja = $total - $cashback;
+		$jual_belanja = $this->input->post('total_bel2');
 		$jml_uang=str_replace(",", "", $this->input->post('jml_uang'));
-		$kembalian=$jml_uang-$total;
+		// $kembalian=$jml_uang-$total;
+		// echo $kembalian;die();		
 		if(!empty($total) && !empty($jml_uang)){
-			if($jml_uang < $total){
+			if($jml_uang < $jual_belanja){
 				echo $this->session->set_flashdata('msg','<label class="label label-danger">Jumlah Uang yang anda masukan Kurang</label>');
 				redirect('admin/Penjualan');
 			}else{
 				$nofak=$this->M_penjualan->get_nofak();
 				$this->session->set_userdata('nofak',$nofak);
-				$order_proses=$this->M_penjualan->simpan_penjualan($nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback);
+				$order_proses=$this->M_penjualan->simpan_penjualan($nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas);
 				if($order_proses){
 					$this->cart->destroy();
 					

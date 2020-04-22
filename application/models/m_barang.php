@@ -6,20 +6,20 @@ class M_barang extends CI_Model{
 		return $hsl;
 	}
 
-	function update_barang($kobar,$nabar,$kat,$satuan,$harpok,$harjul,$stok,$min_stok){
+	function update_barang($kobar,$nabar,$kat,$satuan,$harpok,$harjul,$stok,$min_stok,$diskon_1,$diskon_2,$diskon_3){
 		$user_id=$this->session->userdata('idadmin');
-		$hsl=$this->db->query("UPDATE tbl_barang SET barang_nama='$nabar',barang_satuan='$satuan',barang_harpok='$harpok',barang_harjul='$harjul',barang_stok='$stok',barang_min_stok='$min_stok',barang_tgl_last_update=NOW(),barang_kategori_id='$kat',barang_user_id='$user_id' WHERE barang_id='$kobar'");
+		$hsl=$this->db->query("UPDATE tbl_barang SET barang_nama='$nabar',barang_satuan='$satuan',barang_harpok='$harpok',barang_harjul='$harjul',barang_stok='$stok',barang_min_stok='$min_stok',barang_tgl_last_update=NOW(),barang_kategori_id='$kat',barang_user_id='$user_id', diskon_1='$diskon_1', diskon_2='$diskon_2', diskon_3='$diskon_3' WHERE barang_id='$kobar'");
 		return $hsl;
 	}
 
 	function tampil_barang(){
-		$hsl=$this->db->query("SELECT barang_id,barang_nama,barang_satuan,barang_harpok,barang_harjul,barang_harjul_grosir,barang_stok,barang_min_stok,barang_kategori_id,kategori_nama FROM tbl_barang JOIN tbl_kategori ON barang_kategori_id=kategori_id");
+		$hsl=$this->db->query("SELECT barang_id,barang_nama,barang_satuan,barang_harpok,barang_harjul,barang_harjul_grosir,barang_stok,barang_min_stok,barang_kategori_id,kategori_nama,diskon_1,diskon_2,diskon_3 FROM tbl_barang JOIN tbl_kategori ON barang_kategori_id=kategori_id");
 		return $hsl;
 	}
 
-	function simpan_barang($kobar,$nabar,$kat,$satuan,$harpok,$harjul,$stok,$min_stok){
+	function simpan_barang($kobar,$nabar,$kat,$satuan,$harpok,$harjul,$stok,$min_stok,$diskon_1,$diskon_2,$diskon_3){
 		$user_id=$this->session->userdata('idadmin');
-		$hsl=$this->db->query("INSERT INTO tbl_barang (barang_id,barang_nama,barang_satuan,barang_harpok,barang_harjul,barang_stok,barang_min_stok,barang_kategori_id,barang_user_id) VALUES ('$kobar','$nabar','$satuan','$harpok','$harjul','$stok','$min_stok','$kat','$user_id')");
+		$hsl=$this->db->query("INSERT INTO tbl_barang (barang_id,barang_nama,barang_satuan,barang_harpok,barang_harjul,barang_stok,barang_min_stok,barang_kategori_id,barang_user_id,diskon_1,diskon_2,diskon_3) VALUES ('$kobar','$nabar','$satuan','$harpok','$harjul','$stok','$min_stok','$kat','$user_id','$diskon_1','$diskon_2','$diskon_3')");
 		return $hsl;
 	}
 

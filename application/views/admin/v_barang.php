@@ -53,7 +53,10 @@
                         <th>Nama Barang</th>
                         <th>Satuan</th>
                         <th>Harga Pokok</th>
-                        <th>Harga</th>                        
+                        <th>Harga Jual</th>
+                        <th>Diskon 1</th>
+                        <th>Diskon 2</th>
+                        <th>Diskon 3</th>                        
                         <th>Stok</th>
                         <th>Min Stok</th>
                         <th>Kategori</th>
@@ -69,7 +72,10 @@
                         $nm=$a['barang_nama'];
                         $satuan=$a['barang_satuan'];
                         $harpok=$a['barang_harpok'];
-                        $harjul=$a['barang_harjul'];                        
+                        $harjul=$a['barang_harjul'];
+                        $diskon_1=$a['diskon_1'];
+                        $diskon_2=$a['diskon_2'];
+                        $diskon_3=$a['diskon_3'];
                         $stok=$a['barang_stok'];
                         $min_stok=$a['barang_min_stok'];
                         $kat_id=$a['barang_kategori_id'];
@@ -81,7 +87,10 @@
                         <td><?php echo $nm;?></td>
                         <td style="text-align:center;"><?php echo $satuan;?></td>
                         <td style="text-align:right;"><?php echo 'Rp '.number_format($harpok);?></td>
-                        <td style="text-align:right;"><?php echo 'Rp '.number_format($harjul);?></td>                        
+                        <td style="text-align:right;"><?php echo 'Rp '.number_format($harjul);?></td>
+                        <td style="text-align:right;"><?php echo $diskon_1;?></td>
+                        <td style="text-align:right;"><?php echo $diskon_2;?></td>
+                        <td style="text-align:right;"><?php echo $diskon_3;?></td>
                         <td style="text-align:center;"><?php echo $stok;?></td>
                         <td style="text-align:center;"><?php echo $min_stok;?></td>
                         <td><?php echo $kat_nama;?></td>
@@ -134,7 +143,7 @@
                                     
                                 </select>
                             </div>
-                        </div>
+                    </div>
 
                  
 
@@ -182,7 +191,28 @@
                     <div class="form-group">
                         <label class="control-label col-xs-3" >Harga Jual</label>
                         <div class="col-xs-9">
-                            <input name="harjul" class="harjul form-control" type="text" placeholder="Harga Jual Eceran..." style="width:335px;">
+                            <input name="harjul" class="harjul form-control" type="text" placeholder="Harga Jual..." style="width:335px;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >Diskon 1</label>
+                        <div class="col-xs-9">
+                            <input name="diskon_1" class="diskon_1 form-control" type="text" placeholder="Diskon 1..." style="width:335px;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >Diskon 2</label>
+                        <div class="col-xs-9">
+                            <input name="diskon_2" class="diskon_2 form-control" type="text" placeholder="Diskon 2..." style="width:335px;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" >Diskon 3</label>
+                        <div class="col-xs-9">
+                            <input name="diskon_3" class="diskon_3 form-control" type="text" placeholder="Diskon 3..." style="width:335px;">
                         </div>
                     </div>
 
@@ -219,7 +249,10 @@
                         $nm=$a['barang_nama'];
                         $satuan=$a['barang_satuan'];
                         $harpok=$a['barang_harpok'];
-                        $harjul=$a['barang_harjul'];                        
+                        $harjul=$a['barang_harjul'];    
+                        $diskon_1=$a['diskon_1'];
+                        $diskon_2=$a['diskon_2'];
+                        $diskon_3=$a['diskon_3'];
                         $stok=$a['barang_stok'];
                         $min_stok=$a['barang_min_stok'];
                         $kat_id=$a['barang_kategori_id'];
@@ -986,9 +1019,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-xs-3" >Harga</label>
+                            <label class="control-label col-xs-3" >Harga Jual</label>
                             <div class="col-xs-9">
                                 <input name="harjul" class="harjul form-control" type="text" value="<?php echo $harjul;?>" placeholder="Harga Jual..." style="width:335px;" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" >Diskon 1</label>
+                            <div class="col-xs-9">
+                                <input name="diskon_1" class="diskon_1 form-control" type="text" value="<?php echo $diskon_1;?>" placeholder="Diskon 1..." style="width:335px;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" >Diskon 2</label>
+                            <div class="col-xs-9">
+                                <input name="diskon_2" class="diskon_2 form-control" type="text" value="<?php echo $diskon_2;?>" placeholder="Diskon 2..." style="width:335px;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" >Diskon 3</label>
+                            <div class="col-xs-9">
+                                <input name="diskon_3" class="diskon_3 form-control" type="text" value="<?php echo $diskon_3;?>" placeholder="Diskon 3..." style="width:335px;">
                             </div>
                         </div>
 
@@ -1107,6 +1161,24 @@
                     thousandsSeparator: ','
             });
             $('.harjul').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+            $('.diskon_1').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+            $('.diskon_2').priceFormat({
+                    prefix: '',
+                    //centsSeparator: '',
+                    centsLimit: 0,
+                    thousandsSeparator: ','
+            });
+            $('.diskon_3').priceFormat({
                     prefix: '',
                     //centsSeparator: '',
                     centsLimit: 0,

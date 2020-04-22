@@ -20,7 +20,7 @@ class Notification extends CI_Controller{
                     <li>
                         <a href="#">
                             <strong>'.$row->barang_id.'</strong><br/>
-                            <small><em>'.$row->barang_nama.'</em></small>
+                            <small><em>'.$row->barang_nama.' --- '.'<b>'.$row->barang_stok.'</b>'.'</em></small>
                         </a>
                     </li>
                     <li class="divider"></li>
