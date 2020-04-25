@@ -156,6 +156,15 @@ fieldset[disabled] .btn-primary.active {
 .purple{
     background: #9b59b6;
 }
+.forestgreen{
+    background: #228B22;
+}
+.cadetblue{
+    background: #5F9EA0;
+}
+.fuchsia{
+    background: #FF00FF;
+}
 
 
 /**** Start Main Body Section ****/

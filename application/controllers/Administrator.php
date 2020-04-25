@@ -27,7 +27,7 @@ class Administrator extends CI_Controller{
             $this->session->set_userdata('idadmin',$idadmin);
             $this->session->set_userdata('nama',$user_nama);
          if($xcadmin['user_level']=='2'){
-             $this->session->set_userdata('akses','2');
+             $this->sesstransaksiion->set_userdata('akses','2');
              $idadmin=$xcadmin['user_id'];
              $user_nama=$xcadmin['user_nama'];
              $this->session->set_userdata('idadmin',$idadmin);

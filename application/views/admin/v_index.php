@@ -233,7 +233,7 @@
                 </div> 
             </div>
             <div class="col-md-2 portfolio-item">
-                <div class="menu-item light-red" style="height:150px;">
+                <div class="menu-item fuchsia" style="height:150px;">
                      <a href="<?php echo base_url().'admin/After_sales'?>" data-toggle="modal">
                            <i class="fa fa-recycle"></i>
                             <p>Return</p>
@@ -245,10 +245,18 @@
       <!-- Projects Row  3-->
       <div class="row">
             <div class="col-md-2 portfolio-item">
-                  <div class="menu-item color" style="height:150px;">
+                  <div class="menu-item forestgreen" style="height:150px;">
                         <a href="<?php echo base_url().'admin/Kategori'?>" data-toggle="modal">
                               <i class="fa fa-cog"></i>
                               <p style="text-align:left;font-size:14px;padding-left:5px;">Kategori</p>
+                        </a>
+                  </div> 
+            </div>
+            <div class="col-md-2 portfolio-item">
+                  <div class="menu-item cadetblue" style="height:150px;">
+                        <a href="<?php echo base_url().'admin/Area'?>" data-toggle="modal">
+                              <i class="fa fa-map-marked"></i>
+                              <p style="text-align:left;font-size:14px;padding-left:5px;">Area</p>
                         </a>
                   </div> 
             </div>
