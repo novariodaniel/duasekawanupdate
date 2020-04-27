@@ -165,6 +165,13 @@ fieldset[disabled] .btn-primary.active {
 .fuchsia{
     background: #FF00FF;
 }
+.goldenrod{
+    background: #DAA520;
+}
+.softblue{
+    background: #03396C;   
+}
+
 
 
 /**** Start Main Body Section ****/

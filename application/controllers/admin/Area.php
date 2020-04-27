@@ -64,17 +64,17 @@ class Area extends CI_Controller{
 	}
 
 	function nonaktifkan(){
-	if($this->session->userdata('akses')=='1'){
-		$karyawan_id=$this->input->post('karyawan_id');
-		$data['status'] = 0;
-		$data['message'] = "Gagal hapus data karyawan";
-		if($this->M_karyawan->update_status($karyawan_id)==1){
-			$data['status'] = 1;
-			$data['message'] = "Sukses hapus data karyawan";
-		};
-		echo json_encode($data);
-	}else{
-        echo "Halaman tidak ditemukan";
-    }
+        if($this->session->userdata('akses')=='1'){
+            $area_id=$this->input->post('area_id');
+            $data['status'] = 0;
+            $data['message'] = "Gagal hapus data area";
+            if($this->M_area->update_status($area_id)==1){
+                $data['status'] = 1;
+                $data['message'] = "Sukses hapus data area";
+            };
+            echo json_encode($data);
+        }else{
+            echo "Halaman tidak ditemukan";
+        }
 	}
 }

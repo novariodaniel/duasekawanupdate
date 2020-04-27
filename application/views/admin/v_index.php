@@ -219,7 +219,7 @@
             <div class="col-md-2 portfolio-item">
                 <div class="menu-item red" style="height:150px;">
                      <a href="<?php echo base_url().'admin/Sales'?>" data-toggle="modal">
-                           <i class="fa fa-hand-holding-usd"></i>
+                           <i class="fa fa-people-carry"></i>                                                      
                             <p>Sales</p>
                       </a>
                 </div> 
@@ -257,6 +257,22 @@
                         <a href="<?php echo base_url().'admin/Area'?>" data-toggle="modal">
                               <i class="fa fa-map-marked"></i>
                               <p style="text-align:left;font-size:14px;padding-left:5px;">Area</p>
+                        </a>
+                  </div> 
+            </div>
+            <div class="col-md-2 portfolio-item">
+                  <div class="menu-item goldenrod" style="height:150px;">
+                        <a href="<?php echo base_url().'admin/Customer'?>" data-toggle="modal">
+                              <i class="fa fa-hand-holding-usd"></i>
+                              <p style="text-align:left;font-size:14px;padding-left:5px;">Customer</p>
+                        </a>
+                  </div> 
+            </div>
+            <div class="col-md-2 portfolio-item">
+                  <div class="menu-item softblue" style="height:150px;">
+                        <a href="<?php echo base_url().'admin/Sales_mapping'?>" data-toggle="modal">
+                              <i class="fa fa-network-wired"></i>
+                              <p style="text-align:left;font-size:14px;padding-left:5px;">Sales Mapping</p>
                         </a>
                   </div> 
             </div>

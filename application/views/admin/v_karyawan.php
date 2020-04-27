@@ -286,10 +286,10 @@
                                     <select name="edit_isactive" id="edit_isactive" class="selectpicker show-tick form-control" style="width:280px;" required>
                                     <?php if ($isActive=='1'):?>
                                         <option value="1" selected>Aktif</option>
-                                        <option value="2">Non Aktif</option>
+                                        <option value="0">Non Aktif</option>
                                     <?php else:?>
                                         <option value="1">Aktif</option>
-                                        <option value="2" selected>Non Aktif</option>
+                                        <option value="0" selected>Non Aktif</option>
                                     <?php endif;?>
                                     </select>
                                 </div>

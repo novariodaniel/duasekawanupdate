@@ -39,16 +39,8 @@ class M_area extends CI_Model{
 		return $hsl;
 	}
 
-	function update_pengguna_nopass($kode,$nama,$username,$level){
-		$hsl=$this->db->query("UPDATE tbl_karyawan SET user_nama='$nama',user_username='$username',user_level='$level' WHERE user_id='$kode'");
-		return $hsl;
-	}
-	function update_pengguna($kode,$nama,$username,$password,$level){
-		$hsl=$this->db->query("UPDATE tbl_karyawan SET user_nama='$nama',user_username='$username',user_password=md5('$password'),user_level='$level' WHERE user_id='$kode'");
-		return $hsl;
-	}
-	function update_status($karyawan_id){
-		$hsl=$this->db->query("UPDATE tbl_karyawan SET karyawan_status='0' WHERE karyawan_id='$karyawan_id'");
+	function update_status($area_id){
+		$hsl=$this->db->query("UPDATE tbl_area SET area_flagging='0' WHERE id_area='$area_id'");
 		return $hsl;
 	}
 }

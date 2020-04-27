@@ -163,18 +163,18 @@
        <!-- ============ MODAL HAPUS =============== -->
        <?php
                     foreach ($data->result_array() as $a) {
-                        $id=$a['karyawan_id'];                       
+                        $id=$a['id_area'];                       
                     ?>
                 <div id="modalHapusArea<?php echo $id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 class="modal-title" id="myModalLabel">Hapus Karyawan</h3>
+                        <h3 class="modal-title" id="myModalLabel">Hapus Area</h3>
                     </div>
                     
                         <div class="modal-body">                            
-                            <p>Yakin mau menghapus data karyawan ini..?</p>                                    
+                            <p>Yakin mau menghapus data area ini..?</p>                                    
                         </div>
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
@@ -227,26 +227,37 @@
 
         $(document).ready(function() {
             $(document).on('click', ".btnHapus",function(){                   
-                var karyawan_id = $(this).val();
+                var area_id = $(this).val();
                 
                 $.ajax({
                     type: "POST",
-                    data: {karyawan_id:karyawan_id},
-                    url : "<?php echo base_url()?>admin/Karyawan/nonaktifkan",
+                    data: {area_id:area_id},
+                    url : "<?php echo base_url()?>admin/Area/nonaktifkan",
                     success:function(data){  
                         var data = $.parseJSON(data);                      
-                        console.log(data);
-                        alert(data.message);
-                        location.reload();
+                        if (data.status == 1){
+                            Swal.fire({
+                                type:'success',
+                                title: 'Sukses!',
+                                text: data.message,                                
+                            }).then (function(){
+                                location.reload();
+                            })
+                        }else{
+                            Swal.fire({
+                                type:'error',
+                                title: 'Oops...',
+                                text: data.message,
+                                footer: '<a href="https://google.com">Why do I have this issue?</a>'
+                            },function(){
+                                location.reload();
+                            })
+                        }  
                     }
                 });
             });
 
             $("#tambahArea").click(function(){
-                reset();
-            })
-
-            $("#editArea").click(function(){
                 reset();
             })
 
@@ -264,7 +275,7 @@
                                 type:'success',
                                 title: 'Sukses!',
                                 text: data.message,                                
-                            },function(){
+                            }).then (function(){
                                 location.reload();
                             })
                         }else{

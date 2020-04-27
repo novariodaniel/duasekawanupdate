@@ -17,26 +17,35 @@ class Sales extends CI_Controller{
         echo json_encode($data);
     }
 
-    function insert_sales(){                
+    function tambah_sales(){                
         if($this->session->userdata('akses')==1){        
-            $karyawan_id = $this->input->post('karyawan_id');            
+            $karyawan_id         = $this->input->post('karyawan_id');
+            $sales_area          = $this->input->post('sales_area');
+            $sales_konsumen      = $this->input->post('sales_konsumen');
+            $sales_isActive      = $this->input->post('sales_isActive');  
+            $sales_id            = $this->input->post('karyawan_id');        
         };            
         
         $return = false;
-        if($this->M_sales->countById($karyawan_id)>0){
-            if($this->M_sales->get_status($karyawan_id) == 1){
-                $data['status'] = 3;
-                $data['message'] = "Karyawan ini sudah terdaftar sebagai sales";
-            }else if($this->M_sales->update_sales_mst($karyawan_id)==1){
-                $data['status'] = 2;
-                $data['message'] = "Data berhasil disimpan";
-            }           
-        }else if($this->M_sales->insert_sales($karyawan_id)==1){
-            $data['status'] = 1;
-            $data['message'] = "Data berhasil disimpan";
+        
+        if($this->cek_sales($karyawan_id) > 0){
+            if($this->M_sales->simpan_sales_detail($sales_id,$sales_area,$sales_konsumen) == 1){                
+                $return = true;
+            }
         }else{
-            $data['status'] = 0;
-            $data['message'] = "Data gagal disimpan, hubungi administrator sistem";
+            if(($this->M_sales->simpan_sales_master($sales_id,$karyawan_id,$sales_isActive) == 1) && ($this->M_sales->simpan_sales_detail($sales_id,$sales_area,$sales_konsumen) == 1)){
+                $return = true;                
+            }else{
+                $return = false;
+            }        
+        }
+
+        // $data['status'] = 0;
+        $data['message'] = "Data gagal disimpan";
+
+        if($return){
+            // $data['status'] = 1;
+            $data['message'] = "Data berhasil disimpan";
         }
         echo json_encode($data);
         return;
@@ -44,7 +53,7 @@ class Sales extends CI_Controller{
 
     function cek_sales($karyawan_id){
         if($this->session->userdata('akses')==1){            
-            $result = $this->M_sales->validasi_sales($karyawan_id);
+            $result = $this->M_sales->validasi_sales($karyawan_id);   
             return $result;
         }
     }
@@ -107,14 +116,36 @@ class Sales extends CI_Controller{
     }
 
 	function nonaktifkan(){
-        if($this->session->userdata('akses')=='1'){
-            $karyawan_id=$this->input->post('karyawan_id');
-            $data['status'] = 0;
-            $data['message'] = "Data gagal dihapus";
-            if($this->M_sales->update_status($karyawan_id)==1){
-                $data['status'] = 1;
-                $data['message'] = "Data berhasil dihapus";
-            };
+	if($this->session->userdata('akses')=='1'){
+		$karyawan_id=$this->input->post('karyawan_id');
+		$data['status'] = 0;
+		$data['message'] = "Gagal hapus data karyawan";
+		if($this->M_karyawan->update_status($karyawan_id)==1){
+			$data['status'] = 1;
+			$data['message'] = "Sukses hapus data karyawan";
+		};
+		echo json_encode($data);
+	}else{
+        echo "Halaman tidak ditemukan";
+    }
+    }
+    
+    function searchEngine(){
+        if($this->session->userdata('akses')=='1'){                                
+            $search = $this->input->post("search");
+            $url='http://10.1.35.40:8382/api/searchElastic';                                             
+            $ch = curl_init();                         
+            curl_setopt($ch,CURLOPT_URL,$url); 
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,"{ \"search\":\"$search\"}");                                              
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch,CURLOPT_POSTFIELDS,$search);                                              
+            $data = curl_exec($ch);
+            curl_close($ch);
+            // print_r($output);die();
+            // $data["status"] = $output.status;
+            // $data["detail"] = $output["data"];
+            
             echo json_encode($data);
         }else{
             echo "Halaman tidak ditemukan";

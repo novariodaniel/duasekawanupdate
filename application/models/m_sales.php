@@ -1,7 +1,16 @@
 <?php
 class M_sales extends CI_Model{
 	function get_sales(){
-		$hsl=$this->db->query("SELECT a.sales_mapping_id,c.sales_id,b.karyawan_id,b.karyawan_nama,a.sales_area,a.sales_buyer,c.sales_status,b.karyawan_status
+		$hsl=$this->db->query("select b.sales_id,a.karyawan_id,a.karyawan_nama,b.sales_status,a.karyawan_status
+		from tbl_karyawan a
+		join tbl_sales_master b
+		on a.karyawan_id = b.karyawan_id
+		where b.sales_status !=0 and a.karyawan_status != 0");
+		return $hsl;
+	}
+
+	function get_sales_(){
+		$hsl=$this->db->query("SELECT c.sales_id,b.karyawan_id,b.karyawan_nama,a.sales_area,a.sales_buyer,c.sales_status,b.karyawan_status
         FROM tbl_sales_detail a
         JOIN tbl_sales_master c ON a.sales_id = c.sales_id
         JOIN tbl_karyawan b ON c.karyawan_id = b.karyawan_id
@@ -15,6 +24,27 @@ class M_sales extends CI_Model{
 		foreach($result as $a){
 			return $a['count_sales'];
 		}				 
+	}
+
+	function countById($karyawan_id){
+		$hsl=$this->db->query("SELECT count(karyawan_id) as count_sales from tbl_sales_master where karyawan_id='$karyawan_id'");
+		$result = $hsl->result_array();
+		foreach($result as $a){
+			return $a['count_sales'];
+		}				 
+	}
+
+	function get_status($karyawan_id){
+		$hsl=$this->db->query("SELECT sales_status from tbl_sales_master where karyawan_id='$karyawan_id'");
+		$result = $hsl->result_array();
+		foreach($result as $a){
+			return $a['sales_status'];
+		}				 
+	}
+
+	function insert_sales($karyawan_id){
+		$hsl=$this->db->query("INSERT INTO tbl_sales_master(karyawan_id,sales_status) VALUES ('$karyawan_id',1)");
+		return $hsl;
 	}
 
 	function simpan_sales_master($sales_id,$karyawan_id,$sales_isActive){
@@ -40,6 +70,11 @@ class M_sales extends CI_Model{
 		return $hsl;
 	}
 
+	function update_sales_mst($karyawan_id){
+		$hsl=$this->db->query("UPDATE tbl_sales_master SET sales_status=1 where karyawan_id='$karyawan_id'");
+		return $hsl;
+	}
+
 	function update_sales_master($karyawan_id,$sales_id,$sales_isactive){
 		$hsl=$this->db->query("UPDATE tbl_sales_master SET karyawan_id = '$karyawan_id',sales_status='$sales_isactive' where sales_id='$sales_id'");
 		return $hsl;
@@ -59,7 +94,7 @@ class M_sales extends CI_Model{
 		return $hsl;
 	}
 	function update_status($karyawan_id){
-		$hsl=$this->db->query("UPDATE tbl_karyawan SET karyawan_status='0' WHERE karyawan_id='$karyawan_id'");
+		$hsl=$this->db->query("UPDATE tbl_sales_master SET sales_status='0' WHERE karyawan_id='$karyawan_id'");
 		return $hsl;
 	}
 }
