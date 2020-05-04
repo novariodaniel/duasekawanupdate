@@ -1,11 +1,11 @@
 <?php
 class M_sales extends CI_Model{
-	function get_sales(){
+	function get_sales($param=""){
 		$hsl=$this->db->query("select b.sales_id,a.karyawan_id,a.karyawan_nama,b.sales_status,a.karyawan_status
 		from tbl_karyawan a
 		join tbl_sales_master b
 		on a.karyawan_id = b.karyawan_id
-		where b.sales_status !=0 and a.karyawan_status != 0");
+		where b.sales_status !=0 and a.karyawan_status != 0 and a.karyawan_nama like '%$param%'");
 		return $hsl;
 	}
 

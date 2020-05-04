@@ -10,18 +10,6 @@ class M_area extends CI_Model{
 		return $hsl;
 	}
 
-	function get_sales($param=""){
-		$fetched_records=$this->db->query("SELECT * FROM tbl_karyawan WHERE karyawan_status = 1 and karyawan_nama like'%$param%'");
-		$sales = $fetched_records->result_array();		
-		
-		 // Initialize Array with fetched data
-		 $data = array();
-		 foreach($sales as $arrSales){
-			$data[] = array("id"=>$arrSales['karyawan_id'], "text"=>$arrSales['karyawan_nama']);
-		 }
-		 return $data;
-	}
-
 	function simpan_area($param){
         $area_name         = $param[0];
 		$area_flagging     = $param[1];		

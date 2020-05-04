@@ -21,6 +21,21 @@
         <?php
         $b = $data->row_array();
         $a = $sum_qty->row_array();
+        $c = $cust_info->row_array();
+        $cust = "";
+        $alamat = "";
+        if (count($c) != 0){
+            $cust = $c['customer_name'];
+            $alamat = $c['customer_alamat'];
+        }else{
+            $alamat = $b['jual_alamat'];
+            if ($b["jual_customer"] == "ssNONAMEee") {
+                $cust = "";                
+            }else{
+                $cust = $b["jual_customer"];                
+            }            
+        }
+
         // print_r($a);print_r($b);die();
         ?>
         <table border="0" align="center" style="width:700px;border:none;">
@@ -49,13 +64,13 @@
                 <th style="text-align:left;">No Faktur</th>
                 <th style="text-align:left;">: <?php echo $b['jual_nofak']; ?></th>
                 <th style="text-align:left;">Nama Customer</th>
-                <th style="text-align:right;"> : Test</th>
+                <th style="text-align:left;"> : <?php echo "$cust"; ?></th>
             </tr>
             <tr>
                 <th style="text-align:left;">Tanggal</th>
                 <th style="text-align:left;">: <?php echo $b['jual_tanggal']; ?></th>
                 <th style="text-align:left;">Alamat</th>
-                <th style="text-align:right;">: Test</th>
+                <th style="text-align:left;">: <?php echo $alamat; ?></th>
             </tr>            
         </table>
 
@@ -142,7 +157,7 @@
                 <td><br /><br /><br /><br /></td>
             </tr>
             <tr>
-                <td align="center">(...........................)</td>
+                <td align="center">(<?php echo $cust;?>)</td>
                 <td align="right">( <?php echo $this->session->userdata('nama'); ?> )</td>
             </tr>
             <tr>

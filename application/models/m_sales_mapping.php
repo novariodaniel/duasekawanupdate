@@ -6,59 +6,32 @@ class M_sales_mapping extends CI_Model{
         join tbl_sales_master b on a.id_sales = b.sales_id 
         join tbl_karyawan c on b.karyawan_id = c.karyawan_id
         join tbl_customer d on a.id_customer = d.customer_id
-        join tbl_area e on a.id_area = e.id_area");
+        join tbl_area e on a.id_area = e.id_area where a.map_flag = 1");
 		return $hsl;
     }
 
-    function get_customer($param=""){
-        $fetched_records=$this->db->query("SELECT * FROM tbl_customer WHERE customer_flagging = 1 and customer_name like'%$param%'");
-        $customer = $fetched_records->result_array();
-        $data = array();
-		 foreach($customer as $arrCust){
-			$data[] = array("id"=>$arrCust['customer_id'], "text"=>$arrCust['customer_name']);
-		 }
-		return $data;
+    function validasi_insert($param){        
+        $hsl = $this->db->query("select * from tbl_sales_mapping where id_sales = $param[0] and id_customer = $param[1] and id_area = $param[2]");        
+        return $hsl;
     }
     
-    function get_sales($param=""){
-		$fetched_records=$this->db->query("select b.sales_id,a.karyawan_id,a.karyawan_nama,b.sales_status,a.karyawan_status
-		from tbl_karyawan a
-		join tbl_sales_master b
-		on a.karyawan_id = b.karyawan_id
-		where b.sales_status !=0 and a.karyawan_status != 0 and a.karyawan_nama like'%$param%'");
-		$sales = $fetched_records->result_array();
-		
-		 // Initialize Array with fetched data
-		 $data = array();
-		 foreach($sales as $arrSales){
-			$data[] = array("id"=>$arrSales['sales_id'], "text"=>$arrSales['karyawan_nama']);
-		 }
-		 return $data;
-	}
+    function insert_salesMap($param){
+        $hsl = $this->db->query("INSERT INTO tbl_sales_mapping(id_sales,id_customer,id_area,insert_user,update_user,map_flag) values('$param[0]','$param[1]','$param[2]','$param[3]','$param[4]',1)");
+        return $hsl;
+    }
 
-	function simpan_customer($param){
-        $customer_name     = $param[0];
-        $customer_limit    = $param[1];
-        $customer_hutang   = $param[2];
-        $customer_alamat   = $param[3];
-        $customer_telepon  = $param[4];
-        $customer_flagging = $param[5];
-        $insert_date       = $param[6];
-        $update_date       = $param[7];
-        $insert_user       = $param[8];
-        $update_user       = $param[9];
-        
-        $hsl=$this->db->query("INSERT INTO tbl_customer(customer_name,customer_limit,customer_hutang,customer_alamat,customer_telepon,customer_flagging,insert_datetime,update_datetime,insert_user,update_user) VALUES ('$customer_name','$customer_limit','$customer_hutang','$customer_alamat','$customer_telepon','$customer_flagging','$insert_date','$update_date','$insert_user','$update_user')");
+    function update_map($param){
+        $hsl=$this->db->query("UPDATE tbl_sales_mapping SET id_sales='$param[0]', id_customer='$param[1]', id_area='$param[2]',update_datetime='$param[4]',update_user='$param[5]' WHERE id_mapping='$param[3]'");		
 		return $hsl;
 	}
 
-	function update_customer($param){
-        $hsl=$this->db->query("UPDATE tbl_customer SET customer_name='$param[1]', customer_limit='$param[2]', customer_hutang='$param[3]',customer_alamat='$param[4]',customer_telepon='$param[5]',update_datetime='$param[6]',update_user='$param[7]' WHERE customer_id='$param[0]'");		
+	function nonaktif_map($id_mapping){
+		$hsl=$this->db->query("UPDATE tbl_sales_mapping SET map_flag='0' WHERE id_mapping='$id_mapping'");
 		return $hsl;
-	}
-
-	function update_status($customer_id){
-		$hsl=$this->db->query("UPDATE tbl_customer SET customer_flagging='0' WHERE customer_id='$customer_id'");
+    }
+    
+    function aktif_map($id_mapping){
+		$hsl=$this->db->query("UPDATE tbl_sales_mapping SET map_flag='1' WHERE id_mapping='$id_mapping'");
 		return $hsl;
 	}
 }

@@ -108,9 +108,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($this->cart->contents() as $items): ?>
-                    <?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+                    <?php $i = 1; ?>                    
+                    <?php foreach ($this->cart_buying->contents() as $items):?>
+                    <?php echo form_hidden($i.'[rowid]', $items['rowid']);?>
                     <tr>
                          <td><?=$items['id'];?></td>
                          <td><?=$items['name'];?></td>
@@ -127,7 +127,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="6" style="text-align:center;">Total</td>
-                        <td style="text-align:right;">Rp. <?php echo number_format($this->cart->total());?></td>
+                        <td style="text-align:right;">Rp. <?php echo number_format($this->cart_buying->total());?></td>
                     </tr>
                 </tfoot>
             </table>

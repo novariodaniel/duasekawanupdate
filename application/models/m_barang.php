@@ -35,8 +35,6 @@ class M_barang extends CI_Model{
 	}
 
 	function search_barang($param){
-		// $this->db->select('*');
-		// $this->db->from('tbl_barang');
 		$this->db->like('barang_nama', $param);
 		$this->db->or_like('barang_id', $param);
         $this->db->order_by('barang_nama', 'ASC');

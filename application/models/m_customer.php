@@ -5,6 +5,24 @@ class M_customer extends CI_Model{
 		return $hsl;
 	}
 
+	function get_custname_id($param=""){
+		$hsl=$this->db->query("SELECT * FROM tbl_customer WHERE customer_flagging = 1 and (customer_name like'%$param%' or customer_id like '%$param%')");
+		return $hsl;
+	}
+
+	function get_direct_name($param=""){
+		$hsl=$this->db->query("SELECT * FROM tbl_customer WHERE customer_flagging = 1 and customer_name = '$param'");
+		return $hsl;
+	}
+
+	function get_direct_id($param){
+		if ($param == ""){
+			$param = -1;
+		}
+		$hsl=$this->db->query("SELECT * FROM tbl_customer WHERE customer_flagging = 1 and customer_id = '$param'");
+		return $hsl;
+	}
+
 	function simpan_customer($param){
         $customer_name     = $param[0];
         $customer_limit    = $param[1];
@@ -22,12 +40,35 @@ class M_customer extends CI_Model{
 	}
 
 	function update_customer($param){
-        $hsl=$this->db->query("UPDATE tbl_customer SET customer_name='$param[1]', customer_limit='$param[2]', customer_hutang='$param[3]',customer_alamat='$param[4]',customer_telepon='$param[5]',update_datetime='$param[6]',update_user='$param[7]' WHERE customer_id='$param[0]'");		
+        $hsl=$this->db->query("UPDATE tbl_customer SET customer_name='$param[1]', customer_limit='$param[2]', customer_hutang='$param[3]',customer_alamat='$param[4]',customer_telepon='$param[5]',update_datetime='$param[6]',update_user='$param[7]' WHERE customer_id='$param[0]'");
 		return $hsl;
 	}
 
 	function update_status($customer_id){
 		$hsl=$this->db->query("UPDATE tbl_customer SET customer_flagging='0' WHERE customer_id='$customer_id'");
+		return $hsl;
+	}
+
+	function validasi_delete($customer_id){
+		$hsl=$this->db->query("SELECT * from tbl_customer where customer_id = '$customer_id'");			
+		return $hsl;
+	}
+
+	function search_customer($param){
+		// $this->db->where('customer_flagging', 1);
+		// $this->db->like('customer_name', $param);
+		// $this->db->or_like('customer_id', $param);
+        // $this->db->order_by('customer_name', 'ASC');
+        // $this->db->limit(10);
+		// return $this->db->get('tbl_customer')->result();
+		$hsl = $this->db->query("select * from tbl_customer where customer_flagging=1 and (customer_name like '%$param%' or customer_id like '%$param%') order by customer_name limit 10");
+		return $hsl;
+	}
+	
+	function insert_credit(){
+		$id = $this->session->userdata('sess_cid');
+		$hutang = $this->session->userdata('newhutang');
+		$hsl=$this->db->query("UPDATE tbl_customer set customer_hutang = '$hutang' where customer_id = '$id'");
 		return $hsl;
 	}
 }

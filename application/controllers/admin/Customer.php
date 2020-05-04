@@ -77,11 +77,26 @@ class Customer extends CI_Controller{
             $customer_id=$this->input->post('customer_id');
             $data['status'] = 0;
             $data['message'] = "Gagal hapus data customer";
-            if($this->M_customer->update_status($customer_id)==1){
-                $data['status'] = 1;
-                $data['message'] = "Sukses hapus data customer";
-            };
-            echo json_encode($data);
+            
+            
+            $fetched_records = $this->M_customer->validasi_delete($customer_id)->result_array();
+            $hutang = 0;
+            $customer_name = "";                        
+            foreach($fetched_records as $a){
+                $hutang = $a['customer_hutang'];
+                $customer_name = $a['customer_name'];
+            }            
+
+            if ($hutang == 0){
+                if($this->M_customer->update_status($customer_id)==1){
+                    $data['status'] = 1;
+                    $data['message'] = "Sukses hapus data customer";
+                };                
+            }else{
+                $data['status'] = -1;
+                $data['message'] = "Gagal hapus data customer, $customer_name masih memiliki hutang";
+            }
+            echo json_encode($data);            
         }else{
             echo "Halaman tidak ditemukan";
         }

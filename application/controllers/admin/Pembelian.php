@@ -11,6 +11,7 @@ class Pembelian extends CI_Controller{
 		$this->load->model('M_barang');
 		$this->load->model('M_suplier');
 		$this->load->model('M_pembelian');
+		$this->load->library('Cart_buying');
 	}
 
 	function index(){
@@ -81,9 +82,9 @@ class Pembelian extends CI_Controller{
 				die();
 				
 			}
-			if(!empty($this->cart->total_items())){						
+			if(!empty($this->cart_buying->total_items())){						
 				$count = 0;				
-				foreach($this->cart->contents()as $items){					
+				foreach($this->cart_buying->contents()as $items){					
 					$id = $items['id'];										
 					$qtyLama=$items['qty'];
 					$rowId=$items['rowid'];
@@ -95,16 +96,16 @@ class Pembelian extends CI_Controller{
 							'rowid'=>$rowId,
 							'qty'=>$qtyLama+$qty
 						);						
-						$this->cart->update($up);
+						$this->cart_buying->update($up);
 					}
 				}
 				if($count==0){
 					// echo "masuk sini";
 					// echo "1";
-					$this->cart->insert($data);
+					$this->cart_buying->insert($data);
 				}
 			}else{				
-				$this->cart->insert($data);
+				$this->cart_buying->insert($data);
 				// echo "init2";die();				
 			}		
 			// print_r($this->cart);
@@ -117,7 +118,7 @@ class Pembelian extends CI_Controller{
 	function remove(){
 		if($this->session->userdata('akses')=='1'){
 			$row_id=$this->uri->segment(4);
-			$this->cart->update(array(
+			$this->cart_buying->update(array(
 				'rowid'      => $row_id,
 				'qty'     => 0
 				));
@@ -132,11 +133,15 @@ class Pembelian extends CI_Controller{
 			$nofak=$this->session->userdata('nofak');
 			$tglfak=$this->session->userdata('tglfak');
 			$suplier=$this->session->userdata('suplier');
+			// $nofak = 'v901';
+			// $tglfak = date("Y-m-d H:i:s");
+			// $suplier='1';
+			// echo $tglfak.$suplier;die();
 			if(!empty($nofak) && !empty($tglfak) && !empty($suplier)){
 				$beli_kode=$this->M_pembelian->get_kobel($tglfak);
 				$order_proses=$this->M_pembelian->simpan_pembelian($nofak,$tglfak,$suplier,$beli_kode);
 				if($order_proses){
-					$this->cart->destroy();
+					$this->cart_buying->destroy();
 					$this->session->unset_userdata('nofak');
 					$this->session->unset_userdata('tglfak');
 					$this->session->unset_userdata('suplier');

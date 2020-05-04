@@ -79,16 +79,16 @@
                         $id_area=$a['id_area'];
                         $karyawan_nama=$a['karyawan_nama'];
                         $customer_name=$a['customer_name'];
-                        $area_name=$a['area_name'];                                                                     
-                ?>                
-                    <tr data-idMapping="<?php echo $id_mapping;?>" data-idSales="<?php echo $id_sales;?>" data-idCust="<?php echo $id_customer;?>" data-idArea="<?php echo $id_area;?>" data-karyawan="<?php echo $karyawan_nama;?>" data-cust="<?php echo $customer_name;?>" data-area="<?php echo $area_name;?>">
+                        $area_name=$a['area_nama'];                                                                     
+                ?>                                    
+                    <tr data-idmapping="<?php echo $id_mapping;?>" data-idsales="<?php echo $id_sales;?>" data-idcust="<?php echo $id_customer;?>" data-idarea="<?php echo $id_area;?>" data-karyawan="<?php echo $karyawan_nama;?>" data-cust="<?php echo $customer_name;?>" data-area="<?php echo $area_name;?>">
                         <td style="text-align:center;"><?php echo $no;?></td>
                         <td><?php echo $karyawan_nama;?></td>
-                        <td class='money'><?php echo $customer_name;?></td>
-                        <td class='money'><?php echo $area_name;?></td>
+                        <td><?php echo $customer_name;?></td>
+                        <td><?php echo $area_name;?></td>
                         <td style="text-align:center;">
-                            <a data-id="<?php echo $id;?>" data-target = "#orderModal" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#orderModal" title="Edit"><span class="fa fa-edit"></span> Edit</a>
-                            <a class="btn btn-xs btn-danger" href="#modalHapusCustomer<?php echo $id?>" data-toggle="modal" title="Hapus"><span class="fa fa-close"></span> Hapus</a>
+                            <a data-id="<?php echo $id_mapping;?>" data-target = "#orderModal" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#orderModal" title="Edit"><span class="fa fa-edit"></span> Edit</a>
+                            <a class="btn btn-xs btn-danger" href="#modalHapusCustomer<?php echo $id_mapping;?>" data-toggle="modal" title="Hapus"><span class="fa fa-close"></span> Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -110,18 +110,18 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" >Nama Sales</label>
+                                <label class="control-label col-xs-3" >Sales</label>
                                 <div class="col-xs-9">
-                                    <select id='selSales' style='width: 200px;'>
+                                    <select id='selSales' style='width: 270px;'>
                                         <option value='0'>-- Pilih sales --</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-xs-3" >Nama Customer</label>
+                                <label class="control-label col-xs-3" >Customer</label>
                                 <div class="col-xs-9">
-                                    <select id='selCust' style='width: 200px;'>
+                                    <select id='selCust' style='width: 270px;'>
                                         <option value='0'>-- Pilih Customer --</option>
                                     </select>
                                 </div>
@@ -130,7 +130,7 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-3" >Area</label>
                                 <div class="col-xs-9">
-                                    <select id='selArea' style='width: 200px;'>
+                                    <select id='selArea' style='width: 270px;'>
                                         <option value='0'>-- Pilih Area --</option>
                                     </select>
                                 </div>
@@ -138,7 +138,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Tutup</button>
                             <button class="btn btn-info" id="simpan">Simpan</button>
                         </div>
                     </div>
@@ -148,52 +148,42 @@
 
         <!-- ============ MODAL EDIT =============== -->
    
-    <div id="orderModal" class="modal fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true" tabindex="-1" aria-labelledby="largeModal">
+    <div id="orderModal" class="modal fade" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
         <div class="modal-dialog"> 
             <div class="modal-content">
                 <div class="modal-header">    
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                    <h3>Edit Customer</h3>
+                    <h3>Edit Sales Mapping</h3>
                 </div>
                 <div class="form-horizontal">
                     <div class="modal-body">
 
                         <input type="hidden" id="orderId" name="orderId" class="form-control" style="width:280px;" readonly>
-                        <div class="form-group">                                                
-                            <label class="control-label col-xs-3" >Customer</label>
-                            <div class="col-xs-9">                            
-                                <input type="text" id="orderCustomer" name="orderCustomer" class="form-control" style="width:280px">
+                        
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" >Sales</label>
+                                <div class="col-xs-9">
+                                    <select name = 'selSalesEdt'id='selSalesEdt' style='width: 270px;'>                                    
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" >Customer</label>
+                                <div class="col-xs-9">
+                                    <select name = 'selCustEdt'id='selCustEdt' style='width: 270px;'>                                    
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label class="control-label col-xs-3" >Area</label>
+                                <div class="col-xs-9">
+                                    <select name = 'selAreaEdt'id='selAreaEdt' style='width: 270px;'>                                    
+                                    </select>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group">                        
-                            <label class="control-label col-xs-3" >Limit</label>
-                            <div class="col-xs-9">
-                                <input type="text" id="orderLimit" name="orderLimit" class="money form-control input-sm" style="width:280px;">      
-                            </div>
-                        </div>
-
-                        <div class="form-group">                        
-                            <label class="control-label col-xs-3" >Hutang</label>                        
-                            <div class="col-xs-9">
-                                <input type="text" id="orderHutang" name="orderHutang" class="money form-control input-sm" style="width:280px;">      
-                            </div>                        
-                        </div>
-                    
-                        <div class="form-group">                        
-                            <label class="control-label col-xs-3" >Alamat</label>                        
-                            <div class="col-xs-9">
-                                <input type="text" id="orderAlamat" name="orderAlamat" class="form-control" style="width:280px;">      
-                            </div>                        
-                        </div>
-                    
-                        <div class="form-group">                        
-                            <label class="control-label col-xs-3" >Telepon</label>                        
-                            <div class="col-xs-9">
-                                <input type="text" id="orderTlp" name="orderTlp" class="form-control" style="width:280px;">      
-                            </div>                        
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -208,7 +198,7 @@
        <!-- ============ MODAL HAPUS =============== -->
        <?php
                     foreach ($data->result_array() as $a) {
-                        $id=$a['customer_id'];                       
+                        $id=$a['id_mapping'];                       
                     ?>
                 <div id="modalHapusCustomer<?php echo $id?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
                     <div class="modal-dialog">
@@ -219,7 +209,7 @@
                     </div>
                     
                         <div class="modal-body">                            
-                            <p>Yakin mau menghapus data customer ini..?</p>                                    
+                            <p>Yakin mau menghapus data mapping ini..?</p>                                    
                         </div>
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
@@ -268,39 +258,37 @@
                 show:false,
         
             }).on('show.bs.modal', function(){
-                var custId = $(event.target).closest('tr').data('id');
-                var custName = $(event.target).closest('tr').data('name');
-                var custLimit = $(event.target).closest('tr').data('limit');
-                var custHutang = $(event.target).closest('tr').data('hutang');
-                var custAlamat = $(event.target).closest('tr').data('alamat');
-                var custTlp = $(event.target).closest('tr').data('telepon');
-                $('#orderId').val(custId);
-                $('#orderCustomer').val(custName);
-                $('#orderLimit').val(custLimit);
-                $('#orderHutang').val(custHutang);
-                $('#orderAlamat').val(custAlamat);
-                $('#orderTlp').val(custTlp);
+                var mappingId = $(event.target).closest('tr').data('idmapping');
+                var salesId = $(event.target).closest('tr').data('idsales');
+                var custId = $(event.target).closest('tr').data('idcust');
+                var areaId = $(event.target).closest('tr').data('idarea');
+                var karyawan = $(event.target).closest('tr').data('karyawan');
+                var cust = $(event.target).closest('tr').data('cust');
+                var area = $(event.target).closest('tr').data('area');                  
+                $("#orderId").val(mappingId);
+                var $slcSales = $("<option selected='selected'></option>").val(salesId).text(karyawan);                
+                var $slcCust = $("<option selected='selected'></option>").val(custId).text(cust);
+                var $slcArea = $("<option selected='selected'></option>").val(areaId).text(area);
+                $("#selSalesEdt").append($slcSales).trigger('change');
+                $("#selCustEdt").append($slcCust).trigger('change');
+                $("#selAreaEdt").append($slcArea).trigger('change');
             });
         });
         
         $("#orderSimpan").click(function(){
-            custId     = $('#orderId').val();
-            custName   = $('#orderCustomer').val();
-            custLimit  = $('#orderLimit').val().replace(/[^\d]/g,"");;
-            custHutang = $('#orderHutang').val().replace(/[^\d]/g,"");;
-            custAlamat = $('#orderAlamat').val();
-            custTlp    = $('#orderTlp').val();
-
+            mappingId = $('#orderId').val();
+            salesId   = $('#selSalesEdt').val();
+            custId    = $('#selCustEdt').val();
+            areaId    = $('#selAreaEdt').val();
+            
             $.ajax({
                     type: "POST",
-                    data: {custId:custId,
-                           custName:custName,
-                           custLimit:custLimit,
-                           custHutang:custHutang,
-                           custAlamat:custAlamat,
-                           custTlp:custTlp
+                    data: {mappingId:mappingId,
+                           salesId:salesId,
+                           custId:custId,
+                           areaId:areaId                           
                     },
-                    url : "<?php echo base_url()?>admin/Customer/edit_customer",
+                    url : "<?php echo base_url()?>admin/Sales_mapping/edit_data",
                     success:function(data){  
                         var data = $.parseJSON(data);                      
                         if (data.status == 1){
@@ -326,14 +314,78 @@
         })
 
         function reset(){
-            $("#add_customer").val("");
-            $("#add_limit").val("");
-            $("#add_hutang").val("");
-            $("#add_alamat").val("");
-            $("#add_telepon").val("");
+            var $slcSales = $("<option selected='selected'></option>").val('').text('--Pilih Sales--');                
+            var $slcCust = $("<option selected='selected'></option>").val('').text('--Pilih Customer--');
+            var $slcArea = $("<option selected='selected'></option>").val('').text('--Pilih Area--');
+            $("#selSales").append($slcSales).trigger('change');
+            $("#selCust").append($slcCust).trigger('change');
+            $("#selArea").append($slcArea).trigger('change');
         }
 
         $(document).ready(function() {
+            $("#selSalesEdt").select2({  
+                placeholder: '--Pilih Sales--',              
+                ajax: { 
+                    url: "<?php echo base_url()?>admin/Sales_mapping/get_sales",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            searchTerm: params.term // search term
+                        };
+                    },
+                    processResults: function (response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            $("#selCustEdt").select2({  
+                placeholder: '--Pilih customer--',              
+                ajax: { 
+                    url: "<?php echo base_url()?>admin/Sales_mapping/get_customer",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            searchTerm: params.term // search term
+                        };
+                    },
+                    processResults: function (response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            $("#selAreaEdt").select2({  
+                placeholder: '--Pilih Area--',              
+                ajax: { 
+                    url: "<?php echo base_url()?>admin/Sales_mapping/get_area",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            searchTerm: params.term // search term
+                        };
+                    },
+                    processResults: function (response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });           
+
             $("#selSales").select2({                
                 ajax: { 
                     url: "<?php echo base_url()?>admin/Sales_mapping/get_sales",
@@ -376,7 +428,7 @@
 
             $("#selArea").select2({                
                 ajax: { 
-                    url: "<?php echo base_url()?>admin/Sales_mapping/get_customer",
+                    url: "<?php echo base_url()?>admin/Sales_mapping/get_area",
                     type: "post",
                     dataType: 'json',
                     delay: 250,
@@ -397,12 +449,12 @@
             // selArea        
             
             $(document).on('click', ".btnHapus",function(){                   
-                var customer_id = $(this).val();
+                var mappingId = $(this).val();
                 
                 $.ajax({
                     type: "POST",
-                    data: {customer_id:customer_id},
-                    url : "<?php echo base_url()?>admin/Customer/nonaktifkan",
+                    data: {mappingId:mappingId},
+                    url : "<?php echo base_url()?>admin/Sales_mapping/nonaktifkan",
                     success:function(data){  
                         var data = $.parseJSON(data);                      
                         if (data.status == 1){
@@ -432,20 +484,16 @@
             })
 
             $("#simpan").click(function(){                      
-                customer_name    = $("#add_customer").val();
-                customer_limit   = $('#add_limit').val().replace(/[^\d]/g,"");
-                customer_hutang  = $('#add_hutang').val().replace(/[^\d]/g,"");
-                customer_alamat  = $('#add_alamat').val();
-                customer_telepon = $('#add_telepon').val();                
+                selSales = $("#selSales").val();
+                selCust  = $('#selCust').val();
+                selArea  = $('#selArea').val();
                 $.ajax({
                     type: "POST",
-                    data: {customer_name: customer_name,
-                            customer_limit:customer_limit,
-                            customer_hutang:customer_hutang,
-                            customer_alamat:customer_alamat,
-                            customer_telepon:customer_telepon,
-                            customer_flagging: 1},
-                    url: "<?php echo base_url()?>admin/Customer/tambah_customer", 
+                    data: {selSales: selSales,
+                            selCust:selCust,
+                            selArea:selArea,
+                            },
+                    url: "<?php echo base_url()?>admin/Sales_mapping/insert_map", 
                     success:function(data){                        
                         var data = $.parseJSON(data);      
                         if (data.status == 1){
@@ -456,16 +504,42 @@
                             }).then (function(){
                                 location.reload();
                             })
-                        }else{
+                        }else if (data.status == -1){
                             Swal.fire({
                                 type:'error',
                                 title: 'Oops...',
-                                text: data.message,
-                                footer: '<a href="https://google.com">Why do I have this issue?</a>'
-                            },function(){
+                                text: data.message, 
+                                footer: '<a href="https://google.com">Why do I have this issue?</a>'                               
+                            }),then (function(){
                                 location.reload();
                             })
-                        }                                        
+                        }else if (data.status == 0){
+                            Swal.fire({
+                                type:'warning',
+                                title: 'Warning...',
+                                text: data.message,
+                                footer: '<a href="https://google.com">Why do I have this issue?</a>'
+                            }).then (function(){
+                                location.reload();
+                            })
+                        }else if (data.status == 2){
+                            Swal.fire({
+                                type:'success',
+                                title: 'Sukses!',
+                                text: data.message,                               
+                            }).then (function(){
+                                location.reload();
+                            })
+                        }else if (data.status == 3){
+                            Swal.fire({
+                                type:'error',
+                                title: 'Error...',
+                                text: data.message,
+                                footer: '<a href="https://google.com">Why do I have this issue?</a>'
+                            }).then (function(){
+                                location.reload();
+                            })
+                        }                                       
                     }
                 });
             })

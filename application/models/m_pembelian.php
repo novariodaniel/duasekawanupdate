@@ -4,7 +4,7 @@ class M_pembelian extends CI_Model{
 	function simpan_pembelian($nofak,$tglfak,$suplier,$beli_kode){
 		$idadmin=$this->session->userdata('idadmin');
 		$this->db->query("INSERT INTO tbl_beli (beli_nofak,beli_tanggal,beli_suplier_id,beli_user_id,beli_kode) VALUES ('$nofak','$tglfak','$suplier','$idadmin','$beli_kode')");
-		foreach ($this->cart->contents() as $item) {
+		foreach ($this->cart_buying->contents() as $item) {
 			$data=array(
 				'd_beli_nofak' 		=>	$nofak,
 				'd_beli_barang_id'	=>	$item['id'],

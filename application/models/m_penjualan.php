@@ -31,9 +31,42 @@ class M_penjualan extends CI_Model{
 		return $hsl;
 	}
 
-	function simpan_penjualan($nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas){
-		$idadmin=$this->session->userdata('idadmin');
-		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja,jual_aki_bekas) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja','$aki_bekas')");
+	// function simpan_penjualan($nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas){
+	// 	$idadmin=$this->session->userdata('idadmin');
+	// 	$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja,jual_aki_bekas,jual_tipe) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja','$aki_bekas')");
+	// 	foreach ($this->cart->contents() as $item) {
+	// 		$data=array(
+	// 			'd_jual_nofak' 			=>	$nofak,
+	// 			'd_jual_barang_id'		=>	$item['id'],
+	// 			'd_jual_barang_nama'	=>	$item['name'],
+	// 			'd_jual_barang_satuan'	=>	$item['satuan'],
+	// 			'd_jual_barang_harpok'	=>	$item['harpok'],
+	// 			'd_jual_barang_harjul'	=>	$item['amount'],
+	// 			'd_jual_qty'			=>	$item['qty'],
+	// 			'd_jual_diskon'			=>	$item['disc'],				
+	// 			'd_jual_total'			=>	$item['subtotal'],
+	// 			'd_jual_disc_val'   	=>  $item['discVal'],
+	// 			'd_status_return'       =>  0				
+	// 		);
+	// 		$this->db->insert('tbl_detail_jual',$data);
+	// 		$this->db->query("update tbl_barang set barang_stok=barang_stok-'$item[qty]' where barang_id='$item[id]'");
+	// 	}
+	// 	return true;
+	// }
+
+	function simpan_penjualan($param){		
+		$idadmin  	  = $this->session->userdata('idadmin');
+		$tipe         = $param[0];
+		$nofak    	  = $param[1];
+		$total    	  = $param[2];
+		$jml_uang 	  = $param[3];
+		$jual_belanja = $param[4];
+		$kembalian 	  = $param[5];
+		$cashback  	  = $param[6];
+		$aki_bekas 	  = $param[7];
+		$customer     = $param[8];
+		$alamat       = $param[9];		
+		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja,jual_aki_bekas,jual_tipe,jual_customer,jual_alamat) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja','$aki_bekas','$tipe','$customer','$alamat')");
 		foreach ($this->cart->contents() as $item) {
 			$data=array(
 				'd_jual_nofak' 			=>	$nofak,
@@ -53,6 +86,8 @@ class M_penjualan extends CI_Model{
 		}
 		return true;
 	}
+
+	
 	function get_nofak(){
 		$q = $this->db->query("SELECT MAX(RIGHT(jual_nofak,6)) AS kd_max FROM tbl_jual WHERE DATE(jual_tanggal)=CURDATE()");
         $kd = "";
@@ -92,7 +127,7 @@ class M_penjualan extends CI_Model{
 	function cetak_faktur(){
 		$nofak=$this->session->userdata('nofak');
 		// echo $nofak;
-		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d/%m/%Y %H:%i:%s') AS jual_tanggal,jual_cashback,jual_belanja,jual_total,jual_jml_uang,jual_kembalian,jual_keterangan,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total,d_jual_disc_val,jual_aki_bekas FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE jual_nofak='$nofak'");
+		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d/%m/%Y %H:%i:%s') AS jual_tanggal,jual_cashback,jual_belanja,jual_total,jual_jml_uang,jual_kembalian,jual_keterangan,jual_alamat,jual_customer,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total,d_jual_disc_val,jual_aki_bekas FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE jual_nofak='$nofak'");
 		// print_r( $hsl);
 		return $hsl;
 	}
