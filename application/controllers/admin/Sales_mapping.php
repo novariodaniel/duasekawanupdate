@@ -76,9 +76,10 @@ class Sales_mapping extends CI_Controller{
 
             //default = if data already stored in db, we no need to insert
             $data['status'] = 0;
-            $data['message'] = "Data ini sudah ada di database";
+            $data['message'] = "Data customer sudah ada di database";
             // if not exist in db do insert
             $fetched_records = $this->M_sales_mapping->validasi_insert($param)->result_array();
+
             $map_flag = "";
             $id_mapping = "";
             
@@ -95,7 +96,7 @@ class Sales_mapping extends CI_Controller{
                     $data['status'] = -1;
                     $data['message'] = "Data gagal disimpan, kesalahan koneksi, hubungi sistem administrator";
                 }
-            }else if(count($fetched_records == 1) && $map_flag == 0){
+            }else if(count($fetched_records >= 1) && $map_flag == 0){
                 if($this->M_sales_mapping->aktif_map($id_mapping) == 1){
                     $data['status'] = 2;
                     $data['message'] = "Data sudah disimpan";
@@ -123,9 +124,9 @@ class Sales_mapping extends CI_Controller{
             $param = array($salesId,$custId,$areaId,$mappingId,$update_date,$update_user);
             
             $data['status'] = 0;
-            $data['message'] = "Data ini sudah ada di database";
+            $data['message'] = "Gagal edit, data customer sudah ada di database";
 
-            $fetched_records = $this->M_sales_mapping->validasi_insert($param)->result_array();            
+            $fetched_records = $this->M_sales_mapping->validasi_insert($param)->result_array();
             if(count($fetched_records)==0){
                 if($this->M_sales_mapping->update_map($param)==1){
                     $data['status'] = 1;

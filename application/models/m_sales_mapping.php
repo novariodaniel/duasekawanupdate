@@ -10,8 +10,13 @@ class M_sales_mapping extends CI_Model{
 		return $hsl;
     }
 
+    // function validasi_insert($param){        
+    //     $hsl = $this->db->query("select * from tbl_sales_mapping where id_sales = $param[0] and id_customer = $param[1] and id_area = $param[2]");        
+    //     return $hsl;
+    // }
+
     function validasi_insert($param){        
-        $hsl = $this->db->query("select * from tbl_sales_mapping where id_sales = $param[0] and id_customer = $param[1] and id_area = $param[2]");        
+        $hsl = $this->db->query("select * from tbl_sales_mapping where id_customer = $param[1]");        
         return $hsl;
     }
     

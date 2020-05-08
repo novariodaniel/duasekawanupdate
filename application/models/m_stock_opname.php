@@ -25,8 +25,8 @@ class M_stock_opname extends CI_Model{
 		$hsl=$this->db->query("SELECT ths.barang_id, ths.barang_nama, ths.barang_satuan, ths.barang_stok, ths.real_stok,
 		ths.different_stok, ths.adjustment_stok,ths.final_stok, ths.insert_datetime, ths.insert_user 
 		FROM tbl_history_so ths 
-		WHERE YEAR(SYSDATE()) = (SELECT YEAR(MAX(insert_datetime))FROM tbl_history_so)
-		AND MONTH(SYSDATE()) = (SELECT MONTH(MAX(insert_datetime)) FROM tbl_history_so);");
+		WHERE year(insert_datetime) = year(sysdate())
+		AND month(insert_datetime) = month(sysdate())");
 		
 		return $hsl;
 	}

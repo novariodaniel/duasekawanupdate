@@ -65,8 +65,9 @@ class M_penjualan extends CI_Model{
 		$cashback  	  = $param[6];
 		$aki_bekas 	  = $param[7];
 		$customer     = $param[8];
-		$alamat       = $param[9];		
-		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja,jual_aki_bekas,jual_tipe,jual_customer,jual_alamat) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja','$aki_bekas','$tipe','$customer','$alamat')");
+		$alamat       = $param[9];
+		$jual_status  = $param[10];	
+		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja,jual_aki_bekas,jual_tipe,jual_customer,jual_alamat,jual_status_bayar) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja','$aki_bekas','$tipe','$customer','$alamat','$jual_status')");
 		foreach ($this->cart->contents() as $item) {
 			$data=array(
 				'd_jual_nofak' 			=>	$nofak,

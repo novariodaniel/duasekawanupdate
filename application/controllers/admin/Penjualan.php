@@ -138,7 +138,7 @@ class Penjualan extends CI_Controller{
 
 	function insertData($param){		
 		// print_r($param);die();
-		$order_proses=$this->M_penjualan->simpan_penjualan($param);		
+		$order_proses=$this->M_penjualan->simpan_penjualan($param);	
 		
 		if ($param[0] == "H"){			
 			$insert_credit = $this->M_customer->insert_credit();
@@ -203,7 +203,8 @@ class Penjualan extends CI_Controller{
 					$aki_bekas = 0;
 				}
 
-				$jual_tipe = "C";			
+				$jual_tipe = "C";
+				$jual_status_bayar = '1';		
 
 				if ($finLimit!="" || $finLimit!=0){
 					$customer  = $this->session->userdata('sess_cid');
@@ -212,12 +213,13 @@ class Penjualan extends CI_Controller{
 					$finSisa   = str_replace(",","",$this->input->post('fin_sisa'));	
 					$finAlamat = $this->session->userdata('sess_clamat');			
 					$tmpHutang = $finHutang + $jual_belanja;
+					$jual_status_bayar = '0';
 					$this->session->set_userdata('newhutang',$tmpHutang);							
 					if ($tmpHutang <= $finLimit){	
 						$jual_tipe = "H";
 						$nofak=$this->M_penjualan->get_nofak();	
 						$this->session->set_userdata('nofak',$nofak);							
-						array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat);
+						array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat,$jual_status_bayar);
 						$this->insertData($param);
 					}else{
 						echo $this->session->set_flashdata('msg','<label class="label label-danger">Limit Customer tidak mencukupi</label>');
@@ -233,7 +235,7 @@ class Penjualan extends CI_Controller{
 							$nofak=$this->M_penjualan->get_nofak();
 							$this->session->set_userdata('nofak',$nofak);
 							// echo $finAlamat;die();
-							array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat);
+							array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat,$jual_status_bayar);
 							// print_r($param);die();
 							$this->insertData($param);
 						}
