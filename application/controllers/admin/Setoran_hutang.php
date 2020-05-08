@@ -151,12 +151,21 @@ class Setoran_hutang extends CI_Controller{
                 $setoran = $a['setoran'];
                 $tanggal = $a['insert_datetime'];
                 $sisa_hutang = $a['sisa_hutang'];
-                $flagging = $a['flagging'];
+                $flagging = $a['flagging'];  
+                
+                if ($sisa_hutang == ""){
+                    $sisa_hutang = 0;
+                };
+                if ($flagging == 0){
+                    $flagging = "Belum Lunas";
+                }else{
+                    $flagging = "Lunas";
+                };
                 array_push($newArr,$id);
                 array_push($newArr,$nofak);
-                array_push($newArr,$setoran);
+                array_push($newArr,number_format($setoran));
                 array_push($newArr,$tanggal);
-                array_push($newArr,$sisa_hutang);
+                array_push($newArr,number_format($sisa_hutang));
                 array_push($newArr,$flagging);
                 array_push($arr,$newArr);
             // $data['nofak'] = $nofak;

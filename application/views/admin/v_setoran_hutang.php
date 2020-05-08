@@ -19,7 +19,7 @@
     <link href="<?php echo base_url().'assets/swal/sweetalert2.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/swal/all.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
+	<link href="<?php echo base_url().'assets/newfa/css/fontawesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
@@ -37,11 +37,13 @@
 
 <style>
     td.details-control {
-        background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_open.png') no-repeat center center;
+        /* background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_open.png') no-repeat center center; */
+        background: url("<?php echo base_url().'assets/img/details_open.png'?>") no-repeat center center;
         cursor: pointer;
     }
     tr.shown td.details-control {
-        background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
+        /* background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center; */
+        background: url("<?php echo base_url().'assets/img/details_close.png'?>") no-repeat center center;
     }
 </style>
 
@@ -57,7 +59,12 @@
 
         <!-- Page Heading -->
         <div class="row">
-            
+            <div class="col-lg-12">
+                <center><?php echo $this->session->flashdata('msg');?></center>
+                <h1 class="page-header">Setoran
+                    <small>Hutang</small>                    
+                </h1>
+            </div> 
         </div>
         <!-- /.row -->
         <!-- Projects Row -->
@@ -112,13 +119,17 @@
                         <td><?php echo $dt_nofak;?></td>
                         <td><?php echo $dt_cust;?></td>
                         <td><?php echo $dt_alamat;?></td>
-                        <td class='money'><?php echo $dt_belanja;?></td>
-                        <td class='money'><?php echo $dt_sisa_hutang;?></td>
+                        <td class='money'><?php echo number_format($dt_belanja);?></td>
+                        <td class='money'><?php echo number_format($dt_sisa_hutang);?></td>
                         <td><?php echo $dt_tgl;?></td>
-                        <td class='money'><?php echo $dt_setoran;?></td>
+                        <td class='money'><?php echo number_format($dt_setoran);?></td>
                         <td><?php echo $dt_str_status;?></td>
                         <td style="text-align:center;">
-                            <a data-id="<?php echo $dt_nofak;?>" data-target = "#orderModal" class="btn btn-xs btn-success" data-toggle="modal" data-target="#orderModal" title="Edit"><span class="fa fa-edit"></span> Bayar</a>                        
+                            <?php if ($dt_status == 0){?>
+                                <a data-id="<?php echo $dt_nofak;?>" data-target = "#orderModal" class="btn btn-xs  btn-success" data-toggle="modal" data-target="#orderModal" title="Belum lunas"><span class="fa fa-money-bill"></span> Bayar</a>
+                            <?php }else{?>
+                                <a disabled="true" data-id="<?php echo $dt_nofak;?>" data-target = "#orderModal1" class="btn btn-xs  btn-primary" data-toggle="modal" data-target="#orderModal" title="Sudah lunas"><span class="fa fa-dollar-sign"></span> Lunas</a>
+                            <?php }?>                        
                         </td>
                     </tr>
                     
@@ -229,16 +240,6 @@
                     success:function(data){                          
                         var data = $.parseJSON(data); 
                         tmp = data.detail;
-                        // console.log(data.detail[1][0]);return;
-                        // tmp.push(data.id_setoran);
-                        // tmp.push(data.nofak);
-                        // tmp.push(data.setoran);
-                        // tmp.push(data.tanggal);
-                        // tmp.push(data.sisa_hutang);
-                        // tmp.push(data.flagging);
-                        // console.log(data.setoran);
-                        // tmp = data;  
-                        // console.log(setoran+"a");
                     }
                 });
                 // console.log(tmp);
@@ -256,35 +257,18 @@
                     '<th>Sisa Hutang</th>'+
                     '<th>Keterangan</th>'+
                 '</tr>';
-            // console.log(return_first);
-            for(val of return_first){
-                // console.log(val);
-                display += '<tr>' + '<td>' + val[0] + '</td>' + '<td>' + val[1] + '</td>' + '<td>' + val[2] + '</td>' + '<td>' + val[3] + '</td>' + '<td>' + val[4] + '</td>' + '<td>' + val[5] + '</td>' + '</tr>';
-            }
+            
+            if (return_first.length > 0){                
+                var dt_str_status = "";                
+                for(val of return_first){            
+                    display += '<tr>' + '<td>' + val[0] + '</td>' + '<td>' + val[1] + '</td>' + '<td>' + val[2] + '</td>' + '<td>' + val[3] + '</td>' + '<td>' + val[4] + '</td>' + '<td>' + val[5] + '</td>' + '</tr>';
+                }
+            }else{
+                display += '<tr>'+'<td colspan = "6">No data to show</td>'+'</tr>';
+            }            
 
             display += '</table>';
             return display;
-            // return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-            //     '<tr>'+
-            //         '<th>Id Setoran</th>'+
-            //         '<th>Faktur</th>'+
-            //         '<th>Setoran</th>'+
-            //         '<th>Tanggal</th>'+
-            //         '<th>Sisa Hutang</th>'+
-            //         '<th>Keterangan</th>'+
-            //     '</tr>'+
-            //     return_first.forEach(function(item){
-            //         var a = item[0].toString();                    
-            //         +'<tr>'+
-            //             '<td>asdas</td>'+
-            //             '<td>as</td>'+
-            //             '<td>asda</td>'+
-            //             '<td>casd</td>'+
-            //             '<td>sadsa</td>'+
-            //             '<td>bsds</td>'+
-            //         '</tr>'+'';+
-            //     ''+''})                
-            // +'</table>';
         }
 
         $(function(){
@@ -400,6 +384,12 @@
             $("#add_alamat").val("");
             $("#add_telepon").val("");
         }
+
+        $("#edtBayar").keypress(function(e) {
+            if (e.which == 13) {
+                $("#orderSimpan").focus();
+            }
+        });
 
         $(document).ready(function() {
             $('.money').priceFormat({

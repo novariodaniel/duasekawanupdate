@@ -77,11 +77,11 @@ class M_setoran_hutang extends CI_Model{
         $hsl = $this->db->query("select a.jual_nofak, b.customer_id,b.customer_name,b.customer_alamat,a.jual_belanja,a.jual_tanggal,sum(IFNULL(c.setoran,0)) as total_setoran,a.jual_status_bayar,(a.jual_belanja - sum(IFNULL(c.setoran,0))) as total_hutang
         from tbl_jual a
         join tbl_customer b on a.jual_customer = b.customer_id
-        left join tbl_setoran_hutang c on a.jual_nofak = c.nofak 
-        where a.jual_status_bayar = 0
+        left join tbl_setoran_hutang c on a.jual_nofak = c.nofak         
         group by a.jual_nofak
-        order by jual_nofak");
-        return $hsl;
+        order by a.jual_nofak,b.customer_name");
+		return $hsl;
+		// where a.jual_status_bayar = 0
     }
 
     function jual_uplunas($nofak){
