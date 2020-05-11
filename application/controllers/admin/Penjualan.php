@@ -169,7 +169,7 @@ class Penjualan extends CI_Controller{
 				redirect('admin/Penjualan');
 			}else{
 				$finLimit  = $this->input->post('fin_limit');
-				$finHutang = $this->input->post('fin_hutang');
+				$finHutang = $this->input->post('fin_hutang');				
 				// $finSisa   = $this->input->post('fin_sisa');			
 				$finAlamat = $this->input->post('fin_alamat'); 	
 				// echo $finAlamat;die();					
@@ -185,6 +185,7 @@ class Penjualan extends CI_Controller{
 
 				$cashback = $this->input->post('cashback2');				
 				$aki_bekas = $this->input->post('aki_bekas2');
+				$garansi   = $this->input->post('garansi');
 
 				$jual_belanja = $this->input->post('total_bel2');
 
@@ -219,7 +220,7 @@ class Penjualan extends CI_Controller{
 						$jual_tipe = "H";
 						$nofak=$this->M_penjualan->get_nofak();	
 						$this->session->set_userdata('nofak',$nofak);							
-						array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat,$jual_status_bayar);
+						array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat,$jual_status_bayar,$garansi);
 						$this->insertData($param);
 					}else{
 						echo $this->session->set_flashdata('msg','<label class="label label-danger">Limit Customer tidak mencukupi</label>');
@@ -235,7 +236,7 @@ class Penjualan extends CI_Controller{
 							$nofak=$this->M_penjualan->get_nofak();
 							$this->session->set_userdata('nofak',$nofak);
 							// echo $finAlamat;die();
-							array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat,$jual_status_bayar);
+							array_push($param,$jual_tipe,$nofak,$total,$jml_uang,$jual_belanja,$kembalian,$cashback,$aki_bekas,$customer,$finAlamat,$jual_status_bayar,$garansi);
 							// print_r($param);die();
 							$this->insertData($param);
 						}

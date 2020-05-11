@@ -809,6 +809,7 @@ class PHPExcel_Cell
 
         //    We also use the language construct isset() rather than the more costly strlen() function to match the length of $pString
         //        for improved performance
+        
         if (isset($pString{0})) {
             if (!isset($pString{1})) {
                 $_indexCache[$pString] = $_columnLookup[$pString];

@@ -67,7 +67,8 @@ class M_penjualan extends CI_Model{
 		$customer     = $param[8];
 		$alamat       = $param[9];
 		$jual_status  = $param[10];	
-		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja,jual_aki_bekas,jual_tipe,jual_customer,jual_alamat,jual_status_bayar) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja','$aki_bekas','$tipe','$customer','$alamat','$jual_status')");
+		$jual_garansi = $param[11];
+		$this->db->query("INSERT INTO tbl_jual (jual_nofak,jual_total,jual_jml_uang,jual_kembalian,jual_user_id,jual_keterangan,jual_cashback,jual_belanja,jual_aki_bekas,jual_tipe,jual_customer,jual_alamat,jual_status_bayar,jual_garansi) VALUES ('$nofak','$total','$jml_uang','$kembalian','$idadmin','eceran','$cashback','$jual_belanja','$aki_bekas','$tipe','$customer','$alamat','$jual_status','$jual_garansi')");
 		foreach ($this->cart->contents() as $item) {
 			$data=array(
 				'd_jual_nofak' 			=>	$nofak,
@@ -128,7 +129,7 @@ class M_penjualan extends CI_Model{
 	function cetak_faktur(){
 		$nofak=$this->session->userdata('nofak');
 		// echo $nofak;
-		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d/%m/%Y %H:%i:%s') AS jual_tanggal,jual_cashback,jual_belanja,jual_total,jual_jml_uang,jual_kembalian,jual_keterangan,jual_alamat,jual_customer,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total,d_jual_disc_val,jual_aki_bekas FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE jual_nofak='$nofak'");
+		$hsl=$this->db->query("SELECT jual_nofak,DATE_FORMAT(jual_tanggal,'%d/%m/%Y %H:%i:%s') AS jual_tanggal,jual_cashback,jual_belanja,jual_total,jual_jml_uang,jual_kembalian,jual_keterangan,jual_alamat,jual_customer,d_jual_barang_nama,d_jual_barang_satuan,d_jual_barang_harjul,d_jual_qty,d_jual_diskon,d_jual_total,d_jual_disc_val,jual_aki_bekas,jual_garansi FROM tbl_jual JOIN tbl_detail_jual ON jual_nofak=d_jual_nofak WHERE jual_nofak='$nofak'");
 		// print_r( $hsl);
 		return $hsl;
 	}

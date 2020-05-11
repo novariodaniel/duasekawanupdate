@@ -24,6 +24,10 @@
         $c = $cust_info->row_array();
         $cust = "";
         $alamat = "";
+        $jual_garansi = 0;
+        if ($b['jual_garansi'] != ""){
+            $jual_garansi = $b['jual_garansi'];
+        }
         if (count($c) != 0){
             $cust = $c['customer_name'];
             $alamat = $c['customer_alamat'];
@@ -51,7 +55,7 @@
         </table>
         <table border="0" align="center" style="font-size: 15px; border-width: 2px; width:700px; border-top: 8px; border-left: 8px; border-right: 8px;">
             <tr>
-                <th style="text-align:right;">GARANSI 3 BULAN</th>
+                <th style="text-align:right;">GARANSI <?php echo $jual_garansi;?> BULAN</th>
             </tr>
         </table>
         <table border="0" align="center" style="margin-bottom: 20px;font-size: 15px; border-width: 2px; width:700px; border-top: 8px; border-left: 8px; border-right: 8px;">

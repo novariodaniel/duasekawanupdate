@@ -157,6 +157,12 @@
                         </tr>
                         <tr>
                             <td></td>
+                            <th>Garansi</th>
+                            <th style="text-align:right;"><input type="text" id="garansi" name="garansi" class="garansi form-control input-sm" style="text-align:right;margin-bottom:5px;" ></th>
+                            <!-- <input type="hidden" id="aki_bekas2" name="aki_bekas2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required> -->
+                        </tr>
+                        <tr>
+                            <td></td>
                             <th>Total Belanja</th>
                             <th style="text-align:right;"><input type="text" id=total_bel name="total_bel" value="<?php echo $this->cart->total(); ?>" class="total_bel form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
                             <input type="hidden" id="total_bel2" name="total_bel2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" value="<?php echo $this->cart->total(); ?>" required>

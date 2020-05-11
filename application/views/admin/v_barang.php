@@ -49,17 +49,17 @@
                 <thead>
                     <tr>
                         <th style="text-align:center;width:40px;">No</th>
-                        <th>Kode Barang</th>
-                        <th>Nama Barang</th>
-                        <th>Satuan</th>
-                        <th>Harga Pokok</th>
-                        <th>Harga Jual</th>
-                        <th>Diskon 1</th>
-                        <th>Diskon 2</th>
-                        <th>Diskon 3</th>                        
-                        <th>Stok</th>
-                        <th>Min Stok</th>
-                        <th>Kategori</th>
+                        <th style="text-align:center;">Kode Barang</th>
+                        <th style="text-align:center;">Nama Barang</th>
+                        <th style="text-align:center;">Satuan</th>
+                        <th style="text-align:center;">Harga Pokok</th>
+                        <th style="text-align:center;">Harga Jual</th>
+                        <th style="text-align:center;">Diskon Konsumen</th>
+                        <th style="text-align:center;">Diskon Toko</th>
+                        <th style="text-align:center;">Diskon Tempo</th>                        
+                        <th style="text-align:center;">Stok</th>
+                        <th style="text-align:center;">Min Stok</th>
+                        <th style="text-align:center;">Kategori</th>
                         <th style="width:100px;text-align:center;">Aksi</th>
                     </tr>
                 </thead>
@@ -196,23 +196,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3" >Diskon 1</label>
+                        <label class="control-label col-xs-3" >Diskon Konsumen</label>
                         <div class="col-xs-9">
-                            <input name="diskon_1" class="diskon_1 form-control" type="text" placeholder="Diskon 1..." style="width:335px;">
+                            <input name="diskon_1" class="diskon_1 form-control" type="text" placeholder="Diskon konsumen..." style="width:335px;">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3" >Diskon 2</label>
+                        <label class="control-label col-xs-3" >Diskon Toko</label>
                         <div class="col-xs-9">
-                            <input name="diskon_2" class="diskon_2 form-control" type="text" placeholder="Diskon 2..." style="width:335px;">
+                            <input name="diskon_2" class="diskon_2 form-control" type="text" placeholder="Diskon toko..." style="width:335px;">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3" >Diskon 3</label>
+                        <label class="control-label col-xs-3" >Diskon Tempo</label>
                         <div class="col-xs-9">
-                            <input name="diskon_3" class="diskon_3 form-control" type="text" placeholder="Diskon 3..." style="width:335px;">
+                            <input name="diskon_3" class="diskon_3 form-control" type="text" placeholder="Diskon tempo..." style="width:335px;">
                         </div>
                     </div>
 

@@ -284,6 +284,14 @@
                         </a>
                   </div> 
             </div>
+            <div class="col-md-2 portfolio-item">
+                <div class="menu-item new-orange" style="height:150px;">
+                     <a href="<?php echo base_url().'admin/Sales_audit'?>" data-toggle="modal">
+                           <i class="fa fa-money-check"></i>
+                            <p style="text-align:left;font-size:14px;padding-left:5px;">Sales Audit</p>
+                      </a>
+                </div> 
+            </div>
       </div>
         <!-- <div class="row">
             <div class="col-md-2 portfolio-item">
