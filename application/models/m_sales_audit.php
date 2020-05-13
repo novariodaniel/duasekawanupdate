@@ -37,7 +37,7 @@ class M_sales_audit extends CI_Model{
         join tbl_sales_master d on c.id_sales = d.sales_id
         join tbl_karyawan e on d.karyawan_id = e.karyawan_id
         left join tbl_setoran_hutang f on a.jual_nofak = f.nofak 
-        where e.karyawan_id = '$sales_id' and a.jual_tanggal <= NOW()-INTERVAL 1 day and a.jual_status_bayar = 0
+        where d.sales_id = '$sales_id' and a.jual_tanggal <= NOW()-INTERVAL 1 day and a.jual_status_bayar = 0
         order by b.customer_name,a.jual_nofak,f.flagging");
 		return $hsl;
     }
@@ -53,6 +53,12 @@ class M_sales_audit extends CI_Model{
         where d.sales_id = '$sales_id' and a.jual_tanggal <= NOW() - INTERVAL 1 day and a.jual_status_bayar = 0");
         return $hsl;
         //kalau user minta keluarin data untuk status bayar 1 jg, maka minta rule dari mereka interval data keluar tagihan minimum dan maksimum, soalnya kalau data dgn status_bayar 1 bisa jadi data yang dari beberapa tahun silam
+    }
+
+    function sum_belanja($sales_id){
+        $hsl=$this->db->query("select sum(jual_belanja) as sum_belanja from vw_sum_belanja 
+        where sales_id = '$sales_id' and jual_tanggal <= NOW()-INTERVAL 1 day and jual_status_bayar = 0");
+        return $hsl;
     }
 
     function show_init(){

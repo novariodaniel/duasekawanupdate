@@ -26,13 +26,18 @@ class Sales_audit extends CI_Controller{
         if($this->session->userdata('akses')=='1'){
             $salesid = $this->input->post('sales_id');            
             $fetched_records = $this->M_sales_audit->sum_data($salesid)->result_array();
+            $fetched_belanja = $this->M_sales_audit->sum_belanja($salesid)->result_array();
             // $this->session->set_userdata('')
             $belanja = 0;
             $setoran = 0;
-            foreach($fetched_records as $a){
-                $belanja = $a['sum_belanja'];
+            foreach($fetched_records as $a){                
                 $setoran = $a['sum_setoran'];
             }
+
+            foreach($fetched_belanja as $a){                
+                $belanja = $a['sum_belanja'];
+            }
+
             $this->session->set_userdata('sum_belanja',$belanja);
             $this->session->set_userdata('sum_setoran',$setoran);
             $this->session->set_userdata('sales_id',$salesid);
