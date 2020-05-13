@@ -37,9 +37,9 @@
 										if ($b['diskon_3']==""){
 											$diskon_3=0;
 										} 																																																							
-											echo "<option value='$diskon_1'>Diskon 1 - $diskon_1%</option>";
-											echo "<option value='$diskon_2'>Diskon 2 - $diskon_2%</option>";
-											echo "<option value='$diskon_3'>Diskon 3 - $diskon_3%</option>";
+											echo "<option value='$diskon_1'>Diskon Konsumen - $diskon_1%</option>";
+											echo "<option value='$diskon_2'>Diskon Toko - $diskon_2%</option>";
+											echo "<option value='$diskon_3'>Diskon Tempo - $diskon_3%</option>";
 									?>
                     			</select>
 							</td>
