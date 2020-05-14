@@ -33,7 +33,7 @@
     </head>
     <body>
 
-            <table border="0" align="center" style="width:700px;border:none; margin-top: none; padding-left:40px; padding-top: 0px; margin-bottom:0px;">
+            <table border="0" align="center" style="width:700px;border:none; margin-top: none; padding-left:35px; padding-top: 0px;">
                 <tr>
                     <th style="text-align:left; font-size: 18px;">CV. DUA SEKAWAN ACCU</th>
                 </tr>
@@ -45,18 +45,18 @@
                 </tr>
             </table>
 
-            <table border="0" align="center" style="margin-top:0px;padding-left:40px; font-size: 16px; border-width: 2px; width:700px; border-top: 0px; border-left: 8px; border-right: 8px;">
+            <table border="0" align="center" style="padding-left:35px; font-size: 16px; border-width:1px; width:700px; border-top: 0px; border-left: 8px; border-right: 8px;">
                 <tr>
                     <th style="text-align:right;">GARANSI <?php echo $jual_garansi;?> BULAN</th>
                 </tr>
             </table>
 
-            <table border="0" align="center" style="padding-left:40px; margin-top:0px;margin-bottom: 0px;font-size: 20px; border-width: 1px; width:700px; border-top: 8px; border-left: 0px; border-right: 8px;">
+            <table border="0" align="center" style="padding-left:35px; margin-top:0px;margin-bottom: 0px;font-size: 20px; border-width: 1px; width:700px; border-top: 8px; border-left: 0px; border-right: 8px;">
                 <tr>
                     <th style="text-align:left;">FAKTUR</th>
                 </tr>
             </table>
-            <table border="0" align="center" style="margin-top:0px; padding-left:40px; width:700px;border:none; margin-bottom: 5px; font-size: 14px;">
+            <table border="0" align="center" style="margin-top:0px; padding-left:35px; width:700px;border:none; margin-bottom: 5px; font-size: 14px;">
                 <tr>
                     <th style="text-align:left;">No Faktur</th>
                     <th style="text-align:left;">: <?php echo $b['jual_nofak']; ?></th>
@@ -71,7 +71,7 @@
                 </tr>            
             </table>
 
-            <table border="0.01" style= "padding-left:40px; border-bottom: none; width:700px; font-size:14px;">
+            <table border="1" style= "border-collapse:collapse; padding-left:35px; border-bottom: none; width:700px; font-size:14px;">
                 <thead>
                     <tr>
                         <th style="width:10px;">No</th>
@@ -102,7 +102,7 @@
                             <td style="text-align:center; width:25px;"><?php echo $satuan; ?></td>
                             <td style="text-align:right; width:90px;"><?php echo 'Rp ' . number_format($harjul); ?></td>
                             <td style="text-align:center; width:30px;"><?php echo $qty; ?></td>
-                            <td style="text-align:right; width:60px;"><?php echo 'Rp ' . number_format($diskon); ?></td>
+                            <td style="text-align:right; width:auto;"><?php echo 'Rp ' . number_format($diskon); ?></td>
                             <td style="text-align:right; width:auto;"><?php echo 'Rp ' . number_format($total); ?></td>
                         </tr>
                     <?php } ?>

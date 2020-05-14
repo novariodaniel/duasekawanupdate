@@ -48,9 +48,9 @@ class Notification extends CI_Controller{
             foreach($data as $row){
                 $output .= '
                     <li>
-                        <a href="#">
+                        <a>
                             <strong>'.$row->jual_nofak.'</strong><br/>
-                            <small><em>'.$row->jual_tanggal.'</em></small>
+                            <small><em>'.$row->customer_name.' - '.$row->jual_tanggal.'</em></small>
                         </a>
                     </li>
                     <li class="divider"></li>

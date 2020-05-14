@@ -84,7 +84,7 @@ class Laporan extends CI_Controller{
 		$html = $this->output->get_output();
 		$this->load->library('pdf');
 		$this->dompdf->loadHTML($html);
-		$customePaper = array(0,0,600,385);
+		$customePaper = array(0,0,600,490);
 		$this->dompdf->setPaper($customePaper);
 		// $this->dompdf->setPaper('A4','portrait');
 		$this->dompdf->render();

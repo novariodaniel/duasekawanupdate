@@ -9,8 +9,8 @@ body{
 		padding:0px 0px;
 		}
 		#laporan table{		
-		border-collapse:collapse;
-		border: 1px solid;
+		/* border-collapse:collapse; */
+		/* border: 1px solid; */
 		font-size:11px;
 		}
 		#laporan table th{
