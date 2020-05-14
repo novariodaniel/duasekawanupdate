@@ -1,13 +1,14 @@
 body{
-        font-family: arial,sans-serif;
-		font-size:11px;
-		margin:3px;
+		/* font-family: arial,sans-serif; */
+		font-family: Arial, Helvetica, sans-serif;
+		/* font-size:18px; */
+		margin:0px;
 		}
 		#laporan{
 		color:black;
-		padding:6px 2px;
+		padding:0px 0px;
 		}
-		#laporan table{
+		#laporan table{		
 		border-collapse:collapse;
 		border: 1px solid;
 		font-size:11px;

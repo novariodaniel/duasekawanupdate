@@ -12,6 +12,7 @@ class Laporan extends CI_Controller{
 		$this->load->model('M_suplier');
 		$this->load->model('M_pembelian');
 		$this->load->model('M_penjualan');
+		$this->load->model('M_customer');
 		$this->load->model('M_laporan');
 		$this->load->library('Excel');
 		$this->load->library('pdf');
@@ -67,6 +68,29 @@ class Laporan extends CI_Controller{
 		$x['data'] = $this->M_laporan->get_data_pembelian();
 		$x['jml']  = $this->M_laporan->get_total_pembelian();
 		$this->load->view('admin/laporan/v_lap_beli_xls',$x);
+	}
+
+	function faktur_penjualan(){
+		// $x['data'] = $this->M_laporan->get_data_pembelian();
+		// $x['jml']  = $this->M_laporan->get_total_pembelian();
+		
+		$cust_id = $this->session->userdata('temp_id');
+		$x['data']=$this->M_penjualan->cetak_faktur();
+		$x['sum_qty'] = $this->M_penjualan->sum_qty();
+		$x['cust_info'] = $this->M_customer->get_direct_id($cust_id);
+		// print_r($x);
+
+		$this->load->view('admin/laporan/v_faktur_jual',$x);			
+		$html = $this->output->get_output();
+		$this->load->library('pdf');
+		$this->dompdf->loadHTML($html);
+		$customePaper = array(0,0,600,385);
+		$this->dompdf->setPaper($customePaper);
+		// $this->dompdf->setPaper('A4','portrait');
+		$this->dompdf->render();
+		$nofak = $this->session->userdata('pdf_nofak');
+		$filename = "f-".$nofak.".pdf";
+		$this->dompdf->stream($filename,array("Attachment"=>0));
 	}
 
 	function lap_pembelian_pdf(){
