@@ -1060,6 +1060,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" >Passwords</label>
+                            <div class="col-xs-9">
+                                <input name="passw" autocomplete="off" id="passw" class="form-control" type="password" value="" placeholder="Your password..." style="width:335px;" required readonly onfocus="this.removeAttribute('readonly');"  onfocusout ="this.setAttribute('readonly','readonly');"/>
+                            </div>
+                        </div>
+
                     </div>
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>

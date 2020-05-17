@@ -71,7 +71,7 @@
                 </tr>            
             </table>
 
-            <table border="1" style= "border-collapse:collapse; padding-left:35px; border-bottom: none; width:700px; font-size:14px;">
+            <table border="1" style= "border:2px solid black; border-collapse:collapse; padding-left:35px; border-bottom: none; width:700px; font-size:14px;">
                 <thead>
                     <tr>
                         <th style="width:10px;">No</th>
@@ -83,7 +83,7 @@
                         <th>SubTotal</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style= "border:2px solid black;">
                     <?php
                         $no = 0;
                         foreach ($data->result_array() as $i) {

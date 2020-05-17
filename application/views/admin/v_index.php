@@ -292,6 +292,15 @@
                       </a>
                 </div> 
             </div>
+
+            <div class="col-md-2 portfolio-item">
+                <div class="menu-item red" style="height:150px;">
+                     <a href="<?php echo base_url().'admin/Authorized'?>" data-toggle="modal">
+                           <i class="fa fa-key"></i>
+                            <p style="text-align:left;font-size:14px;padding-left:5px;">Authorized</p>
+                      </a>
+                </div> 
+            </div>
       </div>
         <!-- <div class="row">
             <div class="col-md-2 portfolio-item">
