@@ -1,7 +1,7 @@
 <?php
 class M_pengguna extends CI_Model{
 	function get_pengguna(){
-		$hsl=$this->db->query("SELECT * FROM tbl_user");
+		$hsl=$this->db->query("SELECT * FROM tbl_user where user_status = 1");
 		return $hsl;
 	}
 	function simpan_pengguna($nama,$username,$password,$level){

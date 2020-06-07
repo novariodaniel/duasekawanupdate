@@ -30,9 +30,10 @@
 				                <input class="form-control" type="password" name="password" placeholder="Password" style="margin-bottom:1px;" required>
 				                <div class="action">
 				                    <button type="submit" class="btn btn-lg " style="width:310px;margin-top:0px; background-color:#ff9000;">Login</button>
-				                </div>
-	                        </form>
-			                                
+								</div>
+								<br/><br/>
+								<a href="">Forgot Password</a>
+							</form>            
 			            </div>
 			        </div>
 

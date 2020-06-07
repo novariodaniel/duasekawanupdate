@@ -155,7 +155,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <!-- <tr>
                         <td style="text-align:center;vertical-align:middle">40</td>
                         <td style="vertical-align:middle;">Laporan Stok Barang</td>
                         <td style="text-align:center;">
@@ -177,9 +177,9 @@
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_jual_perbulan" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
                         </td>
-                    </tr>
+                    </tr> -->
 
-                    <tr>
+                    <!-- <tr>
                         <td style="text-align:center;vertical-align:middle">11</td>
                         <td style="vertical-align:middle;">Laporan Penjualan PerTahun</td>
                         <td style="text-align:center;">
@@ -193,7 +193,7 @@
                         <td style="text-align:center;">
                             <a class="btn btn-sm btn-default" href="#lap_laba_rugi" data-toggle="modal"><span class="fa fa-print"></span> Print</a>
                         </td>
-                    </tr>
+                    </tr> -->
               
                 </tbody>
             </table>

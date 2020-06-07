@@ -2,6 +2,7 @@
 
 <?php
             $b = $data->row_array();
+            // print_r($b);
             $a = $sum_qty->row_array();
             $c = $cust_info->row_array();
             $cust = "";
@@ -22,6 +23,7 @@
                 }            
             }
             $this->session->set_userdata('pdf_nofak',$b['jual_nofak']);
+            $tgl = explode(" ",$b['jual_tanggal']);            
         // print_r($a);print_r($b);die();
         ?>
 
@@ -63,24 +65,24 @@
                     <th style="text-align:left;">Nama Customer</th>
                     <th style="text-align:left;"> : <?php echo "$cust"; ?></th>
                 </tr>
-                <tr>
-                    <th style="text-align:left;">Tanggal</th>
-                    <th style="text-align:left;">: <?php echo $b['jual_tanggal']; ?></th>
+                <tr>  
+                    <th style="text-align:left;">Tanggal</th>                    
+                    <th style="text-align:left;">: <?php echo $tgl[0] ?></th>
                     <th style="text-align:left;">Alamat</th>
                     <th style="text-align:left;">: <?php echo $alamat; ?></th>
                 </tr>            
             </table>
 
-            <table border="1" style= "border:1.5px solid black; border-collapse:collapse; padding-left:35px; border-bottom: none; width:700px; font-size:14px;">
-                <thead>
+            <table border="0" style= "border-collapse:collapse; padding-left:35px; border-bottom: none; width:700px; font-size:14px;">
+                <thead style="border: 1px solid black;">
                     <tr>
-                        <th style="width:10px;">No</th>
-                        <th>Nama Barang</th>
-                        <th>Satuan</th>
-                        <th>Harga Jual</th>
-                        <th>Qty</th>
-                        <th>Diskon</th>
-                        <th>SubTotal</th>
+                        <th style="border: 1.5px solid black; width:10px;">No</th>
+                        <th style="border: 1.5px solid black;">Nama Barang</th>
+                        <th style="border: 1.5px solid black;">Qty</th>
+                        <th style="border: 1.5px solid black;">Satuan</th>
+                        <th style="border: 1.5px solid black;">Harga Jual</th>                        
+                        <th style="border: 1.5px solid black;">Diskon(%)</th>
+                        <th style="border: 1.5px solid black;">SubTotal</th>
                     </tr> 
                 </thead>
                 <tbody style= "border:1.5px solid black;">
@@ -93,82 +95,91 @@
                             $satuan = $i['d_jual_barang_satuan'];
                             $harjul = $i['d_jual_barang_harjul'];
                             $qty = $i['d_jual_qty'];
-                            $diskon = $i['d_jual_disc_val'];
+                            $diskon_ = $i['d_jual_disc_val'];
+                            $diskon = $i['d_jual_diskon'];
                             $total = $i['d_jual_total'];
                     ?>
-                        <tr>
-                            <td style="text-align:center;width:10px;"><?php echo $no; ?></td>
-                            <td style="text-align:left; width:260px;"><?php echo $nabar; ?></td>
-                            <td style="text-align:center; width:25px;"><?php echo $satuan; ?></td>
-                            <td style="text-align:right; width:90px;"><?php echo 'Rp ' . number_format($harjul); ?></td>
-                            <td style="text-align:center; width:30px;"><?php echo $qty; ?></td>
-                            <td style="text-align:right; width:auto;"><?php echo 'Rp ' . number_format($diskon); ?></td>
-                            <td style="text-align:right; width:auto;"><?php echo 'Rp ' . number_format($total); ?></td>
+                        <tr style= "border:1.5px solid black;">
+                            <td style="border:1.5px solid black; text-align:center;width:10px;"><?php echo $no; ?></td>
+                            <td style="border:1.5px solid black; text-align:left; width:200px;"><?php echo $nabar; ?></td>
+                            <td style="border:1.5px solid black; text-align:center; width:80px;"><?php echo $qty; ?></td>
+                            <td style="border:1.5px solid black; text-align:center; width:55px;"><?php echo $satuan; ?></td>
+                            <td style="border:1.5px solid black; text-align:right; width:90px;"><?php echo 'Rp ' . number_format($harjul); ?></td>
+                            <td style="border:1.5px solid black; text-align:right; width:auto;"><?php echo $diskon; ?></td>
+                            <td style="border:1.5px solid black; text-align:right; width:auto;"><?php echo 'Rp ' . number_format($total); ?></td>
                         </tr>
                     <?php } ?>
-                </tbody>            
+                </tbody>      
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: left; width:97px;">Total(<?php echo $a['sumQty'] ?>)</th>
+                        <th style="border:1.5px solid black;text-align: right;"><?php echo 'Rp ' . number_format($b['jual_total']); ?></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>Customer</th>
+                        <th colspan="2">Serang, <?php echo date('d-M-Y') ?></th>
+                        <!-- <th></th> -->
+                        <th></th>
+                        <th style="text-align: left;">Cashback</th>
+                        <th style="border:1.5px solid black;text-align: right;"><?php echo 'Rp ' . number_format($b['jual_cashback']); ?></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: left;">Aki Bekas</th>
+                        <th style="border:1.5px solid black;text-align: right;"><?php echo 'Rp ' . number_format($b['jual_aki_bekas']); ?></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: left;">Garansi</th>
+                        <th style="border:1.5px solid black;text-align: right;"><?php echo number_format($b['jual_garansi'])." bln"; ?></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>(<?php echo $cust;?>)</th>
+                        <th colspan="2">(<?php echo $this->session->userdata('nama'); ?>)</th>
+                        <!-- <th></th> -->
+                        <th></th>
+                        <th style="text-align: left;">Total Belanja</th>
+                        <th style="border:1.5px solid black;text-align: right;"><?php echo 'Rp ' . number_format($b['jual_belanja']); ?></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: left;">Bayar Tunai</th>
+                        <th style="border:1.5px solid black;text-align: right;"><?php echo 'Rp ' . number_format($b['jual_jml_uang']); ?></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: left;">Kembalian</th>
+                        <th style="border:1.5px solid black;text-align: right;"><?php echo 'Rp ' . number_format($b['jual_kembalian']); ?></th>
+                    </tr>
+                </tfoot>      
             </table>
 
-            <table border="0" align="center" style= "border-bottom: none; width:700px; font-size: 14px;">
-                <thead>
-                    <tr>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:170px;text-align: left;">Total (<?php echo $a['sumQty'] ?>)</th>
-                        <th style="text-align:right;"><?php echo 'Rp ' . number_format($b['jual_total']); ?></th>
-                    </tr>
-                    <tr>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:170px; text-align: left;">Cashback</th>
-                        <th style="text-align:right;"><?php echo 'Rp ' . number_format($b['jual_cashback']); ?></th>
-                    </tr>
-                    <tr>
-                        <th style="width:10px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:170px; text-align: left;">Potong Aki Bekas</th>
-                        <th style="text-align:right;"><?php echo 'Rp ' . number_format($b['jual_aki_bekas']); ?></th>
-                    </tr>
-                    <tr>
-                        <th style="width:10px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:170px; text-align: left;">Total Belanja</th>
-                        <th style="text-align:right;"><?php echo 'Rp ' . number_format($b['jual_belanja']); ?></th>
-                    </tr>
-                    <tr>
-                        <th style="width:10px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:170px; text-align: left;">Bayar Tunai</th>
-                        <th style="text-align:right;"><?php echo 'Rp ' . number_format($b['jual_jml_uang']); ?></th>
-                    </tr>
-                    <tr>
-                        <th style="width:10px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:80px;">&nbsp;</th>
-                        <th style="width:50px;">&nbsp;</th>
-                        <th style="width:170px; text-align: left;">Kembalian</th>
-                        <th style="text-align:right;"><?php echo 'Rp ' . number_format($b['jual_kembalian']); ?></th>
-                    </tr>
-                </thead>                          
-            </table>
+            <!--  -->
 
-            <table align="center" style="width:700px; border:none;margin-top:5px;margin-bottom:20px; font-size:14px;">
+            <!-- <table align="center" style="width:700px; border:none;margin-top:5px;margin-bottom:20px; font-size:14px;">
                 <tr>
                     <td align="center">Customer</td>
                     <td align="right">Serang, <?php echo date('d-M-Y') ?></td>
@@ -187,7 +198,7 @@
                 <tr>
                     <td align="center"></td>
                 </tr>
-            </table>
+            </table> -->
 
             <table align="center" style="width:700px; border:none;margin-top:5px;margin-bottom:20px;">
                 <tr>

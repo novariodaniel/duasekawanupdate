@@ -17,8 +17,9 @@ class M_after_sales extends CI_Model{
     }
 
     function update_stok($arrParam){
-        //update stok barang and sum with good_qty        
-        $query = "UPDATE tbl_barang set barang_stok = barang_stok + ".$arrParam['d_qty_good']." where barang_id="."'".$arrParam['d_barang_id']."'";
+        //update stok barang and sum with good_qty
+        print_r($arrParam);        
+        $query = "UPDATE tbl_barang set barang_stok = barang_stok + ".$arrParam['d_qty_nominal']." where barang_id="."'".$arrParam['d_barang_id']."'";
 
         $this->db->query($query);
     }

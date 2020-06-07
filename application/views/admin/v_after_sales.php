@@ -208,7 +208,7 @@
                         <input type="hidden" name="d_status_modal" id="d_status_modal" class="form-control-sm">
 			        </div>
                     <div class="modal-footer" style="padding-bottom:0px !important;text-align:center !important;">
-                        <p style="text-align:center;float:center;"><button type="submit" id="update_data" class="btn btn-default btn-sm" style="background-color: #e35f14;color:#fff;">Save</button>
+                        <p style="text-align:center;float:center;"><button type="btn" id="update_data" class="btn btn-default btn-sm" style="background-color: #e35f14;color:#fff;">Save</button>
                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="background-color: #e35f14;color:#fff;" id="close_btn">Close</button></p>
                     </div>
 		        </div>

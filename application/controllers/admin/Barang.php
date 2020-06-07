@@ -49,7 +49,7 @@ class Barang extends CI_Controller{
 		};
 
 		$this->M_barang->simpan_barang($kobar,$nabar,$kat,$satuan,$harpok,$harjul,$stok,$min_stok,$diskon_1,$diskon_2,$diskon_3);
-
+		echo $this->session->set_flashdata('msg','<label class="label label-success">Data barang Berhasil ditambahkan</label>');			
 		redirect('admin/Barang');
 	}else{
         echo "Halaman tidak ditemukan";
@@ -100,30 +100,30 @@ class Barang extends CI_Controller{
     	}
 	}
 	function hapus_barang(){
-	if($this->session->userdata('akses')=='1'){
-		$kode=$this->input->post('kobar');	
-		$result['rows'] = $this->M_penjualan->get_barang_jual($kode);			
-						
-		if($result['rows']->num_rows() > 0){
-			// echo "masuk sini 1";
-			$data['status'] = 0;
-			$data['message'] = "Data tidak bisa dihapus, data sudah digunakan di modul penjualan";
-			echo json_encode($data);			
-			return;
-		}else{					
-			// print_r($this->M_barang->hapus_barang($kode));die();	
-			if ($this->M_barang->hapus_barang($kode) == 1){
-				$data['status'] = 1;
-				$data['message'] = "Data sudah dihapus";								
-			}else{
-				$data['status'] = 2;
-				$data['message'] = "Data gagal dihapus";				
-			}			
-			echo json_encode($data);			
-			return;
+		if($this->session->userdata('akses')=='1'){
+			$kode=$this->input->post('kobar');	
+			$result['rows'] = $this->M_penjualan->get_barang_jual($kode);			
+							
+			if($result['rows']->num_rows() > 0){
+				// echo "masuk sini 1";
+				$data['status'] = 0;
+				$data['message'] = "Data tidak bisa dihapus, data sudah digunakan di modul penjualan";
+				echo json_encode($data);			
+				return;
+			}else{					
+				// print_r($this->M_barang->hapus_barang($kode));die();	
+				if ($this->M_barang->hapus_barang($kode) == 1){
+					$data['status'] = 1;
+					$data['message'] = "Data sudah dihapus";								
+				}else{
+					$data['status'] = 2;
+					$data['message'] = "Data gagal dihapus";				
+				}			
+				echo json_encode($data);			
+				return;
+			}
+		}else{
+			echo "Halaman tidak ditemukan";
 		}
-	}else{
-        echo "Halaman tidak ditemukan";
-    }
 	}
 }

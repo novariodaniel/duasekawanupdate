@@ -71,9 +71,17 @@ class Pembelian extends CI_Controller{
 				'harga'    => str_replace(",", "", $harjul),
 				'qty'      => $jumlah
 				);
-				// print_r($data);die();
-			// print_r($this->cart->contents());die();
-			if (($harpok == 0) || ($harjul == 0) || ($jumlah == 0)){	
+			// if (($harpok == 0) || ($harjul == 0) || ($jumlah == 0)){	
+			// 	// echo "ssss";			
+			// 	echo '<script language="javascript" type="text/javascript"> 
+			// 	alert("Tidak boleh mengandung value 0");   
+			// 	window.location = "'.base_url().'admin/Pembelian";             
+			// 	</script>';				
+			// 	die();
+				
+			// }
+
+			if (($harjul == 0) || ($jumlah == 0)){	
 				// echo "ssss";			
 				echo '<script language="javascript" type="text/javascript"> 
 				alert("Tidak boleh mengandung value 0");   
@@ -82,6 +90,9 @@ class Pembelian extends CI_Controller{
 				die();
 				
 			}
+
+			// print_r($data);die();
+
 			if(!empty($this->cart_buying->total_items())){						
 				$count = 0;				
 				foreach($this->cart_buying->contents()as $items){					

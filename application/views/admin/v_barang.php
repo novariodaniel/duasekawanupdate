@@ -14,12 +14,15 @@
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url().'assets/swal/sweetalert2.min.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url().'assets/swal/all.css'?>" rel="stylesheet">
+    <script src="<?php echo base_url().'assets/swal/sweetalert2.min.js'?>"></script>
 	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
-    <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">    
 </head>
 
 <body>
@@ -1152,7 +1155,13 @@
                     success:function(data){  
                         var data = $.parseJSON(data);                      
                         console.log(data);
-                        alert(data.message);
+                        Swal.fire({
+                                type:'success',
+                                title: 'Sukses!',
+                                text: data.message,                                
+                            }).then (function(){                                
+                                location.reload();
+                            });
                     }
                 });
             });

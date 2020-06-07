@@ -35,8 +35,8 @@
       p{
             font-family: Arial, Helvetica, sans-serif !important;
             text-align:left !important;
-            font-size:14px !important;;
-            padding-left:5px !important;;
+            font-size:14px !important;
+            padding-left:5px !important;
       }
       </style>
 </head>
